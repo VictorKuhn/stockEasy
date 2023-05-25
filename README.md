@@ -33,6 +33,6 @@ As seguintes ferramentas foram utilizadas na construção deste projeto:
 Made by:
 
  - Marcos Jr [See LinkedIn](https://www.linkedin.com/in/marcos-gon%C3%A7alves-bbb17a1b5)
- - Victor Hugo [See LinkedIn](https://www.linkedin.com/in/victor-hugo-bosse-kühn-b90a78223/)
+ - Victor Hugo [See LinkedIn](https://www.linkedin.com/in/victorbkuhn/)
  - Wesley Sardi [See LinkedIn](https://www.linkedin.com/in/wesleysardi/)
  - Davi Prudente [See LinkedIn](https://www.linkedin.com/in/daviprudente/)
