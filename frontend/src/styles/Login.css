@@ -1,0 +1,422 @@
+* {
+    font-family: 'Poppins';
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.center {
+    /*width: 100%;*/
+    text-align: center;
+    max-width: 1280px;
+}
+
+.clear {
+    clear: both;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.login-logo {
+    user-select: none;
+}
+
+.login-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.login-box form {
+    padding: 100px 15px;
+}
+
+.login-box a {
+    text-decoration: none;
+    color: black;
+    transition: 0.7s ease;
+}
+
+.login-box a:hover {
+    font-size: 16.5px;
+}
+
+.login-box input {
+    display: block;
+    width: 320px;
+    height: 50px;
+    margin-bottom: 15px;
+    border-radius: 25px;
+    transition: 0.7s ease;
+}
+
+.login-box input:focus {
+    transform: scale(1.03);
+}
+
+.input-write {
+    padding-left: 5%;
+    border: 2px solid #674CE7;
+    text-decoration: none;
+    outline: none;
+}
+
+.input-send {
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    outline: none;
+    border: none;
+    text-decoration: none;
+    transition: 0.7s ease;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+}
+
+.input-send:hover {
+    filter: brightness(120%);
+    transform: scale(1.03);
+}
+
+.wave1 {
+    display: block;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 5%;
+    bottom: 10%;
+    transition: 2s ease;
+    animation: animacao_wave1 2s ease-in-out infinite;
+    animation-delay: 0.05s;
+}
+
+.wave2 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 80px;
+    height: 80px;
+    border-radius: 40px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 20%;
+    bottom: 5%;
+    transition: 2s ease;
+    animation: animacao_wave2 3s ease-in-out infinite;
+    animation-delay: 0.1s;
+}
+
+.wave3 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 35%;
+    bottom: 6%;
+    transition: 2s ease;
+    animation: animacao_wave3 1.5s ease-in-out infinite;
+    animation-delay: 0.15s;
+}
+
+.wave4 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 50%;
+    bottom: 8%;
+    transition: 1.8s ease;
+    animation: animacao_wave4 1.3s ease-in-out infinite;
+    animation-delay: 0.2s;
+}
+
+.wave5 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 65%;
+    bottom: 3%;
+    transition: 1.8s ease;
+    animation: animacao_wave5 1.3s ease-in-out infinite;
+    animation-delay: 0.25s;
+}
+
+.wave6 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 25px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 80%;
+    bottom: 7%;
+    transition: 2s ease;
+    animation: animacao_wave6 1.8s ease-in-out infinite;
+    animation-delay: 0.30s;
+}
+
+.wave7 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 18px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 95%;
+    bottom: 7%;
+    transition: 2s ease;
+    animation: animacao_wave6 1.4s ease-in-out infinite;
+    animation-delay: 0.35s;
+}
+
+.wave_star1 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 10%;
+    bottom: -10%;
+    transition: 2s ease;
+    animation: animacao_wave_star_1 3s ease-in-out infinite;
+    animation-delay: 5s;
+}
+
+.wave_star2 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 25%;
+    bottom: -10%;
+    transition: 2s ease;
+    animation: animacao_wave_star_1 3s ease-in-out infinite;
+    animation-delay: 7s;
+}
+
+.wave_star3 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 40%;
+    bottom: -10%;
+    transition: 2s ease;
+    animation: animacao_wave_star_1 3s ease-in-out infinite;
+    animation-delay: 6s;
+}
+
+.wave_star4 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 60%;
+    bottom: -10%;
+    transition: 2s ease;
+    animation: animacao_wave_star_1 3s ease-in-out infinite;
+    animation-delay: 9s;
+}
+
+.wave_star5 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 70%;
+    bottom: -10%;
+    transition: 2s ease;
+    animation: animacao_wave_star_1 3s ease-in-out infinite;
+    animation-delay: 6.5s;
+}
+
+.wave_star6 {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #674CE7, #9673DA);
+    ;
+    left: 90%;
+    bottom: -10%;
+    transition: 2s ease;
+    animation: animacao_wave_star_1 3s ease-in-out infinite;
+    animation-delay: 8s;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+
+@media screen and (max-width: 768px) {
+    .wave1 {
+        left: 20%;
+    }
+
+    .wave2,
+    .wave3,
+    .wave5,
+    .wave6 {
+        animation: none;
+        display: none;
+    }
+
+    .wave7 {
+        left: 80%;
+    }
+
+}
+
+@keyframes animacao_wave_star_1 {
+    0% {
+        bottom: -10%;
+    }
+
+    75% {
+        opacity: 0;
+    }
+
+    100% {
+        bottom: 90%;
+        opacity: 0;
+    }
+}
+
+@keyframes animacao_wave1 {
+    0% {
+        bottom: 10%;
+    }
+
+    50% {
+        bottom: 4%;
+    }
+
+    100% {
+        bottom: 10%;
+    }
+}
+
+@keyframes animacao_wave2 {
+    0% {
+        bottom: 5%;
+    }
+
+    50% {
+        bottom: 12%;
+    }
+
+    100% {
+        bottom: 5%;
+    }
+}
+
+@keyframes animacao_wave3 {
+    0% {
+        bottom: 6%;
+    }
+
+    50% {
+        bottom: 8%;
+    }
+
+    100% {
+        bottom: 6%;
+    }
+}
+
+@keyframes animacao_wave4 {
+    0% {
+        bottom: 8%;
+    }
+
+    50% {
+        bottom: 14%;
+    }
+
+    100% {
+        bottom: 8%;
+    }
+}
+
+@keyframes animacao_wave5 {
+    0% {
+        bottom: 3%;
+    }
+
+    50% {
+        bottom: 9%;
+    }
+
+    100% {
+        bottom: 3%;
+    }
+}
+
+@keyframes animacao_wave6 {
+    0% {
+        bottom: 7%;
+    }
+
+    50% {
+        bottom: 12%;
+    }
+
+    100% {
+        bottom: 7%;
+    }
+}
+
+@keyframes animacao_wave7 {
+    0% {
+        bottom: 7%;
+    }
+
+    50% {
+        bottom: 12%;
+    }
+
+    100% {
+        bottom: 7%;
+    }
+}

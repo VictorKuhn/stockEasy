@@ -1,0 +1,63 @@
+.formulario-editar{
+    margin-top: 100px;
+}
+
+.form-edit label{
+    display: block;
+}
+
+.form-edit input{
+    padding: 7px 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(226, 226, 226);
+    outline: none;
+}
+
+.form-edit div{
+    padding: 1vh 0;
+}
+
+.form-edit button{
+    margin: 1vh 0;
+    width: 200px;
+    padding: 8px 40px;
+    border: none;
+    outline: none;
+    background-color: #674CE7;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.form-edit button:hover{
+    background-color: #a070ff;
+}
+
+.nivel_acesso_usuario_select{
+    background-color: rgb(226, 226, 226);
+    border: none;
+    width: 200px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
+.password-input i{
+    padding: 5px;
+    background-color: #6F00E6;
+    color: white;
+    font-size: 12px;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 5px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.password-input i:hover{
+    background-color: #a070ff;
+}

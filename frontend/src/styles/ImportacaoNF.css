@@ -1,0 +1,63 @@
+.import-container {
+    margin-top: 100px;
+}
+
+.import-container-upload {
+    padding: 25px 15px;
+    border-radius: 20px;
+    background: linear-gradient(to right, #6F00E6, #A55FF0);
+    position: absolute;
+    margin: 0 auto;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.import-container-upload input {
+    border: none;
+    outline: none;
+    color: white;
+}
+
+.import-container h2 {
+    color: white;
+    padding: 10px;
+}
+
+.json-results {
+    margin-top: 150px;
+    height: 60vh;
+    overflow: auto;
+}
+
+.table-json-result {
+    overflow: auto !important;
+    height: 100px;
+}
+
+.table-json-result {
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.table-json-result thead tr {
+    background-color: #370072;
+    color: white;
+}
+
+.table-json-result th,
+.table-json-result td {
+    padding: 5px 8px;
+}
+
+.table-json-result td{
+    font-size: 14px;
+}
+
+.table-json-result tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table-json-result tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}

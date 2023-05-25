@@ -1,0 +1,78 @@
+.table-container{
+    float: right;
+    width: calc(100vw - 70px);
+    height: 95vh;
+    overflow-y: auto;
+}
+
+.main-table{
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 80%;
+}
+
+.main-table thead tr{
+    background-color: #370072;
+    color: white;
+}
+
+.main-table th,
+.main-table td{
+    padding: 5px 8px;
+}
+
+.main-table td{
+    font-size: 14px;
+}
+
+.main-table tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.main-table tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}
+
+.btn{
+    padding: 3px 5px;
+    border-radius: 5px;
+    text-decoration: none;
+    outline: none;
+    border: none;
+    background-color: #E16C01;
+    color: white;
+    cursor: pointer;
+}
+
+.btn-add-produto{
+    padding: 10px 13px;
+    margin-top: 80px;
+    transition: 0.3s ease-in-out;
+}
+
+.main-table button{
+    margin: 0 1%;
+}
+
+.btn-add-produto:hover{
+    transform: scale(1.03);
+    background-color: #ee7b10;
+}
+
+.btn-edit{
+    background-color: #009879;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-edit:hover{
+    background-color: #00bb96;
+}
+
+.btn-excluir{
+    background-color: #f44336;
+    transition: 0.3s ease-in-out;
+}
+
+.btn-excluir:hover{
+    background-color: #ff5346;
+}
