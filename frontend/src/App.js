@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Produtos from './pages/Produtos';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
+import Login from './pages/Login';
+import Home from './pages/Home';
+import Produtos from './pages/Produtos';
 import EditarProduto from './pages/EditarProduto';
 import CadastroProduto from './pages/CadastroProduto';
 import ImportacaoNF from './pages/ImportacaoNF';
