@@ -45,6 +45,26 @@ app.get('/api/getProduto/:id', (req, res) => {
     });
 });
 
+// Pegar os dados de um produto pelo ID com o estoque junto
+app.get('/api/getProdutoEstoque/:id', (req, res) => {
+    const id_produto = req.params.id;
+    const query = 'SELECT p.id_produto, p.nome_produto, e.qtd_produto_estoque FROM produtos p INNER JOIN estoque e ON id_produto_estoque = id_produto WHERE id_produto = ?';
+
+    db.query(query, [id_produto], (err, result) => {
+        if (err) {
+            console.error('Erro ao obter o produto:', err);
+            res.status(500).json({ error: 'Erro ao obter o produto.' });
+        } else {
+            if (result.length > 0) {
+                const produto = result[0];
+                res.status(200).json(produto);
+            } else {
+                res.status(404).json({ error: 'Produto não encontrado.' });
+            }
+        }
+    });
+});
+
 // Pegar os produtos jutamente também com o estoque
 app.get('/api/getProdutosComEstoque', (req, res) => {
     const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';
