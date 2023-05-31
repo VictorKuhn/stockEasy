@@ -1,0 +1,83 @@
+.modalBackground {
+    align-items: center;
+    background-color: rgba(148, 148, 148, 0.7);
+    display: none;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    /* Centralizar verticalmente e horizontalmente com flexbox */
+}
+
+.modalStructure {
+    width: 60%;
+    background-color: white;
+    /* Centralizar verticalmente e horizontalmente com tranform */
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    border: solid 2px rgb(255, 230, 0);
+    border-radius: 20px;
+    padding: 3vh 0vw;
+    opacity: 1;
+}
+
+.modalBottom {
+    display: flex;
+    justify-content: right;
+    margin: 1vh 2vw;
+
+}
+
+.modalBottom div button {
+    margin-left: 1vw;
+}
+
+.modalBottom button {
+    cursor: pointer;
+    color: white;
+    border: solid rgb(201, 201, 201) 1px;
+    border-radius: 10px;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.1s;
+
+}
+
+.modalBottom button:hover {
+    border-color: #8b8b8b;
+    color: #8b8b8b;
+}
+
+.modalBottom button:active {
+    border-color: rgb(201, 201, 201);
+    color: white;
+}
+
+.modalContent {
+    margin: auto;
+    width: 80%;
+}
+
+.modalContent form {
+    padding: 5vh 0vh;
+}
+
+.modalContent form div {
+    display: flex;
+    margin: auto;
+    padding: 1vh 0vh;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.modalContent form div input {
+    border: solid 1px rgb(255, 230, 0);
+    border-radius: 8px;
+    padding-left: 5px;
+    width: 50%;
+}

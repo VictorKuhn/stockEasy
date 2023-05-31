@@ -59,6 +59,34 @@ app.get('/api/getProdutosComEstoque', (req, res) => {
     });
 });
 
+// Pegar as requisições onde o status for 1 -> "Pendente"
+app.get('/api/getRequisicoesPendente', (req, res) => {
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter as movimentacoes:', err);
+            res.status(500).json({ error: 'Erro ao obter as movimentacoes.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+// Pegar as movimentacoes
+app.get('/api/getMovimentacoes', (req, res) => {
+    const query = 'SELECT m.id_movimentacao, p.nome_produto, m.qtd_movimentacao_produto, m.data_movimentacao_produto, m.movimentacao_produto, CASE WHEN m.movimentacao_produto = 1 THEN "Entrada" WHEN m.movimentacao_produto = 0 THEN "Saída" ELSE "ERRO" END as movimento FROM movimentacao m INNER JOIN produtos p ON m.id_produto_movimentacao = p.id_produto';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter as movimentacoes:', err);
+            res.status(500).json({ error: 'Erro ao obter as movimentacoes.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 // Cadastro de um produto
 app.post('/api/cadastrarProduto', (req, res) => {
     const { nome_produto, valor_produto, qtd_produto_estoque } = req.body;
@@ -247,6 +275,22 @@ app.post('/api/cadastrarUsuario', (req, res) => {
             res.status(500).json({ error: 'Erro ao cadastrar o usuário.' });
         } else {
             res.status(200).json({ message: 'Usuário cadastrado com sucesso.' });
+        }
+    });
+});
+
+// Cadastrar uma requisicao
+app.post('/api/cadastrarRequisicao', (req, res) => {
+    const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto } = req.body;
+    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_pruduto, status_produto) VALUES (?, ?, ?, ?)';
+    const values = [id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar uma requisicao:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar uma requisicao.' });
+        } else {
+            res.status(200).json({ message: 'Requisicao cadastrada com sucesso.' });
         }
     });
 });
