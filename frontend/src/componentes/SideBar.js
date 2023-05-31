@@ -6,18 +6,18 @@ export default function SideBar() {
     <div className="SideBar">
       <div className="sidebar-container">
         <ul className="sidebar-ul">
-          <i class="fa-solid fa-bars"></i>
+          <i className="fa-solid fa-bars"></i>
           <Link to="/produtos">
-            <li><i class="fa-solid fa-box-open"></i><span>Produtos</span></li>
+            <li><i className="fa-solid fa-box-open"></i><span>Produtos</span></li>
           </Link>
           <Link to="/importacaoNF">
-            <li><i class="fa-solid fa-circle-plus"></i><span>Importar NF</span></li>
+            <li><i className="fa-solid fa-circle-plus"></i><span>Importar NF</span></li>
           </Link>
           <Link to="">
-            <li><i class="fa-solid fa-right-left"></i><span>Transferências</span></li>
+            <li><i className="fa-solid fa-right-left"></i><span>Transferências</span></li>
           </Link>
           <Link to="/usuarios">
-            <li><i class="fa-solid fa-users"></i><span>Usuários</span></li>
+            <li><i className="fa-solid fa-users"></i><span>Usuários</span></li>
           </Link>
         </ul>
       </div>

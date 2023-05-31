@@ -9,6 +9,7 @@ import '../utils/locales';
 
 const Produtos = () => {
   const [data, setData] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const loadData = async () => {
     const response = await axios.get("http://localhost:5000/api/getProdutosComEstoque");
@@ -33,14 +34,35 @@ const Produtos = () => {
     }
   };
 
+  const filterData = (data) => {
+    return data.filter(
+      (produto) =>
+        produto.nome_produto.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        produto.id_produto.toString().includes(searchTerm)
+    );
+  };
+
   return (
     <div className="Produto">
       <Header />
       <SideBar />
 
       <div className="table-container">
+        <div className="campo-procurar">
+          <input
+            type="text"
+            placeholder="Digite o nome do produto que você deseja encontrar..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+          <div className="clear"></div>
+        </div>
+
         <Link to="/cadastrarProduto">
           <button className="btn btn-add-produto">Cadastrar Produto</button>
+        </Link>
+        <Link to="/criarRequisicao">
+          <button className="btn btn-add-produto">+ Requisição</button>
         </Link>
         <table className="main-table">
           <thead>
@@ -54,7 +76,7 @@ const Produtos = () => {
             </tr>
           </thead>
           <tbody>
-            {data.map((produto, index) => (
+            {filterData(data).map((produto, index) => (
               <tr key={produto.id_produto}>
                 <th scope="row">{index + 1}</th>
                 <td>{produto.id_produto}</td>

@@ -1,14 +1,59 @@
+.clear{
+    clear: both;
+}
+
 .table-container{
     float: right;
     width: calc(100vw - 70px);
-    height: 95vh;
+    height: 90vh;
     overflow-y: auto;
+}
+
+.campo-procurar{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 80px auto 0 auto;
+    width: 78%;
+}
+
+.campo-procurar input[type='text']{
+    width: 95%;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #686868;
+}
+
+.campo-procurar i{
+    position: relative;
+    top: 4px;
+    padding: 7px;
+    border: 1px solid #E16C01;
+    border-radius: 25px;
+    color: #E16C01;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.campo-procurar a{
+    transition: 0.3s ease-in-out;
+}
+
+.campo-procurar a:hover{
+    transform: scale(1.10);
+}
+
+.campo-procurar i:hover{
+    background-color: #ee7b10;
+    color: white;
 }
 
 .main-table{
     border-collapse: collapse;
     margin: 20px auto;
-    width: 80%;
+    width: 78%;
 }
 
 .main-table thead tr{
@@ -46,7 +91,7 @@
 
 .btn-add-produto{
     padding: 10px 13px;
-    margin-top: 80px;
+    margin: 30px 1vw 0 1vw;
     transition: 0.3s ease-in-out;
 }
 

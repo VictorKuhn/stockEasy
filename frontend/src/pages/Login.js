@@ -74,12 +74,12 @@ const Login = () => {
       <div className="wave6"></div>
       <div className="wave7"></div>
 
-      <div class="wave_star1"></div>
-      <div class="wave_star2"></div>
-      <div class="wave_star3"></div>
-      <div class="wave_star4"></div>
-      <div class="wave_star5"></div>
-      <div class="wave_star6"></div>
+      <div className="wave_star1"></div>
+      <div className="wave_star2"></div>
+      <div className="wave_star3"></div>
+      <div className="wave_star4"></div>
+      <div className="wave_star5"></div>
+      <div className="wave_star6"></div>
     </div>
   );
 };

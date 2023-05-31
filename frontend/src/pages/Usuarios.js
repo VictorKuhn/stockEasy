@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import '../styles/Produtos.css';
+import '../styles/Usuarios.css';
 import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import '../utils/locales';
@@ -37,8 +37,8 @@ const Usuarios = () => {
     <div className="Produto">
       <Header />
       <SideBar />
-
-      <div className="table-container">
+      
+      <div className="table-container-usuarios">
         <Link to="/cadastrarUsuario">
           <button className="btn btn-add-produto">Cadastrar Usuário</button>
         </Link>
