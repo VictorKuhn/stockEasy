@@ -163,7 +163,12 @@ app.get('/api/getUsuarios', (req, res) => {
 
 // Pegar os dados dos usuários juntamente com o seu nível de acesso
 app.get('/api/getUsuariosComNivel', (req, res) => {
-    const query = 'SELECT u.*, n.nome_acesso FROM usuarios AS u JOIN nivel_acessos AS n ON u.nivel_acesso_usuario = n.id_nivel_acesso';
+    const query = `
+      SELECT u.*, n.nome_acesso, s.nome_setor
+      FROM usuarios AS u
+      JOIN nivel_acessos AS n ON u.nivel_acesso_usuario = n.id_nivel_acesso
+      JOIN setor AS s ON u.setor_usuario = s.id_setor
+    `;
 
     db.query(query, (err, result) => {
         if (err) {
@@ -174,6 +179,7 @@ app.get('/api/getUsuariosComNivel', (req, res) => {
         }
     });
 });
+
 
 // Pegar os dados de um usuário pelo ID
 app.get('/api/getUsuarios/:id', (req, res) => {
@@ -237,9 +243,9 @@ app.delete('/api/excluirUsuario/:id', (req, res) => {
 
 // Cadastrar um usuário
 app.post('/api/cadastrarUsuario', (req, res) => {
-    const { login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario } = req.body;
-    const query = 'INSERT INTO usuarios (login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario) VALUES (?, ?, ?, ?)';
-    const values = [login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario];
+    const { login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario, setor_usuario } = req.body;
+    const query = 'INSERT INTO usuarios (login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario, setor_usuario) VALUES (?, ?, ?, ?, ?)';
+    const values = [login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario, setor_usuario];
 
     db.query(query, values, (err, result) => {
         if (err) {
@@ -267,6 +273,102 @@ app.post('/api/login', (req, res) => {
             } else {
                 // Credenciais inválidas
                 res.status(200).json({ success: false });
+            }
+        }
+    });
+});
+
+///////////////////////////////////////////////////////////////////////////
+
+//                   OPERAÇÕES RELACIONADAS A SETORES                    //
+
+///////////////////////////////////////////////////////////////////////////
+
+// Obter todos os setores
+app.get('/api/getSetores', (req, res) => {
+    const query = 'SELECT * FROM setor';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter os setores:', err);
+            res.status(500).json({ error: 'Erro ao obter os setores.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+// Obter o setor pelo seu ID
+app.get('/api/getSetor/:id', (req, res) => {
+    const id_setor = req.params.id;
+    const query = 'SELECT * FROM setor WHERE id_setor = ?';
+
+    db.query(query, [id_setor], (err, result) => {
+        if (err) {
+            console.error('Erro ao obter o setor:', err);
+            res.status(500).json({ error: 'Erro ao obter o setor.' });
+        } else {
+            if (result.length > 0) {
+                const setor = result[0];
+                res.status(200).json(setor);
+            } else {
+                res.status(404).json({ error: 'Setor não encontrado.' });
+            }
+        }
+    });
+});
+
+// Cadastrar setor
+app.post('/api/cadastrarSetor', (req, res) => {
+    const { nome_setor } = req.body;
+    const query = 'INSERT INTO setor (nome_setor) VALUES (?)';
+    const values = [nome_setor];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar o setor:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar o setor.' });
+        } else {
+            res.status(201).json({ message: 'Setor cadastrado com sucesso.' });
+        }
+    });
+});
+
+// Editar setor
+app.put('/api/editarSetor/:id', (req, res) => {
+    const id_setor = req.params.id;
+    const { nome_setor } = req.body;
+    const query = 'UPDATE setor SET nome_setor = ? WHERE id_setor = ?';
+    const values = [nome_setor, id_setor];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao editar o setor:', err);
+            res.status(500).json({ error: 'Erro ao editar o setor.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Setor atualizado com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Setor não encontrado.' });
+            }
+        }
+    });
+});
+
+// Excluir setor
+app.delete('/api/excluirSetor/:id', (req, res) => {
+    const id_setor = req.params.id;
+    const query = 'DELETE FROM setor WHERE id_setor = ?';
+
+    db.query(query, [id_setor], (err, result) => {
+        if (err) {
+            console.error('Erro ao excluir o setor:', err);
+            res.status(500).json({ error: 'Erro ao excluir o setor.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Setor excluído com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Setor não encontrado.' });
             }
         }
     });

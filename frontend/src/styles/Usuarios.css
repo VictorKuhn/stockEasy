@@ -6,8 +6,7 @@
     float: right;
     width: calc(100vw - 70px);
     height: 90vh;
-    margin-top: 50px;
-    overflow-y: auto;
+    margin-top: 20px;
 }
 
 .campo-procurar{
@@ -15,7 +14,7 @@
     justify-content: space-around;
     align-items: center;
     margin: 80px auto 0 auto;
-    width: 78%;
+    width: 80vw;
 }
 
 .campo-procurar input[type='text']{
@@ -28,8 +27,6 @@
 
 .main-table{
     border-collapse: collapse;
-    margin: 20px auto;
-    width: 78%;
 }
 
 .main-table thead tr{

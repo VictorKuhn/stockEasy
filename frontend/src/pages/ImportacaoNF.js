@@ -72,26 +72,28 @@ export default function ImportacaoNF() {
         }
 
         return (
-            <table className="table-json-result">
-                <thead>
-                    <tr>
-                        <th>Registro</th>
-                        <th>Descrição</th>
-                        <th>Qtde</th>
-                        <th>Valor</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {records.map((record, index) => (
-                        <tr key={index}>
-                            <td>{record._attributes.nItem}</td>
-                            <td>{record.prod.xProd._text}</td>
-                            <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
-                            <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
+            <div className="table-json-result-div">
+                <table className="table-json-result">
+                    <thead>
+                        <tr>
+                            <th>Registro</th>
+                            <th>Descrição</th>
+                            <th>Qtde</th>
+                            <th>Valor</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {records.map((record, index) => (
+                            <tr key={index}>
+                                <td>{record._attributes.nItem}</td>
+                                <td>{record.prod.xProd._text}</td>
+                                <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
+                                <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         );
     };
 

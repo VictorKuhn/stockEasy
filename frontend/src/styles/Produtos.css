@@ -6,7 +6,6 @@
     float: right;
     width: calc(100vw - 70px);
     height: 90vh;
-    overflow-y: auto;
 }
 
 .campo-procurar{
@@ -14,46 +13,27 @@
     justify-content: space-around;
     align-items: center;
     margin: 80px auto 0 auto;
-    width: 78%;
+    width: 80vw;
 }
 
 .campo-procurar input[type='text']{
-    width: 95%;
+    width: 100%;
     padding: 5px 10px;
     outline: none;
     border-radius: 5px;
     border: 1px solid #686868;
 }
 
-.campo-procurar i{
-    position: relative;
-    top: 4px;
-    padding: 7px;
-    border: 1px solid #E16C01;
-    border-radius: 25px;
-    color: #E16C01;
-    font-size: 16px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.campo-procurar a{
-    transition: 0.3s ease-in-out;
-}
-
-.campo-procurar a:hover{
-    transform: scale(1.10);
-}
-
-.campo-procurar i:hover{
-    background-color: #ee7b10;
-    color: white;
+.main-table-div{
+    margin: 30px auto;
+    width: 80vw;
+    height: 65%;
+    overflow: auto;
 }
 
 .main-table{
+    width: 100%;
     border-collapse: collapse;
-    margin: 20px auto;
-    width: 78%;
 }
 
 .main-table thead tr{
