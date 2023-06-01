@@ -1,0 +1,47 @@
+.divTitle {
+    text-align: left;
+    width: 80%;
+    margin: auto;
+}
+
+.tableOverflow {
+    overflow: auto;
+    height: 70vh;
+    margin: auto;
+    width: 80%;
+}
+
+.tableContainer{
+    float: right;
+    width: calc(100vw - 70px);
+    height: 88vh;
+    margin: 12vh auto;
+}
+
+.mainTable{
+    border-collapse: collapse;
+    margin: 20px auto;
+    width: 100%;
+}
+
+.mainTable thead tr{
+    background-color: #370072;
+    color: white;
+}
+
+.mainTable th,
+.mainTable td{
+    padding: 5px 8px;
+}
+
+.mainTable td{
+    font-size: 14px;
+}
+
+.mainTable tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.mainTable tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}

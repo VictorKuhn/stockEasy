@@ -11,6 +11,8 @@ import ImportacaoNF from './pages/ImportacaoNF';
 import Usuarios from './pages/Usuarios';
 import EditarUsuario from './pages/EditarUsuario';
 import CadastroUsuario from './pages/CadastroUsuario';
+import RequisicoesRecusadas from './pages/RequisicoesRecusadas';
+import MonitoramentoRT from './pages/MonitoramentoRT';
 
 function App() {
   return (
@@ -27,6 +29,8 @@ function App() {
           <Route path="/cadastrarUsuario" element={<CadastroUsuario />}></Route>
           <Route path="/importacaoNF" element={<ImportacaoNF />}></Route>
           <Route path="/usuarios" element={<Usuarios />}></Route>
+          <Route path="/requisicoesRecusadas" element={<RequisicoesRecusadas />}></Route>
+          <Route path="/monitoramentoRT" element={<MonitoramentoRT />}></Route>
         </Routes>
       </div>
     </BrowserRouter>

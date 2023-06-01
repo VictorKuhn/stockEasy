@@ -81,7 +81,7 @@ app.get('/api/getProdutosComEstoque', (req, res) => {
 
 // Pegar as requisições onde o status for 1 -> "Pendente"
 app.get('/api/getRequisicoesPendente', (req, res) => {
-    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status';
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente"';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -101,6 +101,20 @@ app.get('/api/getMovimentacoes', (req, res) => {
         if (err) {
             console.error('Erro ao obter as movimentacoes:', err);
             res.status(500).json({ error: 'Erro ao obter as movimentacoes.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+// Pegar as requisicoes recusadas
+app.get('/api/getRequisicoesRecusadas', (req, res) => {
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Reprovado"';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter as Requisicoes Recusadas:', err);
+            res.status(500).json({ error: 'Erro ao obter as Requisicoes Recusadas.' });
         } else {
             res.status(200).json(result);
         }
@@ -130,6 +144,22 @@ app.post('/api/cadastrarProduto', (req, res) => {
                     res.status(200).json({ message: 'Produto cadastrado com sucesso.' });
                 }
             });
+        }
+    });
+});
+
+// Cadastro de uma requisição
+app.post('/api/cadastrarRequisicao', (req, res) => {
+    const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto } = req.body;
+    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_pruduto, status_produto) VALUES (?, ?, ?, ?)';
+    const values = [id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar a requisicao:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar a requisicao.' });
+        } else {
+            res.status(200).json({ message: 'Requisicao cadastrada com sucesso.' });
         }
     });
 });

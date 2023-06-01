@@ -6,6 +6,8 @@
     position: absolute;
     justify-content: center;
     width: 100%;
+    z-index: 1000;
+    transition-duration: 0.5s;
     /* Centralizar verticalmente e horizontalmente com flexbox */
 }
 
@@ -24,15 +26,13 @@
     opacity: 1;
 }
 
-.modalBottom {
-    display: flex;
-    justify-content: right;
-    margin: 1vh 2vw;
-
+.modalTitle {
+    padding: 2vh 0vw 4vh 0vw;
 }
 
-.modalBottom div button {
-    margin-left: 1vw;
+.modalBottom div {
+   display: flex;
+   justify-content: right;
 }
 
 .modalBottom button {
@@ -41,11 +41,9 @@
     border: solid rgb(201, 201, 201) 1px;
     border-radius: 10px;
     padding: 15px 32px;
-    text-align: center;
-    display: inline-block;
     font-size: 16px;
     transition-duration: 0.1s;
-
+    margin: 3vh 1vw 0vh 0vw;
 }
 
 .modalBottom button:hover {
@@ -60,14 +58,10 @@
 
 .modalContent {
     margin: auto;
-    width: 80%;
+    width: 100%;
 }
 
-.modalContent form {
-    padding: 5vh 0vh;
-}
-
-.modalContent form div {
+.divModalContent {
     display: flex;
     margin: auto;
     padding: 1vh 0vh;

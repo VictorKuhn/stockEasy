@@ -1,0 +1,84 @@
+.background-div {
+    float: right;
+    width: calc(100vw - 70px);
+    height: 88vh;
+    margin: 12vh auto;
+}
+
+.div-h1-button {
+    display: flex;
+    justify-content: space-between;
+    margin: 1vh auto;
+    width: 80%;
+    align-items: center;
+}
+
+.div-h1-button div button {
+    margin-left: 1vw;
+}
+
+.div-h1-button button {
+    cursor: pointer;
+    color: white;
+    border: solid rgb(201, 201, 201) 1px;
+    border-radius: 10px;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.1s;
+
+}
+
+.div-h1-button button:hover {
+    border-color: #8b8b8b;
+    color: #8b8b8b;
+}
+
+.div-h1-button button:active {
+    border-color: rgb(201, 201, 201);
+    color: white;
+}
+
+.div-tables {
+    height: 35%;
+    overflow: auto;
+    margin: 1% auto;
+    width: 80%;
+}
+
+.tables {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.tables thead tr {
+    background-color: #370072;
+    color: white;
+}
+
+.tables th,
+.tables td {
+    padding: 5px 8px;
+}
+
+.tables td {
+    font-size: 14px;
+}
+
+.tables tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.tables .table-even tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.linhaColunasProdutosVerde {
+    background-color: rgb(199, 255, 181);
+}
+
+.linhaColunasProdutosVermelho {
+    background-color: rgb(253, 176, 176);
+}
