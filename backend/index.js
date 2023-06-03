@@ -79,6 +79,20 @@ app.get('/api/getProdutosComEstoque', (req, res) => {
     });
 });
 
+// Pegar os produtos jutamente também com o estoque e as movimentacoes
+app.get('/api/getProdutosComEstoqueEMovimentacao', (req, res) => {
+    const query = 'SELECT p.id_produto, m.movimentacao_produto, p.valor_produto, e.qtd_produto_estoque FROM produtos p INNER JOIN estoque e ON p.id_produto = e.id_produto_estoque INNER JOIN movimentacao m ON p.id_produto = m.id_produto_movimentacao';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter os produtos com estoque e as movimentacoes:', err);
+            res.status(500).json({ error: 'Erro ao obter os produtos com estoque e as movimentacoes.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 // Pegar as requisições onde o status for 1 -> "Pendente"
 app.get('/api/getRequisicoesPendente', (req, res) => {
     const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente" ORDER BY r.id_requisicao';

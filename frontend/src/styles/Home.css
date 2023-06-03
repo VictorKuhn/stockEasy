@@ -25,13 +25,12 @@ h1 {
 }
 
 .backgroundTitle {
-    text-align: left;
     border-bottom: 1px rgb(244, 163, 255) solid;
-    height: 50px;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
-    /* background-color: purple; */
+    width: 50%;
+    margin: auto;
 }
 
 .divBackground {
@@ -74,7 +73,7 @@ h1 {
 }
 
 .insideDivs {
-    background-color: rgb(238, 221, 255);
+    background-color: rgb(241, 228, 255);
     border: 2px rgb(239, 173, 255) solid;
     border-radius: 20px;
     width: 42vw;
@@ -99,7 +98,7 @@ h1 {
 }
 
 .firstBox:hover {
-    color: pink;
+    color: purple;
     font-size: 10.5vh;
 }
 
@@ -110,18 +109,18 @@ h1 {
 }
 
 .secondBox:hover {
-    color: rgb(255, 187, 0);
+    color: purple;
     font-size: 8.5vh;
 }
 
 .thirdBox {
-    color: black;
+    color: rgb(182, 148, 0);
     font-size: 8vh;
     transition-duration: 0.1s;
 }
 
 .thirdBox:hover {
-    color: pink;
+    color: purple;
     font-size: 8.5vh;
 }
 
@@ -132,7 +131,7 @@ h1 {
 }
 
 .forthBox:hover {
-    color: rgb(255, 187, 0);
+    color: purple;
     font-size: 10.5vh;
 }
 

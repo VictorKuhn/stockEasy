@@ -23,7 +23,6 @@ const MonitoramentoRT = () => {
 
     useEffect(() => {
         loadData();
-        AlterarCorLinha();
     }, []);
 
     function AlterarCorLinha() {
@@ -62,7 +61,7 @@ const MonitoramentoRT = () => {
         <div className="Home">
             <Header />
             <SideBar />
-            <ModalRequisicoes showModal={showModal} />
+            <ModalRequisicoes showModal={showModal} loadData={loadData}/>
             {/* Sidebar = 70px */}
             <div className="background-div">
                 <div className='div-h1-button'>

@@ -44,7 +44,9 @@ const ModalRequisicoes = (props) => {
             await axios.post('http://localhost:5000/api/cadastrarRequisicao', requisicao);
             props.showModal()
             navigate('/monitoramentoRT');
-            window.location.reload(true)
+            props.loadData() // -> recarrega a tabela sem recarregar a tela
+            toast.success("Requisição cadastrada com sucesso.");
+            // window.location.reload(true)
         } catch (error) {
             console.log(error);
             toast.error('Erro ao cadastrar a requisição.');
