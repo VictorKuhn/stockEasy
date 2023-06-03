@@ -31,7 +31,7 @@ const ModalRequisicoes = (props) => {
                 id_usuario_requisicao: 1,
                 id_produto_requisicao: id_produto,
                 qtd_produto: 0,
-                status_produto: 3
+                status_produto: 1
             })
         } catch (error) {
             console.log(error);
@@ -42,9 +42,8 @@ const ModalRequisicoes = (props) => {
         e.preventDefault();
         try {
             await axios.post('http://localhost:5000/api/cadastrarRequisicao', requisicao);
-            toast.success('Requisição cadastrada com sucesso.');
             props.showModal()
-            navigate('/home');
+            navigate('/monitoramentoRT');
             window.location.reload(true)
         } catch (error) {
             console.log(error);
@@ -53,10 +52,22 @@ const ModalRequisicoes = (props) => {
     };
 
     const cancelReq = () => {
-        toast.error('Requisição cancelada.');
         props.showModal()
-        navigate('/home');
-        window.location.reload(true)
+
+        setProduto({
+            id_produto: 0,
+            nome_produto: "",
+            qtd_produto_estoque: 0
+        });
+
+        setRequisicao({
+            id_usuario_requisicao: 0,
+            id_produto_requisicao: 0,
+            qtd_produto: 0,
+            status_produto: 0
+        })
+
+        toast.error('Requisição cancelada.');
     }
 
     const handleChange = (e) => {

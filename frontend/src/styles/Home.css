@@ -1,14 +1,163 @@
+body {
+    background: rgb(212, 183, 255);
+    background: linear-gradient(0deg, rgba(212, 183, 255, 1) 0%, rgba(255, 255, 255, 1) 44%);
+    height: 100vh;
+}
+
+.clear {
+    clear: both;
+}
+
+p,
+h1 {
+    user-select: none;
+}
+
+.background {
+    height: 100%;
+}
+
+.backgroundContent {
+    width: calc(100vw-70px);
+    height: calc(100vh-90px);
+    margin-top: 70px;
+    margin-left: 90px;
+}
+
+.backgroundTitle {
+    text-align: left;
+    border-bottom: 1px rgb(244, 163, 255) solid;
+    height: 50px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    /* background-color: purple; */
+}
+
 .divBackground {
-    float: right;
-    width: calc(100vw - 70px);
-    height: 80vh;
-    margin: 10vh auto;
-    background-color: rgb(255, 255, 54);
+    height: 800px;
+    /* background-color: red; */
 }
 
 .divContent {
-    background-color: red;
-    width: 80%;
-    margin: auto;
+    height: 100%;
+}
+
+.contents {
+    height: 50%;
+}
+
+.divTitles {
+    height: 20%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.divInsideContents {
+    display: flex;
+    justify-content: space-evenly;
     height: 80%;
+}
+
+.contentsTitle {
+    width: 45vw;
+    font-size: 3.3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textInfo {
+    color: black;
+    font-size: 2vh;
+    font-weight: bold;
+}
+
+.insideDivs {
+    background-color: rgb(238, 221, 255);
+    border: 2px rgb(239, 173, 255) solid;
+    border-radius: 20px;
+    width: 42vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
+}
+
+.insideDivs:hover {
+    -webkit-box-shadow: inset 0px 0px 9px 1px rgb(239, 173, 255);
+    -moz-box-shadow: inset 0px 0px 9px 1px rgb(239, 173, 255);
+    box-shadow: inset 0px 0px 9px 1px rgb(239, 173, 255);
+}
+
+.firstBox {
+    color: grey;
+    font-size: 10vh;
+    transition-duration: 0.1s;
+}
+
+.firstBox:hover {
+    color: pink;
+    font-size: 10.5vh;
+}
+
+.secondBox {
+    color: green;
+    font-size: 8vh;
+    transition-duration: 0.1s;
+}
+
+.secondBox:hover {
+    color: rgb(255, 187, 0);
+    font-size: 8.5vh;
+}
+
+.thirdBox {
+    color: black;
+    font-size: 8vh;
+    transition-duration: 0.1s;
+}
+
+.thirdBox:hover {
+    color: pink;
+    font-size: 8.5vh;
+}
+
+.forthBox {
+    color: black;
+    font-size: 10vh;
+    transition-duration: 0.1s;
+}
+
+.forthBox:hover {
+    color: rgb(255, 187, 0);
+    font-size: 10.5vh;
+}
+
+.changeColorRed {
+    color: red;
+}
+
+.changeColorGreen {
+    color: green;
+}
+
+@media (max-width: 1366px) {
+    .backgroundTitle {
+        text-align: left;
+        border-bottom: 1px rgb(244, 163, 255) solid;
+        height: 50px;
+        /* background-color: purple; */
+    }
+
+    .divBackground {
+        height: 530px;
+        /* background-color: red; */
+    }
+
+    .backgroundTitle {
+        font-size: 14px;
+    }
 }

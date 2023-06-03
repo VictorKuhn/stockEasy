@@ -81,7 +81,7 @@ app.get('/api/getProdutosComEstoque', (req, res) => {
 
 // Pegar as requisições onde o status for 1 -> "Pendente"
 app.get('/api/getRequisicoesPendente', (req, res) => {
-    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente"';
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente" ORDER BY r.id_requisicao';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -95,7 +95,7 @@ app.get('/api/getRequisicoesPendente', (req, res) => {
 
 // Pegar as movimentacoes
 app.get('/api/getMovimentacoes', (req, res) => {
-    const query = 'SELECT m.id_movimentacao, p.nome_produto, m.qtd_movimentacao_produto, m.data_movimentacao_produto, m.movimentacao_produto, CASE WHEN m.movimentacao_produto = 1 THEN "Entrada" WHEN m.movimentacao_produto = 0 THEN "Saída" ELSE "ERRO" END as movimento FROM movimentacao m INNER JOIN produtos p ON m.id_produto_movimentacao = p.id_produto';
+    const query = 'SELECT m.id_movimentacao, p.nome_produto, m.qtd_movimentacao_produto, m.data_movimentacao_produto, m.movimentacao_produto, CASE WHEN m.movimentacao_produto = 1 THEN "Entrada" WHEN m.movimentacao_produto = 0 THEN "Saída" ELSE "ERRO" END as movimento FROM movimentacao m INNER JOIN produtos p ON m.id_produto_movimentacao = p.id_produto ORDER BY m.data_movimentacao_produto DESC';
 
     db.query(query, (err, result) => {
         if (err) {
