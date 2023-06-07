@@ -95,7 +95,7 @@ app.get('/api/getProdutosComEstoqueEMovimentacao', (req, res) => {
 
 // Pegar as requisições onde o status for 1 -> "Pendente"
 app.get('/api/getRequisicoesPendente', (req, res) => {
-    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente" ORDER BY r.id_requisicao';
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_produto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente" ORDER BY r.id_requisicao';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -123,7 +123,7 @@ app.get('/api/getMovimentacoes', (req, res) => {
 
 // Pegar as requisicoes recusadas
 app.get('/api/getRequisicoesRecusadas', (req, res) => {
-    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_pruduto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Reprovado"';
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_produto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Reprovado"';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -165,7 +165,7 @@ app.post('/api/cadastrarProduto', (req, res) => {
 // Cadastro de uma requisição
 app.post('/api/cadastrarRequisicao', (req, res) => {
     const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto } = req.body;
-    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_pruduto, status_produto) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto) VALUES (?, ?, ?, ?)';
     const values = [id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto];
 
     db.query(query, values, (err, result) => {
@@ -352,7 +352,7 @@ app.post('/api/cadastrarUsuario', (req, res) => {
 // Cadastrar uma requisicao
 app.post('/api/cadastrarRequisicao', (req, res) => {
     const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto } = req.body;
-    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_pruduto, status_produto) VALUES (?, ?, ?, ?)';
+    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto) VALUES (?, ?, ?, ?)';
     const values = [id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto];
 
     db.query(query, values, (err, result) => {
