@@ -45,6 +45,15 @@
     outline: none;
 }
 
+.setor_usuario_select{
+    background-color: rgb(226, 226, 226);
+    border: none;
+    width: 200px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    outline: none;
+}
+
 .password-input i{
     padding: 5px;
     background-color: #6F00E6;

@@ -1,5 +1,7 @@
 .import-container {
     margin-top: 100px;
+    width: calc(100vw - 70px);
+    float: right;
 }
 
 .import-container-upload {
@@ -23,21 +25,20 @@
     padding: 10px;
 }
 
-.json-results {
-    margin-top: 150px;
-    height: 60vh;
+.table-json-result-div{
+    width: 80vw;
     overflow: auto;
+    height: 50vh;
+    margin: 20px auto;
 }
 
-.table-json-result {
-    overflow: auto !important;
-    height: 100px;
+.json-results {
+    margin-top: 150px;
 }
 
 .table-json-result {
     border-collapse: collapse;
-    margin: 20px auto;
-    width: 80%;
+    width: 100%;
 }
 
 .table-json-result thead tr {

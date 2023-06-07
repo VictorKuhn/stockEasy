@@ -19,6 +19,9 @@ export default function SideBar() {
           <Link to="/usuarios">
             <li><i className="fa-solid fa-users"></i><span>Usuários</span></li>
           </Link>
+          <Link to="/setor">
+            <li><i class="fa-solid fa-warehouse"></i><span>Setores</span></li>
+          </Link>
         </ul>
       </div>
     </div>
