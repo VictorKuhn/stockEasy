@@ -21,9 +21,9 @@ export default function Header() {
       <div className="header-container">
         <div className="center">
           <Link to="/home">
-            <h1 class="header-logo left">StockEasy</h1>
+            <h1 className="header-logo left">StockEasy</h1>
           </Link>
-          <i class="fa fa-power-off right" aria-hidden="true" onClick={() => logout()}><span>Sair</span></i>
+          <i className="fa fa-power-off right" aria-hidden="true" onClick={() => logout()}><span>Sair</span></i>
         </div>
       </div>
 

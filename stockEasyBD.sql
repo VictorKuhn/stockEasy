@@ -14,6 +14,12 @@ CREATE TABLE nivel_acessos (
 	PRIMARY KEY (id_nivel_acesso)
 );
 
+CREATE TABLE setor (
+	id_setor int AUTO_INCREMENT,
+	nome_setor varchar(30) NOT NULL,
+	PRIMARY KEY (id_setor)
+);
+
 CREATE TABLE produtos (
 	id_produto int AUTO_INCREMENT,
 	nome_produto varchar(50) NOT NULL,
@@ -42,16 +48,18 @@ CREATE TABLE usuarios (
 	login_usuario varchar(50) NOT NULL,
 	nome_usuario varchar(50) NOT NULL,
 	senha_usuario varchar(50) NOT NULL,
+    setor_usuario int NOT NULL,
 	nivel_acesso_usuario int NOT NULL,
 	PRIMARY KEY (id_usuario),
-	FOREIGN KEY (nivel_acesso_usuario) references nivel_acessos(id_nivel_acesso)
+	FOREIGN KEY (nivel_acesso_usuario) references nivel_acessos(id_nivel_acesso),
+    FOREIGN KEY (setor_usuario) references setor(id_setor)
 );
 
 CREATE TABLE requisicoes (
 	id_requisicao int AUTO_INCREMENT,
 	id_usuario_requisicao int NOT NULL,
 	id_produto_requisicao int NOT NULL,
-	qtd_pruduto int NOT NULL,
+	qtd_produto int NOT NULL,
 	status_produto int NOT NULL,
 	PRIMARY KEY (id_requisicao),
 	FOREIGN KEY (id_usuario_requisicao) references usuarios(id_usuario),
@@ -67,6 +75,17 @@ INSERT INTO status_prod (desc_status) VALUES
 INSERT INTO nivel_acessos (nome_acesso) VALUES 
 	("Administrador"),
 	("Funcionario");
+    
+INSERT INTO setor (nome_setor) VALUES 
+	("Almoxarifado"),
+	("Marketing"),
+    ("Expedição"),
+    ("Financeiro"),
+    ("Administrativo"),
+    ("Compras"),
+    ("Galpão 1"),
+    ("Galpão 2"),
+    ("Galpão 3");
 
 INSERT INTO produtos (nome_produto, valor_produto) VALUES 
 	("Caneta Azul", 2.35),
@@ -80,11 +99,17 @@ INSERT INTO estoque (id_produto_estoque, qtd_produto_estoque) VALUES
 	(3, 15),
 	(4, 7);
 
-INSERT INTO usuarios (login_usuario, nome_usuario, senha_usuario, nivel_acesso_usuario) VALUES 
-	("wesley@gmail.com", "Wesley", "123", 1),
-	("victor@gmail.com", "Victor", "234", 1),
-	("davi@gmail.com", "Davi", "345", 1),
-	("marcos@gmail.com", "Marcos", "456", 1);
+INSERT INTO usuarios (login_usuario, nome_usuario, senha_usuario, setor_usuario, nivel_acesso_usuario) VALUES 
+	("wesley@gmail.com", "Wesley Sardi", "123", 2, 1),
+	("victor@gmail.com", "Victor Kuhn", "234", 4, 1),
+	("davi@gmail.com", "Davi Prudente", "345", 7, 1),
+	("marcos@gmail.com", "Marcos Gonçalves", "456", 6, 1),
+    ("mateus@gmail.com", "Mateus Smith", "456", 8, 1),
+    ("julioc@gmail.com", "Julião Costa", "1018", 9, 1),
+    ("jailsonm@gmail.com", "Jailson Mello", "7894", 8, 1),
+    ("jeffersonp@gmail.com", "Jefferson Pessoa", "182479", 9, 1),
+    ("arthurv@gmail.com", "Arthur Velloso", "777846", 7, 1),
+    ("hugoc@gmail.com", "Hugo Calcanha", "23488", 5, 1);
 	
 INSERT INTO movimentacao (id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto) VALUES
 	(1, false, "2019-12-15 03:09:12", 9),
@@ -145,7 +170,7 @@ INSERT INTO estoque (id_produto_estoque, qtd_produto_estoque) VALUES
     (23, 17),
     (24, 26);
 
-INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_pruduto, status_produto) VALUES 
+INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto) VALUES 
 	(1, 1, 5, 1),
 	(1, 1, 5, 1),
 	(1, 1, 5, 1),
