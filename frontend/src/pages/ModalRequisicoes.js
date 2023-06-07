@@ -46,6 +46,18 @@ const ModalRequisicoes = (props) => {
             navigate('/monitoramentoRT');
             props.loadData() // -> recarrega a tabela sem recarregar a tela
             toast.success("Requisição cadastrada com sucesso.");
+            setProduto({
+                id_produto: 0,
+                nome_produto: "",
+                qtd_produto_estoque: 0
+            });
+
+            setRequisicao({
+                id_usuario_requisicao: 0,
+                id_produto_requisicao: 0,
+                qtd_produto: 0,
+                status_produto: 0
+            })
             // window.location.reload(true)
         } catch (error) {
             console.log(error);
