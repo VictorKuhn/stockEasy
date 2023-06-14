@@ -172,7 +172,7 @@ INSERT INTO estoque (id_produto_estoque, qtd_produto_estoque) VALUES
     (23, 17),
     (24, 26);
 
-INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_pruduto, status_produto) VALUES 
+INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto) VALUES 
 	(1, 1, 5, 1),
 	(1, 1, 5, 1),
 	(1, 1, 5, 1),
