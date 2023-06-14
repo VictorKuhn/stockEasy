@@ -3,6 +3,7 @@ import axios from 'axios';
 import Header from '../componentes/Header.js'
 import SideBar from '../componentes/SideBar.js'
 import '../styles/Home.css'
+import '../utils/locales'
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -76,45 +77,47 @@ const Home = () => {
     <div className='background'>
       <Header />
       <SideBar />
-      <div className='backgroundContent'>
-        <div className='backgroundTitle'>
-          <h1>Visão Geral</h1>
-        </div>
-        <div className="divBackground">
-          <div className="divContent">
-            <div className="contents">
-              <div className="divTitles">
-                <h1 className='contentsTitle'>Itens no estoque:</h1>
-                <h1 className='contentsTitle'>Transfêrencias:</h1>
-              </div>
-              <div className="divInsideContents">
-                <div className='insideDivs'>
-                  <h1 className='firstBox'>{qtdTotalEstoque}</h1>
+      <div className="homeBackgroundContent">
+        <div className='backgroundContent'>
+          <div className='backgroundTitle'>
+            <h1>Visão Geral</h1>
+          </div>
+          <div className="divBackground">
+            <div className="divContent">
+              <div className="contents">
+                <div className="divTitles">
+                  <h1 className='contentsTitle'>Itens no estoque:</h1>
+                  <h1 className='contentsTitle'>Transfêrencias:</h1>
                 </div>
-                <div className='insideDivs'>
-                  <h1 className='forthBox'>{qtdTotalSaida}</h1>
-                  <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
+                <div className="divInsideContents">
+                  <div className='insideDivs'>
+                    <h1 className='firstBox'>{qtdTotalEstoque}</h1>
+                  </div>
+                  <div className='insideDivs'>
+                    <h1 className='forthBox'>{qtdTotalSaida}</h1>
+                    <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="contents">
-              <div className="divTitles">
-                <h1 className='contentsTitle'>Valor patrimonial:</h1>
-                <h1 className='contentsTitle'>Valor em transfêrencias:</h1>
-              </div>
-              <div className="divInsideContents">
-                <div className='insideDivs'>
-                  <h1 className='thirdBox changeColor'>R${valorTotalEstoque}</h1>
+              <div className="contents">
+                <div className="divTitles"> 
+                  <h1 className='contentsTitle'>Valor patrimonial:</h1>
+                  <h1 className='contentsTitle'>Valor em transfêrencias:</h1>
                 </div>
-                <div className='insideDivs'>
-                  <h1 className='secondBox'>R${valorTotalTransferencias}</h1>
-                  <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
+                <div className="divInsideContents">
+                  <div className='insideDivs'>
+                    <h1 className='thirdBox changeColor'>{valorTotalEstoque.formatCurrency()}</h1>
+                  </div>
+                  <div className='insideDivs'>
+                    <h1 className='secondBox'>{valorTotalTransferencias.formatCurrency()}</h1>
+                    <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+          <div className="clear"></div>
         </div>
-        <div className="clear"></div>
       </div>
     </div>
   )

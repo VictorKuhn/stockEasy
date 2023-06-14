@@ -5,6 +5,11 @@
     margin: 12vh auto;
 }
 
+button i{
+    position: relative;
+    top: 2px;
+}
+
 .div-h1-button {
     display: flex;
     justify-content: space-between;
@@ -20,19 +25,21 @@
 .div-h1-button button {
     cursor: pointer;
     color: white;
-    border: solid rgb(201, 201, 201) 1px;
-    border-radius: 10px;
-    padding: 15px 32px;
+    border: none;
+    border-radius: 30px;
+    padding: 9px 15px;
     text-align: center;
     display: inline-block;
     font-size: 16px;
-    transition-duration: 0.1s;
-
+    transition: 0.3s ease-in-out;
 }
 
 .div-h1-button button:hover {
-    border-color: #8b8b8b;
-    color: #8b8b8b;
+    filter: brightness(1.15);
+}
+
+.req-add-button {
+    background: linear-gradient(to right, #E16C01, #F58F32);
 }
 
 .div-h1-button button:active {
@@ -76,9 +83,9 @@
 }
 
 .linhaColunasProdutosVerde {
-    background-color: rgb(199, 255, 181);
+    background-color: rgb(209, 255, 194);
 }
 
 .linhaColunasProdutosVermelho {
-    background-color: rgb(253, 176, 176);
+    background-color: rgb(255, 205, 205);
 }
