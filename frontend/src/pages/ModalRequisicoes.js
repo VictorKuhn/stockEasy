@@ -19,7 +19,8 @@ const ModalRequisicoes = (props) => {
         id_usuario_requisicao: 0,
         id_produto_requisicao: 0,
         qtd_produto: 0,
-        status_produto: 0
+        status_produto: 0,
+        desc_func : ""
     });
 
     const getProduto = async (id) => {
@@ -31,7 +32,8 @@ const ModalRequisicoes = (props) => {
                 id_usuario_requisicao: 1,
                 id_produto_requisicao: id_produto,
                 qtd_produto: 0,
-                status_produto: 1
+                status_produto: 1,
+                desc_func : ""
             })
         } catch (error) {
             console.log(error);
@@ -56,7 +58,8 @@ const ModalRequisicoes = (props) => {
                 id_usuario_requisicao: 0,
                 id_produto_requisicao: 0,
                 qtd_produto: 0,
-                status_produto: 0
+                status_produto: 0,
+                desc_func : ""
             })
             // window.location.reload(true)
         } catch (error) {
@@ -78,7 +81,8 @@ const ModalRequisicoes = (props) => {
             id_usuario_requisicao: 0,
             id_produto_requisicao: 0,
             qtd_produto: 0,
-            status_produto: 0
+            status_produto: 0,
+            desc_func : ""
         })
 
         toast.error('Requisição cancelada.');
@@ -164,6 +168,17 @@ const ModalRequisicoes = (props) => {
                                     value={produto.qtd_produto_estoque}
                                     disabled
                                     placeholder='0'
+                                />
+                            </div>
+                            <div className="divModalContent">
+                                <label htmlFor="qtd_estoque">Descrição:</label>
+                                <input
+                                    type="text"
+                                    id="desc_func"
+                                    name="desc_func"
+                                    value={requisicao.desc_func}
+                                    onChange={handleChange2}
+                                    placeholder='Breve descrição'
                                 />
                             </div>
                             <div className="modalBottom">

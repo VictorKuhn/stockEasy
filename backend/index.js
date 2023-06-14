@@ -93,9 +93,25 @@ app.get('/api/getProdutosComEstoqueEMovimentacao', (req, res) => {
     });
 });
 
+// Pegar as requisições
+app.get('/api/getRequisicoes/:id', (req, res) => {
+    const id_requisicao = req.params.id;
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_produto, r.desc_func, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE id_requisicao = ?';
+    const values = [id_requisicao];
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter as requisicoes:', err);
+            res.status(500).json({ error: 'Erro ao obter as requisicoes.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
 // Pegar as requisições onde o status for 1 -> "Pendente"
 app.get('/api/getRequisicoesPendente', (req, res) => {
-    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_produto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente" ORDER BY r.id_requisicao';
+    const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_produto, r.desc_func, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Pendente" ORDER BY r.id_requisicao';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -124,8 +140,14 @@ app.get('/api/getMovimentacoes', (req, res) => {
 // Alterar as requisicoes para recusadas
 app.put('/api/updateRequisicoesParaRecusadas/:id', (req, res) => {
     const id_requisicao = req.params.id;
-    const query = 'UPDATE requisicoes SET status_produto = 3 WHERE id_requisicao = ?';
-    const values = [id_requisicao];
+    const { desc_admin } = req.body;
+    const query = 'UPDATE requisicoes SET status_produto = 3, desc_admin = ? WHERE id_requisicao = ?';
+    const values = [desc_admin, id_requisicao];
+
+    // const id_produto = req.params.id;
+    // const { nome_produto, valor_produto } = req.body;
+    // const query = 'UPDATE produtos SET nome_produto = ?, valor_produto = ? WHERE id_produto = ?';
+    // const values = [nome_produto, valor_produto, id_produto];
 
     db.query(query, values, (err, result) => {
         if (err) {
@@ -150,10 +172,10 @@ app.put('/api/updateRequisicoesParaAprovadas/:id', (req, res) => {
     db.query(query, values, (err, result) => {
         if (err) {
             console.error('Erro ao alterar a requisicao para Aprovada:', err);
-            res.status(500).json({ error: 'Erro ao alterar a requisicao para Aprovada.' });
+            res.status(500).json({ error: 'Erro ao alterar a requisicao para Recusada.' });
         } else {
             if (result.affectedRows > 0) {
-                res.status(200).json({ message: 'Requisicao alterada para Aprovada com sucesso.' });
+                res.status(200).json({ message: 'Requisicao alterada para Recusada com sucesso.' });
             } else {
                 res.status(404).json({ error: 'Requisicao não encontrado.' });
             }
@@ -204,9 +226,9 @@ app.post('/api/cadastrarProduto', (req, res) => {
 
 // Cadastro de uma requisição
 app.post('/api/cadastrarRequisicao', (req, res) => {
-    const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto } = req.body;
-    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto) VALUES (?, ?, ?, ?)';
-    const values = [id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto];
+    const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto, desc_func } = req.body;
+    const query = 'INSERT INTO requisicoes (id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto, desc_func) VALUES (?, ?, ?, ?, ?)';
+    const values = [id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto, desc_func];
 
     db.query(query, values, (err, result) => {
         if (err) {
