@@ -1,6 +1,4 @@
 body {
-    background: rgb(212, 183, 255);
-    background: linear-gradient(0deg, rgba(212, 183, 255, 1) 0%, rgba(255, 255, 255, 1) 44%);
     height: 100vh;
 }
 
@@ -13,13 +11,20 @@ h1 {
     user-select: none;
 }
 
+.homeBackgroundContent{
+    width: 100vw;
+    height: 100vh;
+    background: rgb(212, 183, 255);
+    background: linear-gradient(0deg, rgba(212, 183, 255, 1) 0%, rgba(255, 255, 255, 1) 44%);
+}
+
 .background {
     height: 100%;
 }
 
 .backgroundContent {
-    width: calc(100vw-70px);
-    height: calc(100vh-90px);
+    width: calc(100vw - 70px);
+    height: calc(100vh - 90px);
     margin-top: 70px;
     margin-left: 90px;
 }
@@ -34,8 +39,7 @@ h1 {
 }
 
 .divBackground {
-    height: 800px;
-    /* background-color: red; */
+    height: 80vh;
 }
 
 .divContent {
@@ -83,6 +87,7 @@ h1 {
     -webkit-box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
     box-shadow: inset 0px 0px 9px 1px rgba(0, 0, 0, 0.3);
+    transition: 0.3s ease-in-out;
 }
 
 .insideDivs:hover {

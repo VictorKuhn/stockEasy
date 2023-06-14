@@ -12,15 +12,10 @@
 }
 
 .modalStructure {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
     width: 60%;
     background-color: white;
-    /* Centralizar verticalmente e horizontalmente com tranform */
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
-    border: solid 2px rgb(255, 230, 0);
+    border: none;
     border-radius: 20px;
     padding: 3vh 0vw;
     opacity: 1;
@@ -38,17 +33,16 @@
 .modalBottom button {
     cursor: pointer;
     color: white;
-    border: solid rgb(201, 201, 201) 1px;
-    border-radius: 10px;
-    padding: 15px 32px;
+    border: none;
+    border-radius: 30px;
+    padding: 9px 15px;
     font-size: 16px;
-    transition-duration: 0.1s;
     margin: 3vh 1vw 0vh 0vw;
+    transition: 0.3s ease-in-out;
 }
 
 .modalBottom button:hover {
-    border-color: #8b8b8b;
-    color: #8b8b8b;
+    filter: brightness(1.15);
 }
 
 .modalBottom button:active {
@@ -70,7 +64,9 @@
 }
 
 .modalContent form div input {
-    border: solid 1px rgb(255, 230, 0);
+    border: none;
+    background-color: rgb(226, 226, 226);
+    outline: none;
     border-radius: 8px;
     padding-left: 5px;
     width: 50%;
