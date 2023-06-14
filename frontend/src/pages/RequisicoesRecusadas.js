@@ -35,6 +35,7 @@ const RequisicoesRecusadas = () => {
                                 <th style={{ textAlign: "center" }}>Produto:</th>
                                 <th style={{ textAlign: "center" }}>Qtd. Requisicao:</th>
                                 <th style={{ textAlign: "center" }}>Status:</th>
+                                <th style={{ textAlign: "center" }}>Desc. Admin:</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,8 +45,9 @@ const RequisicoesRecusadas = () => {
                                     <td>{requisicao.id_requisicao}</td>
                                     <td>{requisicao.nome_usuario}</td>
                                     <td>{requisicao.nome_produto}</td>
-                                    <td>{requisicao.qtd_pruduto}</td>
+                                    <td>{requisicao.qtd_produto}</td>
                                     <td>{requisicao.desc_status}</td>
+                                    <td>{requisicao.desc_admin}</td>
                                 </tr>
                             ))}
                         </tbody>

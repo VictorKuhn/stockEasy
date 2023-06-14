@@ -68,6 +68,8 @@ button i{
 .tables th,
 .tables td {
     padding: 5px 8px;
+    cursor: pointer;
+    user-select: none;
 }
 
 .tables td {
@@ -88,4 +90,8 @@ button i{
 
 .linhaColunasProdutosVermelho {
     background-color: rgb(255, 205, 205);
+}
+
+.selectedListItem:hover {
+    border-left: 3px solid rgb(0, 255, 0)
 }

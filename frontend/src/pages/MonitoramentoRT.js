@@ -7,11 +7,20 @@ import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import moment from 'moment'
 import ModalRequisicoes from './ModalRequisicoes';
+import ModalDescAdmin from './ModalDescAdmin';
 import { Button, Modal } from 'react-bootstrap';
 
 const MonitoramentoRT = () => {
     const [data1, setData1] = useState([]);
     const [data2, setData2] = useState([]);
+    const [item, setItem] = useState({
+        desc_status: "",
+        id_requisicao: 0,
+        nome_produto: "",
+        nome_usuario: "",
+        qtd_produto: 0,
+        desc_func: ""
+    });
 
     const loadData = async () => {
         const response1 = await axios.get("http://localhost:5000/api/getRequisicoesPendente");
@@ -57,11 +66,79 @@ const MonitoramentoRT = () => {
         }
     }
 
+    function showModal2() {
+        const item = document.querySelector('.modalBackground2')
+
+        if (item.style.display == "flex") {
+            item.style.display = "none"
+            setItem({
+                desc_status: "",
+                id_requisicao: 0,
+                nome_produto: "",
+                nome_usuario: "",
+                qtd_produto: 0,
+                desc_func: ""
+            })
+        } else {
+            item.style.display = "flex"
+        }
+    }
+
+    const handleClickDenied = async () => {
+        if (item.id_requisicao === 0) {
+            toast.error('Nenhum item selecionado!')
+        } else {
+            handleSubmitDeny()
+        }
+    }
+
+    const handleSubmitDeny = async () => {
+        try {
+            showModal2()
+        } catch (error) {
+            console.log(error);
+            toast.error('Erro ao alterar a requisição para recusada.')
+        }
+        loadData()
+    }
+
+    const handleClickAccept = async () => {
+        if (item.id_requisicao === 0) {
+            toast.error('Nenhum item selecionado!')
+        } else {
+            handleSubmitAccept()
+        }
+    }
+
+    const handleSubmitAccept = async () => {
+        try {
+            await axios.put(`http://localhost:5000/api/updateRequisicoesParaAprovadas/${item.id_requisicao}`)
+            toast.success(`Requisição ${item.id_requisicao} aprovada com sucesso.`)
+            setItem({
+                desc_status: "",
+                id_requisicao: 0,
+                nome_produto: "",
+                nome_usuario: "",
+                qtd_produto: 0,
+                desc_func: ""
+            })
+        } catch (error) {
+            console.log(error);
+            toast.error('Erro ao alterar a requisição para aprovada.')
+        }
+        loadData()
+    }
+
+    const changeItem = (item) => {
+        setItem(item)
+    }
+
     return (
         <div className="Home">
             <Header />
             <SideBar />
-            <ModalRequisicoes showModal={showModal} loadData={loadData}/>
+            <ModalRequisicoes showModal={showModal} loadData={loadData} />
+            <ModalDescAdmin showModal2={showModal2} loadData={loadData} item={item} />
             {/* Sidebar = 70px */}
             <div className="background-div">
                 <div className='div-h1-button'>
@@ -78,17 +155,19 @@ const MonitoramentoRT = () => {
                                 <th style={{ textAlign: "center" }}>Produto:</th>
                                 <th style={{ textAlign: "center" }}>Qtde. Requisitada:</th>
                                 <th style={{ textAlign: "center" }}>Status:</th>
+                                <th style={{ textAlign: "center" }}>Desc. Func:</th>
                             </tr>
                         </thead>
                         <tbody className="table-even">
                             {data1.map((movi1, index) => (
-                                <tr key={movi1.id_requisicao}>
+                                <tr key={movi1.id_requisicao} onClick={() => changeItem(movi1)} className="selectedListItem">
                                     <th scope="row">{index + 1}</th>
                                     <td>{movi1.id_requisicao}</td>
                                     <td>{movi1.nome_usuario}</td>
                                     <td>{movi1.nome_produto}</td>
-                                    <td>{movi1.qtd_pruduto}</td>
+                                    <td>{movi1.qtd_produto}</td>
                                     <td>{movi1.desc_status}</td>
+                                    <td>{movi1.desc_func}</td>
                                 </tr>
                             ))}
                         </tbody>
@@ -97,8 +176,8 @@ const MonitoramentoRT = () => {
                 <div className='div-h1-button'>
                     <h1>Últimas Tranferências</h1>
                     <div>
-                        <button style={{ backgroundColor: "#ff0000" }}><i class="fa-solid fa-xmark"></i></button>
-                        <button style={{ backgroundColor: "#4CAF50" }}><i class="fa-solid fa-check"></i></button>
+                        <button style={{ backgroundColor: "#ff0000" }} onClick={handleClickDenied}><i class="fa-solid fa-xmark"></i></button>
+                        <button style={{ backgroundColor: "#4CAF50" }} onClick={handleClickAccept}><i class="fa-solid fa-check"></i></button>
                     </div>
                 </div>
                 <div className='div-tables'>

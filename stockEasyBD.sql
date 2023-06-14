@@ -61,6 +61,8 @@ CREATE TABLE requisicoes (
 	id_produto_requisicao int NOT NULL,
 	qtd_produto int NOT NULL,
 	status_produto int NOT NULL,
+	desc_func varchar(200),
+	desc_admin varchar(200),
 	PRIMARY KEY (id_requisicao),
 	FOREIGN KEY (id_usuario_requisicao) references usuarios(id_usuario),
 	FOREIGN KEY (id_produto_requisicao) references produtos(id_produto),
