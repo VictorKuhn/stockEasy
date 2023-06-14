@@ -121,6 +121,46 @@ app.get('/api/getMovimentacoes', (req, res) => {
     });
 });
 
+// Alterar as requisicoes para recusadas
+app.put('/api/updateRequisicoesParaRecusadas/:id', (req, res) => {
+    const id_requisicao = req.params.id;
+    const query = 'UPDATE requisicoes SET status_produto = 3 WHERE id_requisicao = ?';
+    const values = [id_requisicao];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao alterar a requisicao para Recusada:', err);
+            res.status(500).json({ error: 'Erro ao alterar a requisicao para Recusada.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Requisicao alterada para Recusada com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Requisicao não encontrado.' });
+            }
+        }
+    });
+});
+
+// Alterar as requisicoes para recusadas
+app.put('/api/updateRequisicoesParaAprovadas/:id', (req, res) => {
+    const id_requisicao = req.params.id;
+    const query = 'UPDATE requisicoes SET status_produto = 2 WHERE id_requisicao = ?';
+    const values = [id_requisicao];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao alterar a requisicao para Aprovada:', err);
+            res.status(500).json({ error: 'Erro ao alterar a requisicao para Aprovada.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Requisicao alterada para Aprovada com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Requisicao não encontrado.' });
+            }
+        }
+    });
+});
+
 // Pegar as requisicoes recusadas
 app.get('/api/getRequisicoesRecusadas', (req, res) => {
     const query = 'SELECT r.id_requisicao, u.nome_usuario, p.nome_produto, r.qtd_produto, s.desc_status FROM requisicoes r INNER JOIN usuarios u ON r.id_usuario_requisicao = u.id_usuario INNER JOIN produtos p ON r.id_produto_requisicao = p.id_produto INNER JOIN status_prod s ON r.status_produto = s.id_status WHERE desc_status = "Reprovado"';

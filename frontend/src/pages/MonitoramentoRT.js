@@ -12,6 +12,7 @@ import { Button, Modal } from 'react-bootstrap';
 const MonitoramentoRT = () => {
     const [data1, setData1] = useState([]);
     const [data2, setData2] = useState([]);
+    const [item, setItem] = useState(0);
 
     const loadData = async () => {
         const response1 = await axios.get("http://localhost:5000/api/getRequisicoesPendente");
@@ -57,11 +58,53 @@ const MonitoramentoRT = () => {
         }
     }
 
+    const handleClickDenied = async () => {
+        handleSubmitDeny(item)
+    }
+
+    const handleClickAccept = async () => {
+        handleSubmitAccept(item)
+    }
+
+    const handleSubmitDeny = async (id) => {
+        try {
+            if (id === 0) {
+                toast.error('Nenhum item selecionado!')
+            } else {
+                await axios.put(`http://localhost:5000/api/updateRequisicoesParaRecusadas/${id}`)
+                toast.success(`Requisição do item ${id} negada com sucesso.`);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Erro ao alterar a requisição para aprovada.')
+        }
+        loadData()
+    }
+
+    const handleSubmitAccept = async (id) => {
+        try {
+            if (id === 0) {
+                toast.error('Nenhum item selecionado!')
+            } else {
+                await axios.put(`http://localhost:5000/api/updateRequisicoesParaAprovadas/${id}`)
+                toast.success(`Requisição do item ${id} aprovada com sucesso.`);
+            }
+        } catch (error) {
+            console.log(error);
+            toast.error('Erro ao alterar a requisição para recusada.')
+        }
+        loadData()
+    }
+
+    const changeItem = (id) => {
+        setItem(id)
+    }
+
     return (
         <div className="Home">
             <Header />
             <SideBar />
-            <ModalRequisicoes showModal={showModal} loadData={loadData}/>
+            <ModalRequisicoes showModal={showModal} loadData={loadData} />
             {/* Sidebar = 70px */}
             <div className="background-div">
                 <div className='div-h1-button'>
@@ -82,12 +125,12 @@ const MonitoramentoRT = () => {
                         </thead>
                         <tbody className="table-even">
                             {data1.map((movi1, index) => (
-                                <tr key={movi1.id_requisicao}>
+                                <tr key={movi1.id_requisicao} onClick={() => changeItem(movi1.id_requisicao)} className="selectedListItem">
                                     <th scope="row">{index + 1}</th>
                                     <td>{movi1.id_requisicao}</td>
                                     <td>{movi1.nome_usuario}</td>
                                     <td>{movi1.nome_produto}</td>
-                                    <td>{movi1.qtd_pruduto}</td>
+                                    <td>{movi1.qtd_produto}</td>
                                     <td>{movi1.desc_status}</td>
                                 </tr>
                             ))}
@@ -97,8 +140,8 @@ const MonitoramentoRT = () => {
                 <div className='div-h1-button'>
                     <h1>Últimas Tranferências</h1>
                     <div>
-                        <button style={{ backgroundColor: "#ff0000" }}><i class="fa-solid fa-xmark"></i></button>
-                        <button style={{ backgroundColor: "#4CAF50" }}><i class="fa-solid fa-check"></i></button>
+                        <button style={{ backgroundColor: "#ff0000" }} onClick={handleClickDenied}><i class="fa-solid fa-xmark"></i></button>
+                        <button style={{ backgroundColor: "#4CAF50" }} onClick={handleClickAccept}><i class="fa-solid fa-check"></i></button>
                     </div>
                 </div>
                 <div className='div-tables'>
