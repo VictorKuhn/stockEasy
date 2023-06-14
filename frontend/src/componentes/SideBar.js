@@ -13,7 +13,10 @@ export default function SideBar() {
           <Link to="/importacaoNF">
             <li><i className="fa-solid fa-circle-plus"></i><span>Importar NF</span></li>
           </Link>
-          <Link to="">
+          <Link to="/requisicoesRecusadas">
+            <li><i class="fa-solid fa-circle-xmark"></i><span>Requisições recusadas</span></li>
+          </Link>
+          <Link to="/monitoramentoRT">
             <li><i className="fa-solid fa-right-left"></i><span>Transferências</span></li>
           </Link>
           <Link to="/usuarios">

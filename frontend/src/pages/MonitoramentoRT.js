@@ -66,7 +66,7 @@ const MonitoramentoRT = () => {
             <div className="background-div">
                 <div className='div-h1-button'>
                     <h1>Requisições de Transferência</h1>
-                    <button style={{ backgroundColor: "#f7cf1d" }} type='submit' onClick={showModal}><i class="fa-solid fa-plus"></i></button>
+                    <button className="req-add-button" style={{ backgroundColor: "#f7cf1d" }} type='submit' onClick={showModal}><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div className='div-tables'>
                     <table className="tables">
