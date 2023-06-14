@@ -49,7 +49,7 @@ const ModalDescAdmin = (props) => {
             <div className="modalBackground2">
                 <div className="modalStructure2">
                     <div className="modalTitle2">
-                        <h1>Inserção de Requisições</h1>
+                        <h1>Motivo da contestação:</h1>
                     </div>
                     <div className="modalContent2">
                         <form action="" className="modalForm2" onSubmit={handleSubmit}>
@@ -124,7 +124,6 @@ const ModalDescAdmin = (props) => {
                                     value={props.item.desc_admin}
                                     onChange={handleChange2}
                                     placeholder='Breve descrição'
-                                    required
                                 />
                             </div>
                             <div className="modalBottom2">

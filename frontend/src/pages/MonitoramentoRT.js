@@ -155,7 +155,7 @@ const MonitoramentoRT = () => {
                                 <th style={{ textAlign: "center" }}>Produto:</th>
                                 <th style={{ textAlign: "center" }}>Qtde. Requisitada:</th>
                                 <th style={{ textAlign: "center" }}>Status:</th>
-                                <th style={{ textAlign: "center" }}>Desc. Func.:</th>
+                                <th style={{ textAlign: "center" }}>Desc. Func:</th>
                             </tr>
                         </thead>
                         <tbody className="table-even">
