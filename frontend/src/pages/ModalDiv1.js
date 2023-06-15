@@ -13,6 +13,16 @@ const ModalDiv1 = (props) => {
         return value;
     };
 
+    const processData = (registro, desc, qtde, valor) => {
+        props.itensCodAux.push({
+            registro: registro,
+            descricao: desc,
+            qtde: qtde,
+            valor: valor
+        })
+        props.showDiv2()
+    }
+
     return (
         <div className="tables-divsOverflow">
             <table className="table-resultados">
@@ -33,8 +43,14 @@ const ModalDiv1 = (props) => {
                             <td>{record.prod.xProd._text}</td>
                             <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
                             <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
-                            <td className="searchCodAux" onClick={props.showDiv2}><i class="fa-solid fa-magnifying-glass"></i></td>
-                            <td className="stateIcon"><i class="fa-solid fa-check"></i></td>
+                            <td className="searchCodAux" onClick={() => processData(record._attributes.nItem,
+                                record.prod.xProd._text,
+                                formatValue(record.prod.qCom._text, 'integer'),
+                                formatValue(record.prod.vUnTrib._text, 'currency')
+                            )}>
+                                <i class="fa-solid fa-magnifying-glass"></i></td>
+                            <td className="stateIcon"><i class="fa-solid fa-check"></i>
+                            </td>
                         </tr>
                     ))}
                 </tbody>

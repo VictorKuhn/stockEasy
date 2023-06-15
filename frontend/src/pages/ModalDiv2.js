@@ -14,6 +14,13 @@ const ModalDiv2 = (props) => {
         loadData();
     }, []);
 
+    const processData = (aux) => {
+        props.codAux.push({
+            aux: aux
+        })
+        props.showDiv2()
+    }
+
     return (
         <div className="tables-divsOverflow">
             <table className="table-resultados">
@@ -27,7 +34,7 @@ const ModalDiv2 = (props) => {
                 </thead>
                 <tbody>
                     {props.filterData(data).map((item, index) => (
-                        <tr key={index} className="selectedAux" onClick={props.showDiv2}>
+                        <tr key={index} className="selectedAux" onClick={() => processData(item.cod_aux)}>
                             <td>{item.id_produto}</td>
                             <td>{item.nome_produto}</td>
                             <td>{item.valor_produto}</td>

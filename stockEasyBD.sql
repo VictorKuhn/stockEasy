@@ -70,6 +70,16 @@ CREATE TABLE requisicoes (
 	FOREIGN KEY (status_produto) references status_prod(id_status)
 );
 
+CREATE TABLE fornecedor_itens (
+	id_item int AUTO_INCREMENT,
+	registro int NOT NULL,
+	descricao varchar(200) NOT NULL,
+	qtde int NOT NULL,
+	valor varchar(50) NOT NULL,
+	aux int NOT NULL,
+	PRIMARY KEY (id_item)
+);
+
 INSERT INTO status_prod (desc_status) VALUES 
 	("Pendente"),
 	("Aprovado"),

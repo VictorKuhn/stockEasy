@@ -238,6 +238,22 @@ app.post('/api/cadastrarProduto', (req, res) => {
     });
 });
 
+// Cadastro de um produto de FORNECEDOR
+app.post('/api/cadastrarProdutoFornecedor', (req, res) => {
+    const { registro, descricao, qtde, valor, aux } = req.body;
+    const query = 'INSERT INTO fornecedor_itens (registro, descricao, qtde, valor, aux) VALUES (?, ?, ?, ?, ?)';
+    const values = [registro, descricao, qtde, valor, aux];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar o produto do fornecedor:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar o produto do fornecedor.' });
+        } else {
+            res.status(200).json({ message: 'Produto cadastrado com sucesso.' });
+        }
+    });
+});
+
 // Cadastro de uma requisição
 app.post('/api/cadastrarRequisicao', (req, res) => {
     const { id_usuario_requisicao, id_produto_requisicao, qtd_produto, status_produto, desc_func } = req.body;
