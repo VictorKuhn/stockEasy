@@ -1,0 +1,13 @@
+.table-resultados {
+    width: 60vw;
+    margin: auto;
+}
+
+.selectedAux {
+    cursor: pointer;
+    user-select: none;
+}
+
+.selectedAux:hover {
+    border-left: 3px solid green;
+}

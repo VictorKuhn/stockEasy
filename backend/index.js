@@ -67,7 +67,21 @@ app.get('/api/getProdutoEstoque/:id', (req, res) => {
 
 // Pegar os produtos jutamente também com o estoque
 app.get('/api/getProdutosComEstoque', (req, res) => {
-    const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';
+    const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque, p.cod_aux FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter os produtos com estoque:', err);
+            res.status(500).json({ error: 'Erro ao obter os produtos com estoque.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+// Pegar os produtos jutamente também com o codigo auxiliar
+app.get('/api/getProdutosCodAux', (req, res) => {
+    const query = 'SELECT id_produto, nome_produto, valor_produto, cod_aux FROM produtos';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -199,9 +213,9 @@ app.get('/api/getRequisicoesRecusadas', (req, res) => {
 
 // Cadastro de um produto
 app.post('/api/cadastrarProduto', (req, res) => {
-    const { nome_produto, valor_produto, qtd_produto_estoque } = req.body;
-    const query = 'INSERT INTO produtos (nome_produto, valor_produto) VALUES (?, ?)';
-    const values = [nome_produto, valor_produto];
+    const { nome_produto, valor_produto, qtd_produto_estoque, cod_aux } = req.body;
+    const query = 'INSERT INTO produtos (nome_produto, valor_produto, cod_aux) VALUES (?, ?, ?)';
+    const values = [nome_produto, valor_produto, cod_aux];
 
     db.query(query, values, (err, result) => {
         if (err) {

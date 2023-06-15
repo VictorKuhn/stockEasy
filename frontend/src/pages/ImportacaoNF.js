@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import '../styles/ImportacaoNF.css';
 import xmljs from 'xml-js';
 import { toast } from 'react-toastify';
+import ModalImportacaoNF from './ModalImportacaoNF';
 
 const ptBrCurrencyFormat = {
     style: 'currency',
@@ -61,7 +62,18 @@ export default function ImportacaoNF() {
         return value;
     };
 
+    const showModal = () => {
+        const item = document.querySelector('.modalBackground3')
+
+        if (item.style.display == "flex") {
+            item.style.display = "none"
+        } else {
+            item.style.display = "flex"
+        }
+    }
+
     const renderRecords = () => {
+
         if (!convertedJson) {
             return null;
         }
@@ -101,6 +113,7 @@ export default function ImportacaoNF() {
         <div className="ImportacaoNF">
             <Header />
             <SideBar />
+            <ModalImportacaoNF showModal={showModal} convertedJson={convertedJson}/>
 
             <div className="import-container">
                 <div className="import-container-upload">
@@ -114,6 +127,8 @@ export default function ImportacaoNF() {
                         {renderRecords()}
                     </div>
                 )}
+
+                <button className="btn btn-add-produto" onClick={showModal}>Confirmar</button>
             </div>
         </div>
     );

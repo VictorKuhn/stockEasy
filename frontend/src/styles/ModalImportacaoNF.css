@@ -1,0 +1,162 @@
+.modalBackground3 {
+    align-items: center;
+    background-color: rgba(148, 148, 148, 0.7);
+    display: none;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    z-index: 1000;
+    transition-duration: 0.5s;
+    /* Centralizar verticalmente e horizontalmente com flexbox */
+}
+
+.modalStructure3 {
+    width: 70%;
+    background-color: white;
+    /* Centralizar verticalmente e horizontalmente com tranform */
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    border: solid 2px rgb(255, 230, 0);
+    border-radius: 20px;
+    padding: 3vh 0vw;
+    opacity: 1;
+}
+
+.modalTitle3 {
+    padding: 2vh 0vw 4vh 0vw;
+}
+
+.modalBottom3 div {
+    display: flex;
+    justify-content: right;
+}
+
+.modalBottom3 button {
+    cursor: pointer;
+    color: white;
+    border: solid rgb(201, 201, 201) 1px;
+    border-radius: 10px;
+    padding: 15px 32px;
+    font-size: 16px;
+    transition-duration: 0.1s;
+    margin: 3vh 1vw 0vh 0vw;
+}
+
+.modalBottom3 button:hover {
+    border-color: #8b8b8b;
+    color: #8b8b8b;
+}
+
+.modalBottom3 button:active {
+    border-color: rgb(201, 201, 201);
+    color: white;
+}
+
+.modalContent3 {
+    margin: auto;
+    width: 100%;
+}
+
+.divModalContent3 {
+    display: flex;
+    margin: auto;
+    padding: 1vh 0vh;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.table-background3 {
+    width: 90%;
+    margin: auto;
+}
+
+.modalContent3 form div input {
+    border: solid 1px rgb(255, 230, 0);
+    border-radius: 8px;
+    padding-left: 5px;
+    width: 50%;
+}
+
+.table-resultados {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.table-resultados thead tr {
+    background-color: #370072;
+    color: white;
+}
+
+.table-resultados th,
+.table-resultados td {
+    padding: 5px 8px;
+}
+
+.table-resultados td{
+    font-size: 14px;
+}
+
+.table-resultados tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.table-resultados tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.searchCodAux {
+    cursor: pointer;
+    color: purple;
+    transition: 0.4s;
+    background-color: rgb(242, 175, 255);
+}
+
+.searchCodAux:hover {
+    color: green;
+}
+
+.stateIcon {
+   color: black;
+}
+
+.div-table-resultados1 {
+    overflow: auto;
+    width: 61vw;
+    height: 45vh;
+    margin: 20px auto;
+}
+
+.div-table-resultados2 {
+    display: none;
+    width: 61vw;
+    height: 45vh;
+    margin: 20px auto;
+}
+
+.tables-divsOverflow {
+    overflow: auto;
+}
+
+.campo-procurarNF {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    width: 61vw;
+}
+
+.campo-procurarNF input[type='text']{
+    width: 100%;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #686868;
+}
+
+.clearNF {
+    clear: both;
+}

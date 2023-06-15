@@ -11,7 +11,8 @@ const CadastroProduto = () => {
     const [produto, setProduto] = useState({
         nome_produto: '',
         valor_produto: '',
-        qtd_produto_estoque: ''
+        qtd_produto_estoque: '',
+        cod_aux: ''
     });
 
     const handleChange = (e) => {
@@ -72,6 +73,17 @@ const CadastroProduto = () => {
                             id="qtd_produto_estoque"
                             name="qtd_produto_estoque"
                             value={produto.qtd_produto_estoque}
+                            onChange={handleChange}
+                            required
+                        />
+                    </div>
+                    <div>
+                        <label htmlFor="cod_aux">Código Auxiliar:</label>
+                        <input
+                            type="number"
+                            id="cod_aux"
+                            name="cod_aux"
+                            value={produto.cod_aux}
                             onChange={handleChange}
                             required
                         />

@@ -72,6 +72,7 @@ const Produtos = () => {
                 <th style={{ textAlign: "center" }}>Descrição</th>
                 <th style={{ textAlign: "center" }}>Valor</th>
                 <th style={{ textAlign: "center" }}>Qtde. Estoque</th>
+                <th style={{ textAlign: "center" }}>Cod. aux</th>
                 <th style={{ textAlign: "center" }}>Ações</th>
               </tr>
             </thead>
@@ -83,6 +84,7 @@ const Produtos = () => {
                   <td>{produto.nome_produto}</td>
                   <td>{produto.valor_produto.formatCurrency()}</td>
                   <td>{produto.qtd_produto_estoque}</td>
+                  <td>{produto.cod_aux}</td>
                   <td>
                     <Link to={`/editarProduto/${produto.id_produto}`}>
                       <button className="btn btn-edit">Editar</button>

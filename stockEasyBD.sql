@@ -24,6 +24,7 @@ CREATE TABLE produtos (
 	id_produto int AUTO_INCREMENT,
 	nome_produto varchar(50) NOT NULL,
 	valor_produto double NOT NULL,
+	cod_aux int NOT NULL,
 	PRIMARY KEY(id_produto)
 );
 	
