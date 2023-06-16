@@ -110,13 +110,23 @@
 
 .searchCodAux {
     cursor: pointer;
-    color: purple;
+    color: rgb(0, 0, 0);
     transition: 0.4s;
-    background-color: rgb(242, 175, 255);
+    background-color: rgb(209, 209, 209);
+    border: 1px solid rgb(170, 170, 170);
 }
 
 .searchCodAux:hover {
-    color: green;
+    background-color: rgb(201, 255, 213);
+}
+
+.selectedAux2 {
+    user-select: none;
+    transition: 0.1s;
+}
+
+.selectedAux2:hover {
+    border: 1px solid rgb(156, 156, 156);
 }
 
 .stateIcon {

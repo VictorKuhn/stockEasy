@@ -6,8 +6,9 @@
 .selectedAux {
     cursor: pointer;
     user-select: none;
+    transition: 0.1s;
 }
 
 .selectedAux:hover {
-    border-left: 3px solid green;
+    border: 1px solid rgb(156, 156, 156);
 }

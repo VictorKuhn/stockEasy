@@ -65,6 +65,27 @@ app.get('/api/getProdutoEstoque/:id', (req, res) => {
     });
 });
 
+// Pegar os itens do fornecedor pelo id_aux do produto selecionado
+app.get('/api/getProdutosFornecedor/:id', (req, res) => {
+    const id_aux = req.params.id;
+    const query = 'SELECT id_item, registro, descricao, qtde, valor, aux FROM fornecedor_itens WHERE aux = ?';
+
+    db.query(query, [id_aux], (err, result) => {
+        if (err) {
+            console.error('Erro ao obter os produtos:', err);
+            res.status(500).json({ error: 'Erro ao obter os produtos.' });
+        } else {
+            if (result.length > 0) {
+                const produto = result[0];
+                res.status(200).json(produto);
+            } else {
+                res.status(404).json({ error: 'Produtos não encontrados.' });
+            }
+        }
+    });
+});
+
+
 // Pegar os produtos jutamente também com o estoque
 app.get('/api/getProdutosComEstoque', (req, res) => {
     const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque, p.cod_aux FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';

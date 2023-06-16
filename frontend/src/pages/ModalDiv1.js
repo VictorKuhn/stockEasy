@@ -44,7 +44,7 @@ const ModalDiv1 = (props) => {
                 </thead>
                 <tbody>
                     {props.records.map((record, index) => (
-                        <tr key={index}>
+                        <tr key={index} className='selectedAux2'>
                             <td>{record._attributes.nItem}</td>
                             <td>{record.prod.xProd._text}</td>
                             <td>{formatValue(record.prod.qCom._text, 'integer')}</td>

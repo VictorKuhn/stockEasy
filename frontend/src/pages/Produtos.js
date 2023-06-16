@@ -6,9 +6,11 @@ import '../styles/Produtos.css';
 import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import '../utils/locales';
+import ModalRelatedProd from './ModalRelatedProd';
 
 const Produtos = () => {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([])
+  const [data2, setData2] = useState([])
   const [searchTerm, setSearchTerm] = useState("");
 
   const loadData = async () => {
@@ -42,10 +44,28 @@ const Produtos = () => {
     );
   };
 
+  const showModal = () => {
+    const item = document.querySelector('.modalBackground4')
+
+    if (item.style.display == "flex") {
+      item.style.display = "none"
+    } else {
+      item.style.display = "flex"
+    }
+  }
+
+  const handleClick = async (aux) => {
+    const response = await axios.get(`http://localhost:5000/api/getProdutosFornecedor/${aux}`);
+    setData2(response.data);
+    console.log(response.data)
+    showModal()
+  }
+
   return (
     <div className="Produto">
       <Header />
       <SideBar />
+      <ModalRelatedProd showModal={showModal} data={data2} />
 
       <div className="table-container">
         <div className="campo-procurar">
@@ -97,7 +117,7 @@ const Produtos = () => {
                       Excluir
                     </button>
                   </td>
-                  <td><i class="fa-solid fa-magnifying-glass"></i></td>
+                  <td className='searchCodAux' onClick={() => handleClick(produto.cod_aux)}><i class="fa-solid fa-magnifying-glass"></i></td>
                 </tr>
               ))}
             </tbody>

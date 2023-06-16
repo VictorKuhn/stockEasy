@@ -53,12 +53,15 @@ const ModalImportacaoNF = (props) => {
 
     const processData = (e) => {
         e.preventDefault();
+        console.log(cont1)
+        console.log(cont2)
+        console.log(cont3)
         try {
             if (cont1 === 0) {
                 toast.error('Nenhum item selecinado.');
             } else {
                 if (cont1 === cont2) {
-                    if (cont2 === cont3) {
+                    if (cont3 === 0) {
                         for (let i = 0; i < codAux.length; i++) {
                             finalItem.push({
                                 registro: itensCodAux[i].registro,
