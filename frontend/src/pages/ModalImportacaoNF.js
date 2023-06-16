@@ -1,21 +1,30 @@
 import '../styles/ModalImportacaoNF.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
-import xmljs from 'xml-js';
 import ModalDiv1 from './ModalDiv1';
 import ModalDiv2 from './ModalDiv2';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const ModalImportacaoNF = (props) => {
     const [searchTerm, setSearchTerm] = useState("")
     const [itensCodAux, setItensCodAux] = useState([])
     const [codAux, setCodAux] = useState([])
     const [finalItem, setFinalItem] = useState([])
+    const navigate = useNavigate();
+    const [cont1, setCont1] = useState(0)
+    const [cont2, setCont2] = useState(0)
+    const [cont3, setCont3] = useState(0)
 
     const cancelReq = () => {
+        setCont1(0)
+        setCont2(0)
         setCodAux([])
         setItensCodAux([])
         setFinalItem([])
+        showDiv2()
+        props.resetFileInput()
+        props.reset()
         props.showModal()
         toast.error('Alterações descartadas.');
     }
@@ -26,18 +35,17 @@ const ModalImportacaoNF = (props) => {
             return null;
         }
 
-        const records = props.convertedJson.nfeProc.NFe.infNFe.det;
-        if (!records) {
+        if (!props.records) {
             return null;
         }
 
         return (
             <div className="auxDivs-background">
                 <div className="div-table-resultados1">
-                    <ModalDiv1 records={records} showDiv2={showDiv2} filterData={filterData} itensCodAux={itensCodAux} />
+                    <ModalDiv1 records={props.records} cont1={cont1} setCont1={setCont1} setCont3={setCont3} showDiv2={showDiv2} filterData={filterData} itensCodAux={itensCodAux} />
                 </div>
                 <div className="div-table-resultados2">
-                    <ModalDiv2 showDiv2={showDiv2} filterData={filterData} codAux={codAux} />
+                    <ModalDiv2 showDiv2={showDiv2} cont2={cont2} setCont2={setCont2} filterData={filterData} codAux={codAux} />
                 </div>
             </div>
         );
@@ -46,32 +54,39 @@ const ModalImportacaoNF = (props) => {
     const processData = (e) => {
         e.preventDefault();
         try {
-            if (codAux.length === 0) {
-                toast.error('Sem códigos adicionados.');
-
+            if (cont1 === 0) {
+                toast.error('Nenhum item selecinado.');
             } else {
-                for (let i = 0; i < codAux.length; i++) {
-                    finalItem.push({
-                        registro: itensCodAux[i].registro,
-                        descricao: itensCodAux[i].descricao,
-                        qtde: itensCodAux[i].qtde,
-                        valor: itensCodAux[i].valor,
-                        aux: codAux[i].aux
-                    })
-                    handleClick(i)
+                if (cont1 === cont2) {
+                    if (cont2 === cont3) {
+                        for (let i = 0; i < codAux.length; i++) {
+                            finalItem.push({
+                                registro: itensCodAux[i].registro,
+                                descricao: itensCodAux[i].descricao,
+                                qtde: itensCodAux[i].qtde,
+                                valor: itensCodAux[i].valor,
+                                aux: codAux[i].aux
+                            })
+                            handleClick(i)
+                        }
+                        toast.success('Códigos associados com sucesso.');
+                        setCont1(0)
+                        setCont2(0)
+                        setCodAux([])
+                        setItensCodAux([])
+                        setFinalItem([])
+                        navigate('/produtos');
+                    } else {
+                        toast.error('Os códigos auxiliares não foram associados.')
+                    }
+                } else {
+                    toast.error('Código auxiliar não foi associado corretamente.');
                 }
-                toast.success('Códigos adicionados com sucesso.');
             }
         } catch (error) {
             console.log(error);
             toast.error('Erro ao adicionar os códigos.');
         }
-
-        console.log(codAux.length)
-
-        setCodAux([])
-        setItensCodAux([])
-        setFinalItem([])
     }
 
     const handleClick = async (i) => {

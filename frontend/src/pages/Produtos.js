@@ -74,6 +74,7 @@ const Produtos = () => {
                 <th style={{ textAlign: "center" }}>Qtde. Estoque</th>
                 <th style={{ textAlign: "center" }}>Cod. aux</th>
                 <th style={{ textAlign: "center" }}>Ações</th>
+                <th style={{ textAlign: "center" }}>Itens Relacionados</th>
               </tr>
             </thead>
             <tbody>
@@ -96,6 +97,7 @@ const Produtos = () => {
                       Excluir
                     </button>
                   </td>
+                  <td><i class="fa-solid fa-magnifying-glass"></i></td>
                 </tr>
               ))}
             </tbody>

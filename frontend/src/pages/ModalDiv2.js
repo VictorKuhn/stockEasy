@@ -18,6 +18,7 @@ const ModalDiv2 = (props) => {
         props.codAux.push({
             aux: aux
         })
+        props.setCont2(props.cont2+1)
         props.showDiv2()
     }
 
