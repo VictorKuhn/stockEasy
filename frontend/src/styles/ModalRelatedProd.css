@@ -77,14 +77,48 @@
     justify-content: space-around;
     align-items: center;
     margin: auto;
-    width: 61vw;
+    width: 55vw;
 }
 
 .campo-procurarNF4 input[type='text']{
-    width: 90%;
+    width: 100%;
     margin: auto;
     padding: 5px 10px;
     outline: none;
     border-radius: 5px;
     border: 1px solid #686868;
+}
+
+.table-background4 {
+    margin: 30px auto;
+    width: 55vw;
+    height: 40vh;
+    overflow: auto;
+}
+
+.main-table4 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-table4 thead tr{
+    background-color: #370072;
+    color: white;
+}
+
+.main-table4 th,
+.main-table4 td{
+    padding: 5px 8px;
+}
+
+.main-table4 td{
+    font-size: 14px;
+}
+
+.main-table4 tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.main-table4 tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
 }

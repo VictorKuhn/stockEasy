@@ -68,19 +68,15 @@ app.get('/api/getProdutoEstoque/:id', (req, res) => {
 // Pegar os itens do fornecedor pelo id_aux do produto selecionado
 app.get('/api/getProdutosFornecedor/:id', (req, res) => {
     const id_aux = req.params.id;
-    const query = 'SELECT id_item, registro, descricao, qtde, valor, aux FROM fornecedor_itens WHERE aux = ?';
+    const query = 'SELECT * FROM fornecedor_itens WHERE aux = ?';
+    const values = [id_aux];
 
-    db.query(query, [id_aux], (err, result) => {
+    db.query(query, values, (err, result) => {
         if (err) {
             console.error('Erro ao obter os produtos:', err);
             res.status(500).json({ error: 'Erro ao obter os produtos.' });
         } else {
-            if (result.length > 0) {
-                const produto = result[0];
-                res.status(200).json(produto);
-            } else {
-                res.status(404).json({ error: 'Produtos não encontrados.' });
-            }
+            res.status(200).json(result);
         }
     });
 });

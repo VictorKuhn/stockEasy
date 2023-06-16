@@ -18,8 +18,15 @@ const Produtos = () => {
     setData(response.data);
   };
 
+  const loadData2 = async (codAux) => {
+    await axios.get(`http://localhost:5000/api/getProdutosFornecedor/${codAux}`).then((response) => {
+      setData2(response.data);
+    });
+    
+  };
+
   useEffect(() => {
-    loadData();
+    loadData()
   }, []);
 
   const excluirProduto = (id) => {
@@ -54,10 +61,9 @@ const Produtos = () => {
     }
   }
 
-  const handleClick = async (aux) => {
-    const response = await axios.get(`http://localhost:5000/api/getProdutosFornecedor/${aux}`);
-    setData2(response.data);
-    console.log(response.data)
+  const handleClick = (codAux) => {
+    loadData2(codAux)
+
     showModal()
   }
 

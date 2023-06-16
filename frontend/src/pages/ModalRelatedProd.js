@@ -1,17 +1,15 @@
 import '../styles/ModalRelatedProd.css';
 import React, { useState, useEffect, useRef } from 'react';
 
-import axios from 'axios';
-
 const ModalRelatedProd = (props) => {
-    
+
     const [searchTerm, setSearchTerm] = useState("")
 
     const filterData = (data) => {
         return data.filter(
             (item) =>
                 item.descricao.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                item.id_item.toString().includes(searchTerm)
+                item.registro.toString().includes(searchTerm)
         );
     };
 
@@ -34,7 +32,7 @@ const ModalRelatedProd = (props) => {
                     </div>
                     <div className="modalContent4">
                         <div className="table-background4">
-                            <table className="main-table">
+                            <table className="main-table4">
                                 <thead>
                                     <tr>
                                         <th style={{ textAlign: "center" }}>No.</th>
@@ -47,8 +45,7 @@ const ModalRelatedProd = (props) => {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <h1>{props.data.descricao}</h1>
-                                    {/* {filterData(props.data).map((item, index) => (
+                                    {filterData(props.data).map((item, index) => (
                                         <tr key={item.id_item}>
                                             <th scope="row">{index + 1}</th>
                                             <td>{item.id_item}</td>
@@ -58,7 +55,7 @@ const ModalRelatedProd = (props) => {
                                             <td>{item.valor}</td>
                                             <td>{item.aux}</td>
                                         </tr>
-                                    ))} */}
+                                    ))}
                                 </tbody>
                             </table>
                         </div>
