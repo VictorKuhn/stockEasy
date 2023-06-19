@@ -58,7 +58,7 @@ const ModalDiv1 = (props) => {
                             }>
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </td>
-                            <td className="stateIcon"><i class="fa-solid fa-check"></i></td>
+                            <td className="stateIcon"><i class="fa-solid fa-spinner fa-spin-pulse"></i></td>
                         </tr>
                     ))}
                 </tbody>
