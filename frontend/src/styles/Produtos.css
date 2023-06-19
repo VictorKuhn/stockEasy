@@ -101,3 +101,29 @@
 .btn-excluir:hover{
     background-color: #ff5346;
 }
+
+#disabledButton {
+    cursor: default;
+    opacity: 0;
+    transition: 0.4s;
+    background-color: #ee7b10;
+}
+
+#movedButton {
+    width: 25%;
+    margin-left: 10vw;
+    transition: 0.4s;
+}
+
+#handleClick {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#handleClick:hover {
+    background-color: rgb(200, 255, 200);
+}
+
+#handleClick:active {
+    background-color: rgb(182, 255, 182);
+}
