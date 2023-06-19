@@ -32,8 +32,13 @@ const ModalRequisicoes = (props) => {
     };
 
     const cancelReq = () => {
+        props.setItemProd({
+            id_produto: 0,
+            nome_produto: "",
+            qtd_produto_estoque: 0
+        })
+        
         props.showModal()
-
         toast.error('Requisição cancelada.');
     }
 

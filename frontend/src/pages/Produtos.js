@@ -18,7 +18,6 @@ const Produtos = () => {
     nome_produto: 'Nenhum item definido',
     qtd_produto_estoque: 0,
   })
-  const [cont, setCont] = useState(0);
 
   const loadData = async () => {
     const response = await axios.get("http://localhost:5000/api/getProdutosComEstoque");
@@ -83,28 +82,37 @@ const Produtos = () => {
     showModal()
   }
 
-  const handleProduto = (id, nome, qtd) => {
+  const changeReqButton = () => {
     const item = document.getElementById("movedButton")
     const item2 = document.getElementById("disabledButton")
+    console.log(itemProd.id_produto)
 
-    if (cont === 0) {
+    if (itemProd.id_produto === 0) {
       item2.setAttribute("disabled", "disabled");
-      setCont(cont + 1)
-    }
 
-    if (item2.disabled === true) {
-      item.style.backgroundColor = "#ff5346"
-      item2.removeAttribute("disabled");
-      item2.style.cursor = "pointer"
-      item2.style.opacity = "1";
-      item.style.width = "15%"
-    } else {
-      item.style.backgroundColor = "#ee7b10"
-      item2.setAttribute("disabled", "disabled");
-      item2.style.cursor = "default"
-      item2.style.opacity = "0";
-      item.style.width = "25%"
+      if (item2.disabled === true) {
+        item.style.backgroundColor = "#ff5346"
+        item2.removeAttribute("disabled");
+        item2.style.cursor = "pointer"
+        item2.style.opacity = "1";
+        item.style.width = "15%"
+
+        setTimeout(() => {
+          item2.style.width = "25%"
+        }, 400)
+      } else {
+        item.style.backgroundColor = "#ee7b10"
+        item2.setAttribute("disabled", "disabled");
+        item2.style.cursor = "default"
+        item2.style.opacity = "0";
+        item.style.width = "25%"
+        item2.style.width = "11%"
+      }
     }
+  }
+
+  const handleProduto = (id, nome, qtd) => {
+    changeReqButton()
 
     setItemProd({
       id_produto: id,
@@ -118,7 +126,7 @@ const Produtos = () => {
       <Header />
       <SideBar />
       <ModalRelatedProd showModal={showModal} data={data2} />
-      <ModalRequisicoesProdutos showModal={showModal2} itemProd={itemProd} />
+      <ModalRequisicoesProdutos showModal={showModal2} itemProd={itemProd} setItemProd={setItemProd}/>
 
       <div className="table-container">
         <div className="campo-procurar">
@@ -131,11 +139,11 @@ const Produtos = () => {
           <div className="clear"></div>
         </div>
 
-        <Link to="/cadastrarProduto">
+        <Link to="/cadastrarProduto" id="link-movedButton">
           <button className="btn btn-add-produto" id="movedButton">Cadastrar Produto</button>
         </Link>
 
-        <button id="disabledButton" className="btn btn-add-produto" onClick={showModal2}>+ Requisição</button>
+        <button id="disabledButton" className="btn btn-add-produto" onClick={showModal2}>+ Requisição: {itemProd.id_produto}</button>
         <div className="main-table-div">
           <table className="main-table">
             <thead>

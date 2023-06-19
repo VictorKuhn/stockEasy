@@ -29,6 +29,7 @@
     width: 80vw;
     height: 65%;
     overflow: auto;
+    user-select: none;
 }
 
 .main-table{
@@ -104,15 +105,20 @@
 
 #disabledButton {
     cursor: default;
+    width: 11%;
     opacity: 0;
     transition: 0.4s;
     background-color: #ee7b10;
 }
 
-#movedButton {
+#link-movedButton {
     width: 25%;
     margin-left: 10vw;
     transition: 0.4s;
+}
+
+#movedButton {
+    width: 30%;
 }
 
 #handleClick {

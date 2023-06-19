@@ -13,6 +13,7 @@ const Home = () => {
   const [qtdTotalSaida, setQtdTotalSaida] = useState(0);
   const [valorTotalEstoque, setValorTotalEstoque] = useState(0);
   const [valorTotalTransferencias, setValorTotalTransferencias] = useState(0);
+  const [loadScreen, setLoadScreen] = useState(0)
 
   const loadData = async () => {
     const response = await axios.get("http://localhost:5000/api/getProdutosComEstoque");
@@ -21,14 +22,19 @@ const Home = () => {
     setData2(response2.data);
     const response3 = await axios.get("http://localhost:5000/api/getProdutosComEstoqueEMovimentacao");
     setData3(response3.data);
+    setLoadScreen(Math.floor(Math.random() * 10))
+    totalStorageLoader()
   };
 
   useEffect(() => {
     loadData();
-    totalStorageLoader();
   }, []);
 
-  const totalStorageLoader = useCallback(() => {
+  useEffect(() => {
+    totalStorageLoader();
+  }, [loadScreen])
+
+  const totalStorageLoader = () => {
     let i = 0;
     let temp = 0;
     let cont = 0;
@@ -71,7 +77,7 @@ const Home = () => {
       }
     }
     setValorTotalTransferencias(cont4)
-  }, [])
+  }
 
   return (
     <div className='background'>
@@ -100,7 +106,7 @@ const Home = () => {
                 </div>
               </div>
               <div className="contents">
-                <div className="divTitles"> 
+                <div className="divTitles">
                   <h1 className='contentsTitle'>Valor patrimonial:</h1>
                   <h1 className='contentsTitle'>Valor em transfêrencias:</h1>
                 </div>
