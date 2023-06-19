@@ -4,7 +4,7 @@
     float: right;
 }
 
-.import-container-upload {
+/* .import-container-upload {
     padding: 25px 15px;
     border-radius: 20px;
     background: linear-gradient(to right, #6F00E6, #A55FF0);
@@ -12,7 +12,7 @@
     margin: 0 auto;
     left: 50%;
     transform: translate(-50%);
-}
+} */
 
 .import-container-upload input {
     border: none;
@@ -28,12 +28,12 @@
 .table-json-result-div{
     width: 80vw;
     overflow: auto;
-    height: 45vh;
+    height: 35vh;
     margin: 20px auto;
 }
 
 .json-results {
-    margin-top: 150px;
+    margin-top: 20vh;
 }
 
 .table-json-result {
@@ -61,4 +61,16 @@
 
 .table-json-result tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
+}
+
+#inputTypeFileLabel {
+    padding: 20px;
+    margin-left: 1vw;
+    border: 1px solid green;
+    border-radius: 20px;
+    background: linear-gradient(to right, #6F00E6, #A55FF0);
+    transition: 0.4s;
+    cursor: pointer;
+    color: white;
+    font-size: 3vh;
 }

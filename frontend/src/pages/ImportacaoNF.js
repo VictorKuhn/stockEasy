@@ -98,27 +98,30 @@ export default function ImportacaoNF() {
         }
 
         return (
-            <div className="table-json-result-div">
-                <table className="table-json-result">
-                    <thead>
-                        <tr>
-                            <th>Registro</th>
-                            <th>Descrição</th>
-                            <th>Qtde</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {records.map((record, index) => (
-                            <tr key={index}>
-                                <td>{record._attributes.nItem}</td>
-                                <td>{record.prod.xProd._text}</td>
-                                <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
-                                <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
+            <div>
+                <div className="table-json-result-div">
+                    <table className="table-json-result">
+                        <thead>
+                            <tr>
+                                <th>Registro</th>
+                                <th>Descrição</th>
+                                <th>Qtde</th>
+                                <th>Valor</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {records.map((record, index) => (
+                                <tr key={index}>
+                                    <td>{record._attributes.nItem}</td>
+                                    <td>{record.prod.xProd._text}</td>
+                                    <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
+                                    <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <button className="btn btn-add-produto" onClick={showModal}>Confirmar</button>
             </div>
         );
     };
@@ -131,15 +134,14 @@ export default function ImportacaoNF() {
 
             <div className="import-container">
                 <div className="import-container-upload">
-                    <h2>Importar NF</h2>
-                    <input type="file" accept=".xml" onChange={handleFileChange} ref={inputRef} />
+                    <label>Importar NF</label>
+                    <label htmlFor="file-upload" class="custom-file-upload" id="inputTypeFileLabel"><i class="fa-solid fa-cloud-arrow-up"></i></label>
+                    <input id="file-upload" hidden type="file" accept=".xml" onChange={handleFileChange} ref={inputRef} />
                 </div>
 
                 {convertedJson && reloadComponent === 0 && (
                     <ResetNF renderRecords={renderRecords} key={reloadComponent} />
                 )}
-
-                <button className="btn btn-add-produto" onClick={showModal}>Confirmar</button>
             </div>
         </div>
     );
