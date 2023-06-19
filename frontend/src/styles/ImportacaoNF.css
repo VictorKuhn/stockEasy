@@ -4,16 +4,6 @@
     float: right;
 }
 
-/* .import-container-upload {
-    padding: 25px 15px;
-    border-radius: 20px;
-    background: linear-gradient(to right, #6F00E6, #A55FF0);
-    position: absolute;
-    margin: 0 auto;
-    left: 50%;
-    transform: translate(-50%);
-} */
-
 .import-container-upload input {
     border: none;
     outline: none;
@@ -25,7 +15,7 @@
     padding: 10px;
 }
 
-.table-json-result-div{
+.table-json-result-div {
     width: 80vw;
     overflow: auto;
     height: 35vh;
@@ -33,7 +23,7 @@
 }
 
 .json-results {
-    margin-top: 20vh;
+    margin-top: 1vh;
 }
 
 .table-json-result {
@@ -51,7 +41,7 @@
     padding: 5px 8px;
 }
 
-.table-json-result td{
+.table-json-result td {
     font-size: 14px;
 }
 
@@ -63,14 +53,35 @@
     background-color: #f3f3f3;
 }
 
-#inputTypeFileLabel {
-    padding: 20px;
-    margin-left: 1vw;
-    border: 1px solid green;
+.import-container-upload {
+    padding: 25px 15px;
     border-radius: 20px;
+    display: flex;
+    width: 50%;
+    margin: auto;
+}
+
+#div-inputTitleNF {
+    margin: auto;
+    margin-right: 0%;
+    height: 100%;
+    font-size: 2vh;
+    text-align: right;
+    width: 50%;
+}
+
+#div-inputLabel {
+    margin: 0% 10% 0% 0%;
+    width: 40%;
+    padding: 3vh 0vw;
+}
+
+#inputTypeFileLabel {
+    width: 100%;
     background: linear-gradient(to right, #6F00E6, #A55FF0);
-    transition: 0.4s;
-    cursor: pointer;
+    padding: 3vh 4vw;
+    border-radius: 20px;
     color: white;
     font-size: 3vh;
+    cursor: pointer;
 }

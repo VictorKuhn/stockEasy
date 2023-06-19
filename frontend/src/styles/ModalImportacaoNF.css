@@ -14,13 +14,14 @@
 .modalStructure3 {
     width: 70%;
     background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
     /* Centralizar verticalmente e horizontalmente com tranform */
     /* position: absolute;
     top: 50%;
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%); */
-    border: solid 2px rgb(255, 230, 0);
+    border: none;
     border-radius: 20px;
     padding: 3vh 0vw;
     opacity: 1;
@@ -38,12 +39,12 @@
 .modalBottom3 button {
     cursor: pointer;
     color: white;
-    border: solid rgb(201, 201, 201) 1px;
-    border-radius: 10px;
-    padding: 15px 32px;
+    border: none;
+    border-radius: 30px;
+    padding: 9px 15px;
     font-size: 16px;
-    transition-duration: 0.1s;
     margin: 3vh 1vw 0vh 0vw;
+    transition: 0.3s ease-in-out;
 }
 
 .modalBottom3 button:hover {
@@ -96,7 +97,7 @@
     padding: 5px 8px;
 }
 
-.table-resultados td{
+.table-resultados td {
     font-size: 14px;
 }
 
@@ -130,7 +131,7 @@
 }
 
 .stateIcon {
-   color: black;
+    color: black;
 }
 
 .div-table-resultados1 {
@@ -159,7 +160,7 @@
     width: 61vw;
 }
 
-.campo-procurarNF input[type='text']{
+.campo-procurarNF input[type='text'] {
     width: 100%;
     padding: 5px 10px;
     outline: none;

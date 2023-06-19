@@ -14,7 +14,7 @@ const ModalRequisicoes = (props) => {
         id_produto_requisicao: props.itemProd.id_produto,
         qtd_produto: 0,
         status_produto: 1,
-        desc_func: "Indefinido"
+        desc_func: ""
     });
 
     const handleSubmit = async (e) => {
@@ -37,7 +37,15 @@ const ModalRequisicoes = (props) => {
             nome_produto: "",
             qtd_produto_estoque: 0
         })
-        
+
+        setRequisicao({
+            id_usuario_requisicao: 1,
+            id_produto_requisicao: props.itemProd.id_produto,
+            qtd_produto: 0,
+            status_produto: 1,
+            desc_func: ""
+        });
+
         props.showModal()
         toast.error('Requisição cancelada.');
     }

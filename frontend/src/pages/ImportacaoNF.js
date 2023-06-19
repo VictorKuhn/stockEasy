@@ -134,9 +134,13 @@ export default function ImportacaoNF() {
 
             <div className="import-container">
                 <div className="import-container-upload">
-                    <label>Importar NF</label>
-                    <label htmlFor="file-upload" class="custom-file-upload" id="inputTypeFileLabel"><i class="fa-solid fa-cloud-arrow-up"></i></label>
-                    <input id="file-upload" hidden type="file" accept=".xml" onChange={handleFileChange} ref={inputRef} />
+                    <div id="div-inputTitleNF">
+                        <h1>Importar NF</h1>
+                    </div>
+                    <div id="div-inputLabel">
+                        <label htmlFor="file-upload" id="inputTypeFileLabel"><i class="fa-solid fa-cloud-arrow-up"></i></label>
+                        <input id="file-upload" hidden type="file" accept=".xml" onChange={handleFileChange} ref={inputRef} />
+                    </div>
                 </div>
 
                 {convertedJson && reloadComponent === 0 && (
