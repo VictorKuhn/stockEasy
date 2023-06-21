@@ -343,6 +343,26 @@ app.put('/api/inserirEstoque', (req, res) => {
     });
 });
 
+// Remoção de produtos no estoque
+app.put('/api/removerEstoque', (req, res) => {
+    const { id_produto, qtd_produto } = req.body;
+    const query = 'UPDATE estoque SET qtd_produto_estoque = qtd_produto_estoque - ? WHERE id_produto_estoque = ?';
+    const values = [qtd_produto, id_produto];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao remover produtos ao estoque:', err);
+            res.status(500).json({ error: 'Erro ao remover produtos ao estoque.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Produto removido com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Produto não encontrado.' });
+            }
+        }
+    });
+});
+
 // Exclusão de um produto (Está sendo feito com cascade, por termos que realizar uma exclusão em cascata pelo fato de termos a chave estrangeira vinculada ao produto e com isso não seria possível excluir apenas o registro isolado do produto)
 app.delete('/api/excluirProduto/:id', (req, res) => {
     const id_produto = req.params.id;
