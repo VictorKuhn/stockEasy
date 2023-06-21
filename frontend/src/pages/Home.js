@@ -72,7 +72,7 @@ const Home = () => {
         temp += data2[i].qtd_movimentacao_produto
       }
     }
-    
+
     setQtdTotalSaida(temp)
 
     // VALOR TOTAL DO ESTOQUE
@@ -176,15 +176,15 @@ const Home = () => {
                   <h1 className='contentsTitle'>Produtos no estoque:</h1>
                   <h1 className='contentsTitle'>Produtos transferidos:</h1>
                 </div>
-                <div className="divInsideContents">
-                  <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
-                    {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <MyResponsiveFunnel data={dataChart} />}
+                  <div className="divInsideContents">
+                    <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
+                      {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <MyResponsiveFunnel data={dataChart} />}
+                    </div>
+                    <div className='insideDivs' onClick={() => changeChartProducts2 === 0 ? setChangeChartProducts2(1) : setChangeChartProducts2(0)}>
+                      {changeChartProducts2 === 0 ? <h1 className='forthBox'>{qtdTotalSaida}</h1> : <MyResponsiveFunnel data={dataChart2} />}
+                      <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
+                    </div>
                   </div>
-                  <div className='insideDivs' onClick={() => changeChartProducts2 === 0 ? setChangeChartProducts2(1) : setChangeChartProducts2(0)}>
-                    {changeChartProducts2 === 0 ? <h1 className='forthBox'>{qtdTotalSaida}</h1> : <MyResponsiveFunnel data={dataChart2} />}
-                    <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
-                  </div>
-                </div>
               </div>
               <div className="contents">
                 <div className="divTitles">

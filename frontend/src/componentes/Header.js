@@ -9,6 +9,7 @@ export default function Header() {
 
   const logout = () => {
     if(window.confirm("Você tem certeza que deseja sair do sistema?")) {
+      localStorage.removeItem('id_usuario')
       localStorage.removeItem('nome_usuario')
       toast.success("Deslogado com sucesso!");
       setTimeout(() => {

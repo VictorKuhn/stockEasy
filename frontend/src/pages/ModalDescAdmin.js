@@ -58,6 +58,7 @@ const ModalDescAdmin = (props) => {
                                 <input
                                     disabled
                                     placeholder='Usuário'
+                                    value={props.item.nome_usuario}
                                 />
                             </div>
                             <div className="divModalContent2">

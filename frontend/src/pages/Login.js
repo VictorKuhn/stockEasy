@@ -26,6 +26,7 @@ const Login = () => {
 
       if (success) {
         // Login bem-sucedido, redirecionar para a página desejada
+        localStorage.setItem('id_usuario', response.data.id_usuario);
         localStorage.setItem('nome_usuario', response.data.nome_usuario);
         navigate('/home');
       } else {

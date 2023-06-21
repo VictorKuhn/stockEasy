@@ -23,7 +23,7 @@ const CadastroSetor = () => {
     try {
       await axios.post('http://localhost:5000/api/cadastrarSetor', setor);
       toast.success('Setor cadastrado com sucesso.');
-      navigate('/setores');
+      navigate('/setor');
     } catch (error) {
       console.log(error);
       toast.error('Erro ao cadastrar o setor.');

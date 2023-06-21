@@ -540,8 +540,8 @@ app.post('/api/login', (req, res) => {
           res.status(500).json({ success: false });
         } else {
           if (results.length > 0) {
-            const { nome_usuario } = results[0]; // Recupera o campo nome_usuario do primeiro resultado
-            res.status(200).json({ success: true, nome_usuario });
+            const { id_usuario, nome_usuario } = results[0]; // Recupera o campo nome_usuario do primeiro resultado
+            res.status(200).json({ success: true, id_usuario, nome_usuario });
           } else {
             res.status(200).json({ success: false });
           }
