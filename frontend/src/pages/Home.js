@@ -3,17 +3,52 @@ import axios from 'axios';
 import Header from '../componentes/Header.js'
 import SideBar from '../componentes/SideBar.js'
 import '../styles/Home.css'
+import '../styles/MyResponsiveFunnel.css'
 import '../utils/locales'
+import { MyResponsiveFunnel } from './MyResponsiveFunnel.js';
 
 const Home = () => {
   const [data, setData] = useState([]);
   const [data2, setData2] = useState([]);
   const [data3, setData3] = useState([]);
+  const [dataChartTemp, setDataChartTemp] = useState([]);
+  const [dataChartIdTemp, setDataChartIdTemp] = useState([]);
+  const [dataChartMaxValueTemp, setDataChartMaxValueTemp] = useState([]);
+  const [cont, setCont] = useState(0)
   const [qtdTotalEstoque, setQtdTotalEstoque] = useState(0);
   const [qtdTotalSaida, setQtdTotalSaida] = useState(0);
   const [valorTotalEstoque, setValorTotalEstoque] = useState(0);
   const [valorTotalTransferencias, setValorTotalTransferencias] = useState(0);
   const [loadScreen, setLoadScreen] = useState(0)
+  const [changeChartProducts, setChangeChartProducts] = useState(0)
+  const [dataChart, setDataChart] = useState([])
+  const [itensChart, setItensChart] = useState([
+    {
+      "id": "loading",
+      "label": "loading",
+      "value": 0,
+    },
+    {
+      "id": "loading",
+      "label": "loading",
+      "value": 0,
+    },
+    {
+      "id": "loading",
+      "label": "loading",
+      "value": 0,
+    },
+    {
+      "id": "loading",
+      "label": "loading",
+      "value": 0,
+    },
+    {
+      "id": "loading",
+      "label": "loading",
+      "value": 0,
+    },
+  ]);
 
   const loadData = async () => {
     const response = await axios.get("http://localhost:5000/api/getProdutosComEstoque");
@@ -23,7 +58,6 @@ const Home = () => {
     const response3 = await axios.get("http://localhost:5000/api/getProdutosComEstoqueEMovimentacao");
     setData3(response3.data);
     setLoadScreen(Math.floor(Math.random() * 10))
-    totalStorageLoader()
   };
 
   useEffect(() => {
@@ -31,6 +65,7 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    handleChart()
     totalStorageLoader();
   }, [loadScreen])
 
@@ -77,6 +112,64 @@ const Home = () => {
       }
     }
     setValorTotalTransferencias(cont4)
+
+    console.log(dataChart)
+  }
+
+  const handleChart = () => {
+    let i = 0
+    // setDataChart({
+    //   "id": "loading",
+    //   "label": "loading",
+    //   "value": 0,
+    // },
+    // {
+    //   "id": "loading",
+    //   "label": "loading",
+    //   "value": 0,
+    // },
+    // {
+    //   "id": "loading",
+    //   "label": "loading",
+    //   "value": 0,
+    // },
+    // {
+    //   "id": "loading",
+    //   "label": "loading",
+    //   "value": 0,
+    // },
+    // {
+    //   "id": "loading",
+    //   "label": "loading",
+    //   "value": 0,
+    // })
+
+    // 5 ITENS DE MAIOR QUANTIDADE
+    for (i = 0; i < data.length; i++) {
+      dataChartTemp.push(data[i].qtd_produto_estoque);
+      dataChartIdTemp.push(data[i].nome_produto)
+    }
+
+    // setDataChart([])
+    for (i = 0; i < 5; i++) {
+      dataChartMaxValueTemp.push(Math.max(...dataChartTemp))
+
+      const index = dataChartTemp.indexOf(Math.max(...dataChartTemp));
+      if (index > -1 && dataChart.length < 5) {
+        dataChart.push({
+          "id": dataChartIdTemp[index],
+          "label": dataChartIdTemp[index],
+          "value": dataChartTemp[index],
+        })
+
+        dataChartTemp.splice(index, 1);
+        dataChartIdTemp.splice(index, 1);
+      }
+
+      if (i === 4) {
+        break;
+      }
+    }
   }
 
   return (
@@ -96,8 +189,8 @@ const Home = () => {
                   <h1 className='contentsTitle'>Transfêrencias:</h1>
                 </div>
                 <div className="divInsideContents">
-                  <div className='insideDivs'>
-                    <h1 className='firstBox'>{qtdTotalEstoque}</h1>
+                  <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
+                    {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <MyResponsiveFunnel data={dataChart} />}
                   </div>
                   <div className='insideDivs'>
                     <h1 className='forthBox'>{qtdTotalSaida}</h1>
