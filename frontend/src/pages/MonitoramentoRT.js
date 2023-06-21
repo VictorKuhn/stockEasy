@@ -126,6 +126,7 @@ const MonitoramentoRT = () => {
 
     const handleSubmitAccept = async () => {
         try {
+            handleClick(item2.id_produto_movimentacao, item2.qtd_movimentacao_produto)
             await axios.post("http://localhost:5000/api/cadastrarMovimentacao", item2)
             await axios.put(`http://localhost:5000/api/updateRequisicoesParaAprovadas/${item.id_requisicao}`)
             toast.success(`Requisição ${item.id_requisicao} aprovada com sucesso.`)
@@ -149,6 +150,19 @@ const MonitoramentoRT = () => {
         }
         loadData()
     }
+
+    const handleClick = async (idAux, qtdAux) => {
+        var [itemAux] = [
+            {
+                id_produto: 0,
+                qtd_produto: 0
+            }
+        ]
+        itemAux.id_produto = idAux
+        itemAux.qtd_produto = qtdAux
+
+        await axios.put("http://localhost:5000/api/removerEstoque", itemAux)
+    };
 
     const changeItem2 = (item) => {
         for (let i = 0; i < data3.length; i++) {

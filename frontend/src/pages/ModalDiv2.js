@@ -14,10 +14,11 @@ const ModalDiv2 = (props) => {
         loadData();
     }, []);
 
-    const processData = (aux) => {
+    const processData = (item) => {
         props.codAux.push({
-            aux: aux
+            aux: item.cod_aux
         })
+        props.idAux.push(item.id_produto)
         props.setCont2(props.cont2+1)
         props.showDiv2()
     }
@@ -35,7 +36,7 @@ const ModalDiv2 = (props) => {
                 </thead>
                 <tbody>
                     {props.filterData(data).map((item, index) => (
-                        <tr key={index} className="selectedAux" onClick={() => processData(item.cod_aux)}>
+                        <tr key={index} className="selectedAux" onClick={() => processData(item)}>
                             <td>{item.id_produto}</td>
                             <td>{item.nome_produto}</td>
                             <td>{item.valor_produto}</td>

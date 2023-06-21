@@ -15,7 +15,7 @@ const Produtos = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [itemProd, setItemProd] = useState({
     id_produto: 0,
-    nome_produto: 'Nenhum item definido',
+    nome_produto: '',
     qtd_produto_estoque: 0,
   })
 
@@ -86,7 +86,6 @@ const Produtos = () => {
   const changeReqButton = () => {
     const item = document.getElementById("movedButton")
     const item2 = document.getElementById("disabledButton")
-    console.log(itemProd.id_produto)
 
     if (itemProd.id_produto === 0) {
       item2.setAttribute("disabled", "disabled");
@@ -115,6 +114,7 @@ const Produtos = () => {
   const handleProduto = (id, nome, qtd) => {
     changeReqButton()
 
+    console.log(id)
     setItemProd({
       id_produto: id,
       nome_produto: nome,
