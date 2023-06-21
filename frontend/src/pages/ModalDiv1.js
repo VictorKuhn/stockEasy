@@ -24,6 +24,7 @@ const ModalDiv1 = (props) => {
             qtde: qtde,
             valor: valor
         })
+        props.qtdAux.push(qtde)
         props.setCont1(props.cont1+1)
         props.records.splice(index, 1)
         props.showDiv2()

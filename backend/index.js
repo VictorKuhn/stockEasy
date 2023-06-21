@@ -81,7 +81,6 @@ app.get('/api/getProdutosFornecedor/:id', (req, res) => {
     });
 });
 
-
 // Pegar os produtos jutamente também com o estoque
 app.get('/api/getProdutosComEstoque', (req, res) => {
     const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque, p.cod_aux FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';
@@ -317,6 +316,26 @@ app.put('/api/editarProduto/:id', (req, res) => {
         } else {
             if (result.affectedRows > 0) {
                 res.status(200).json({ message: 'Produto atualizado com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Produto não encontrado.' });
+            }
+        }
+    });
+});
+
+// Inserção de produtos no estoque
+app.put('/api/inserirEstoque', (req, res) => {
+    const { id_produto, qtd_produto } = req.body;
+    const query = 'UPDATE estoque SET qtd_produto_estoque = qtd_produto_estoque + ? WHERE id_produto_estoque = ?';
+    const values = [qtd_produto, id_produto];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao adicionar produtos ao estoque:', err);
+            res.status(500).json({ error: 'Erro ao adicionar produtos ao estoque.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Produto adicionado com sucesso.' });
             } else {
                 res.status(404).json({ error: 'Produto não encontrado.' });
             }

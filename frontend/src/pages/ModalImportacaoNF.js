@@ -10,6 +10,8 @@ const ModalImportacaoNF = (props) => {
     const [searchTerm, setSearchTerm] = useState("")
     const [itensCodAux, setItensCodAux] = useState([])
     const [codAux, setCodAux] = useState([])
+    const [idAux, setIdAux] = useState([])
+    const [qtdAux, setQtdAux] = useState([])
     const [finalItem, setFinalItem] = useState([])
     const navigate = useNavigate();
     const [cont1, setCont1] = useState(0)
@@ -29,6 +31,9 @@ const ModalImportacaoNF = (props) => {
         toast.error('Alterações descartadas.');
     }
 
+    const timeElapsed = Date.now()
+    const today = new Date(timeElapsed)
+
     const renderRecords = () => {
 
         if (!props.convertedJson) {
@@ -42,20 +47,17 @@ const ModalImportacaoNF = (props) => {
         return (
             <div className="auxDivs-background">
                 <div className="div-table-resultados1">
-                    <ModalDiv1 records={props.records} cont1={cont1} setCont1={setCont1} setCont3={setCont3} showDiv2={showDiv2} filterData={filterData} itensCodAux={itensCodAux} />
+                    <ModalDiv1 records={props.records} cont1={cont1} setCont1={setCont1} setCont3={setCont3} showDiv2={showDiv2} filterData={filterData} itensCodAux={itensCodAux} qtdAux={qtdAux} setQtdAux={setQtdAux} />
                 </div>
                 <div className="div-table-resultados2">
-                    <ModalDiv2 showDiv2={showDiv2} cont2={cont2} setCont2={setCont2} filterData={filterData} codAux={codAux} />
+                    <ModalDiv2 showDiv2={showDiv2} cont2={cont2} setCont2={setCont2} filterData={filterData} codAux={codAux} idAux={idAux} setIdAux={setIdAux} />
                 </div>
             </div>
         );
     };
 
-    const processData = (e) => {
+    const processData = async (e) => {
         e.preventDefault();
-        console.log(cont1)
-        console.log(cont2)
-        console.log(cont3)
         try {
             if (cont1 === 0) {
                 toast.error('Nenhum item selecinado.');
@@ -72,6 +74,11 @@ const ModalImportacaoNF = (props) => {
                             })
                             handleClick(i)
                         }
+
+                        for (let i = 0; i < idAux.length; i++) {
+                            handleClick2(idAux, qtdAux, i)
+                        }
+
                         toast.success('Códigos associados com sucesso.');
                         setCont1(0)
                         setCont2(0)
@@ -93,8 +100,37 @@ const ModalImportacaoNF = (props) => {
     }
 
     const handleClick = async (i) => {
-        await axios.post('http://localhost:5000/api/cadastrarProdutoFornecedor', finalItem[i]);
+        await axios.post('http://localhost:5000/api/cadastrarProdutoFornecedor', finalItem[i])
+        // console.log(finalItem[i])
     };
+
+    const handleClick2 = async (idAux, qtdAux, i) => {
+        var [itemAux] = [
+            {
+                id_produto: 0,
+                qtd_produto: 0
+            }
+        ]
+        itemAux.id_produto = idAux[i]
+        itemAux.qtd_produto = qtdAux[i]
+
+        // console.log(itemAux)
+        await axios.put("http://localhost:5000/api/inserirEstoque", itemAux)
+        handleClick3(itemAux)
+    };
+
+    const handleClick3 = async (itemAux) => {
+        var [itemMovi] = [
+            {
+                id_produto_movimentacao: itemAux.id_produto,
+                movimentacao_produto: 1,
+                data_movimentacao_produto: today.toISOString(),
+                qtd_movimentacao_produto: itemAux.qtd_produto,
+            }
+        ];
+        // console.log(itemMovi)
+        await axios.post("http://localhost:5000/api/cadastrarMovimentacao", itemMovi)
+    }
 
     const showDiv2 = () => {
         const item1 = document.querySelector('.div-table-resultados1')
