@@ -32,6 +32,7 @@ const MonitoramentoRT = () => {
 
     useEffect(() => {
         loadData();
+        AlterarCorLinha()
     }, []);
 
     function AlterarCorLinha() {

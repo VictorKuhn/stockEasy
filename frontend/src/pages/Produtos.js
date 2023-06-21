@@ -33,6 +33,7 @@ const Produtos = () => {
 
   useEffect(() => {
     loadData()
+    console.log(data)
   }, []);
 
   const excluirProduto = (id) => {
