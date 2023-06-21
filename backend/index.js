@@ -255,6 +255,22 @@ app.post('/api/cadastrarProduto', (req, res) => {
     });
 });
 
+// Cadastro de uma transferências
+app.post('/api/cadastrarMovimentacao', (req, res) => {
+    const { id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto } = req.body;
+    const query = 'INSERT INTO movimentacao (id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto) VALUES (?, ?, ?, ?)';
+    const values = [id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar a tranferencia:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar a tranferencia.' });
+        } else {
+            res.status(200).json({ message: 'Tranferencia cadastrada com sucesso.' });
+        }
+    });
+});
+
 // Cadastro de um produto de FORNECEDOR
 app.post('/api/cadastrarProdutoFornecedor', (req, res) => {
     const { registro, descricao, qtde, valor, aux } = req.body;

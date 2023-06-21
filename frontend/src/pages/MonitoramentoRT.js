@@ -13,6 +13,7 @@ import { Button, Modal } from 'react-bootstrap';
 const MonitoramentoRT = () => {
     const [data1, setData1] = useState([]);
     const [data2, setData2] = useState([]);
+    const [data3, setData3] = useState([]);
     const [item, setItem] = useState({
         desc_status: "",
         id_requisicao: 0,
@@ -22,11 +23,23 @@ const MonitoramentoRT = () => {
         desc_func: ""
     });
 
+    const [item2, setItem2] = useState({
+        id_produto_movimentacao: 0,
+        movimentacao_produto: 0,
+        data_movimentacao_produto: "",
+        qtd_movimentacao_produto: 0,
+    });
+
+    const timeElapsed = Date.now()
+    const today = new Date(timeElapsed)
+
     const loadData = async () => {
         const response1 = await axios.get("http://localhost:5000/api/getRequisicoesPendente");
         setData1(response1.data);
         const response2 = await axios.get("http://localhost:5000/api/getMovimentacoes");
         setData2(response2.data);
+        const response3 = await axios.get("http://localhost:5000/api/getProdutosComEstoque");
+        setData3(response3.data);
         AlterarCorLinha();
     };
 
@@ -113,6 +126,7 @@ const MonitoramentoRT = () => {
 
     const handleSubmitAccept = async () => {
         try {
+            await axios.post("http://localhost:5000/api/cadastrarMovimentacao", item2)
             await axios.put(`http://localhost:5000/api/updateRequisicoesParaAprovadas/${item.id_requisicao}`)
             toast.success(`Requisição ${item.id_requisicao} aprovada com sucesso.`)
             setItem({
@@ -123,6 +137,12 @@ const MonitoramentoRT = () => {
                 qtd_produto: 0,
                 desc_func: ""
             })
+            setItem2({
+                id_produto_movimentacao: 0,
+                movimentacao_produto: 0,
+                data_movimentacao_produto: "",
+                qtd_movimentacao_produto: 0,
+            })
         } catch (error) {
             console.log(error);
             toast.error('Erro ao alterar a requisição para aprovada.')
@@ -130,8 +150,22 @@ const MonitoramentoRT = () => {
         loadData()
     }
 
+    const changeItem2 = (item) => {
+        for (let i = 0; i < data3.length; i++) {
+            if (item.nome_produto === data3[i].nome_produto) {
+                setItem2({
+                    id_produto_movimentacao: data3[i].id_produto,
+                    movimentacao_produto: 0,
+                    data_movimentacao_produto: today.toISOString(),
+                    qtd_movimentacao_produto: item.qtd_produto,
+                })
+            }
+        }
+    }
+
     const changeItem = (item) => {
         setItem(item)
+        changeItem2(item)
     }
 
     return (
