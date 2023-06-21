@@ -1,0 +1,124 @@
+.modalBackground4 {
+    align-items: center;
+    background-color: rgba(148, 148, 148, 0.7);
+    display: none;
+    height: 100%;
+    position: absolute;
+    justify-content: center;
+    width: 100%;
+    z-index: 1000;
+    transition-duration: 0.5s;
+    /* Centralizar verticalmente e horizontalmente com flexbox */
+}
+
+.modalStructure4 {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
+    width: 60%;
+    background-color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 3vh 0vw;
+    opacity: 1;
+}
+
+.modalTitle4 {
+    padding: 2vh 0vw 4vh 0vw;
+}
+
+.modalBottom4 div {
+   display: flex;
+   justify-content: right;
+}
+
+.modalBottom4 button {
+    cursor: pointer;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 9px 15px;
+    font-size: 16px;
+    margin: 3vh 1vw 0vh 0vw;
+    transition: 0.3s ease-in-out;
+}
+
+.modalBottom4 button:hover {
+    filter: brightness(1.15);
+}
+
+.modalBottom4 button:active {
+    border-color: rgb(201, 201, 201);
+    color: white;
+}
+
+.modalContent4 {
+    margin: auto;
+    width: 100%;
+}
+
+.divModalContent4 {
+    display: flex;
+    margin: auto;
+    padding: 1vh 0vh;
+    justify-content: space-between;
+    width: 70%;
+}
+
+.modalContent4 form div input {
+    border: none;
+    background-color: rgb(226, 226, 226);
+    outline: none;
+    border-radius: 8px;
+    padding-left: 5px;
+    width: 50%;
+}
+
+.campo-procurarNF4 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: auto;
+    width: 55vw;
+}
+
+.campo-procurarNF4 input[type='text']{
+    width: 100%;
+    margin: auto;
+    padding: 5px 10px;
+    outline: none;
+    border-radius: 5px;
+    border: 1px solid #686868;
+}
+
+.table-background4 {
+    margin: 30px auto;
+    width: 55vw;
+    height: 40vh;
+    overflow: auto;
+}
+
+.main-table4 {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.main-table4 thead tr{
+    background-color: #370072;
+    color: white;
+}
+
+.main-table4 th,
+.main-table4 td{
+    padding: 5px 8px;
+}
+
+.main-table4 td{
+    font-size: 14px;
+}
+
+.main-table4 tbody tr{
+    border-bottom: 1px solid #dddddd;
+}
+
+.main-table4 tbody tr:nth-of-type(even){
+    background-color: #f3f3f3;
+}

@@ -65,9 +65,40 @@ app.get('/api/getProdutoEstoque/:id', (req, res) => {
     });
 });
 
+// Pegar os itens do fornecedor pelo id_aux do produto selecionado
+app.get('/api/getProdutosFornecedor/:id', (req, res) => {
+    const id_aux = req.params.id;
+    const query = 'SELECT * FROM fornecedor_itens WHERE aux = ?';
+    const values = [id_aux];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter os produtos:', err);
+            res.status(500).json({ error: 'Erro ao obter os produtos.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+
 // Pegar os produtos jutamente também com o estoque
 app.get('/api/getProdutosComEstoque', (req, res) => {
-    const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';
+    const query = 'SELECT p.id_produto, p.nome_produto, p.valor_produto, e.qtd_produto_estoque, p.cod_aux FROM produtos AS p INNER JOIN estoque AS e ON p.id_produto = e.id_produto_estoque';
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao obter os produtos com estoque:', err);
+            res.status(500).json({ error: 'Erro ao obter os produtos com estoque.' });
+        } else {
+            res.status(200).json(result);
+        }
+    });
+});
+
+// Pegar os produtos jutamente também com o codigo auxiliar
+app.get('/api/getProdutosCodAux', (req, res) => {
+    const query = 'SELECT id_produto, nome_produto, valor_produto, cod_aux FROM produtos';
 
     db.query(query, (err, result) => {
         if (err) {
@@ -199,9 +230,9 @@ app.get('/api/getRequisicoesRecusadas', (req, res) => {
 
 // Cadastro de um produto
 app.post('/api/cadastrarProduto', (req, res) => {
-    const { nome_produto, valor_produto, qtd_produto_estoque } = req.body;
-    const query = 'INSERT INTO produtos (nome_produto, valor_produto) VALUES (?, ?)';
-    const values = [nome_produto, valor_produto];
+    const { nome_produto, valor_produto, qtd_produto_estoque, cod_aux } = req.body;
+    const query = 'INSERT INTO produtos (nome_produto, valor_produto, cod_aux) VALUES (?, ?, ?)';
+    const values = [nome_produto, valor_produto, cod_aux];
 
     db.query(query, values, (err, result) => {
         if (err) {
@@ -220,6 +251,38 @@ app.post('/api/cadastrarProduto', (req, res) => {
                     res.status(200).json({ message: 'Produto cadastrado com sucesso.' });
                 }
             });
+        }
+    });
+});
+
+// Cadastro de uma transferências
+app.post('/api/cadastrarMovimentacao', (req, res) => {
+    const { id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto } = req.body;
+    const query = 'INSERT INTO movimentacao (id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto) VALUES (?, ?, ?, ?)';
+    const values = [id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar a tranferencia:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar a tranferencia.' });
+        } else {
+            res.status(200).json({ message: 'Tranferencia cadastrada com sucesso.' });
+        }
+    });
+});
+
+// Cadastro de um produto de FORNECEDOR
+app.post('/api/cadastrarProdutoFornecedor', (req, res) => {
+    const { registro, descricao, qtde, valor, aux } = req.body;
+    const query = 'INSERT INTO fornecedor_itens (registro, descricao, qtde, valor, aux) VALUES (?, ?, ?, ?, ?)';
+    const values = [registro, descricao, qtde, valor, aux];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao cadastrar o produto do fornecedor:', err);
+            res.status(500).json({ error: 'Erro ao cadastrar o produto do fornecedor.' });
+        } else {
+            res.status(200).json({ message: 'Produto cadastrado com sucesso.' });
         }
     });
 });

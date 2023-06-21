@@ -22,7 +22,7 @@ $ cd ..
 
 # Acesse a pasta "frontend" e instale as dependências necessárias  relacionadas ao ReactJS e retorne a pasta raíz
 $ cd frontend
-$ npm install react-scripts react-router-dom react-toastify axios xml-js moment
+$ npm install react-scripts react-router-dom react-toastify axios xml-js moment @nivo @nivo/pie
 $ cd ..
 
 # Tenha 2 terminais simultâneos para que seja possível rodar o servidor NodeJS e ReactJS

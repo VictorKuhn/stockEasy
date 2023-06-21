@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import '../styles/ImportacaoNF.css';
 import xmljs from 'xml-js';
 import { toast } from 'react-toastify';
+import ModalImportacaoNF from './ModalImportacaoNF';
+import ResetNF from './ResetNF';
 
 const ptBrCurrencyFormat = {
     style: 'currency',
@@ -17,6 +19,18 @@ Number.prototype.formatCurrency = function () {
 export default function ImportacaoNF() {
     const [xmlFile, setXmlFile] = useState(null);
     const [convertedJson, setConvertedJson] = useState(null);
+    const [records, setRecords] = useState([])
+    const [reloadComponent, setReloadComponent] = useState(0)
+    const inputRef = useRef(null);
+
+    const resetFileInput = () => {
+        // resetting the input value
+        inputRef.current.value = null;
+    };
+
+    const reset = () => {
+        setReloadComponent(Math.random())
+    }
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -28,6 +42,7 @@ export default function ImportacaoNF() {
                 const reader = new FileReader();
                 reader.onload = handleFileRead;
                 reader.readAsText(file);
+                setReloadComponent(0)
             } else {
                 toast.error('Extensão de arquivo inválida. Por favor, selecione um arquivo XML.');
             }
@@ -39,6 +54,7 @@ export default function ImportacaoNF() {
             const content = event.target.result;
             const json = convertXmlToJson(content);
             setConvertedJson(json);
+            setRecords(json.nfeProc.NFe.infNFe.det)
         } catch (error) {
             toast.error('Ocorreu um erro ao processar o arquivo XML.');
         }
@@ -61,38 +77,51 @@ export default function ImportacaoNF() {
         return value;
     };
 
+    const showModal = () => {
+        const item = document.querySelector('.modalBackground3')
+
+        if (item.style.display == "flex") {
+            item.style.display = "none"
+        } else {
+            item.style.display = "flex"
+        }
+    }
+
     const renderRecords = () => {
+
         if (!convertedJson) {
             return null;
         }
 
-        const records = convertedJson.nfeProc.NFe.infNFe.det;
         if (!records) {
             return null;
         }
 
         return (
-            <div className="table-json-result-div">
-                <table className="table-json-result">
-                    <thead>
-                        <tr>
-                            <th>Registro</th>
-                            <th>Descrição</th>
-                            <th>Qtde</th>
-                            <th>Valor</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {records.map((record, index) => (
-                            <tr key={index}>
-                                <td>{record._attributes.nItem}</td>
-                                <td>{record.prod.xProd._text}</td>
-                                <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
-                                <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
+            <div>
+                <div className="table-json-result-div">
+                    <table className="table-json-result">
+                        <thead>
+                            <tr>
+                                <th>Registro</th>
+                                <th>Descrição</th>
+                                <th>Qtde</th>
+                                <th>Valor</th>
                             </tr>
-                        ))}
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody>
+                            {records.map((record, index) => (
+                                <tr key={index}>
+                                    <td>{record._attributes.nItem}</td>
+                                    <td>{record.prod.xProd._text}</td>
+                                    <td>{formatValue(record.prod.qCom._text, 'integer')}</td>
+                                    <td>{formatValue(record.prod.vUnTrib._text, 'currency')}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+                <button className="btn btn-add-produto" onClick={showModal}>Confirmar</button>
             </div>
         );
     };
@@ -101,18 +130,21 @@ export default function ImportacaoNF() {
         <div className="ImportacaoNF">
             <Header />
             <SideBar />
+            <ModalImportacaoNF resetFileInput={resetFileInput} reset={reset} showModal={showModal} reloadComponent={reloadComponent} setReloadComponent={setReloadComponent} records={records} setRecords={setRecords} convertedJson={convertedJson} />
 
             <div className="import-container">
                 <div className="import-container-upload">
-                    <h2>Importar NF</h2>
-                    <input type="file" accept=".xml" onChange={handleFileChange} />
+                    <div id="div-inputTitleNF">
+                        <h1>Importar NF</h1>
+                    </div>
+                    <div id="div-inputLabel">
+                        <label htmlFor="file-upload" id="inputTypeFileLabel"><i class="fa-solid fa-cloud-arrow-up fa-beat"></i></label>
+                        <input id="file-upload" hidden type="file" accept=".xml" onChange={handleFileChange} ref={inputRef} />
+                    </div>
                 </div>
 
-                {convertedJson && (
-                    <div className="json-results">
-                        <h3>Relatório de Produtos</h3>
-                        {renderRecords()}
-                    </div>
+                {convertedJson && reloadComponent === 0 && (
+                    <ResetNF renderRecords={renderRecords} key={reloadComponent} />
                 )}
             </div>
         </div>

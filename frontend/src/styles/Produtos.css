@@ -24,11 +24,12 @@
     border: 1px solid #686868;
 }
 
-.main-table-div{
+.main-table-div {
     margin: 30px auto;
     width: 80vw;
     height: 65%;
     overflow: auto;
+    user-select: none;
 }
 
 .main-table{
@@ -100,4 +101,35 @@
 
 .btn-excluir:hover{
     background-color: #ff5346;
+}
+
+#disabledButton {
+    cursor: default;
+    width: 11%;
+    opacity: 0;
+    transition: 0.4s;
+    background-color: #ee7b10;
+}
+
+#link-movedButton {
+    width: 25%;
+    margin-left: 10vw;
+    transition: 0.4s;
+}
+
+#movedButton {
+    width: 30%;
+}
+
+#handleClick {
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#handleClick:hover {
+    background-color: rgb(200, 255, 200);
+}
+
+#handleClick:active {
+    background-color: rgb(182, 255, 182);
 }

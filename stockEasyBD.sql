@@ -24,6 +24,7 @@ CREATE TABLE produtos (
 	id_produto int AUTO_INCREMENT,
 	nome_produto varchar(50) NOT NULL,
 	valor_produto double NOT NULL,
+	cod_aux int NOT NULL,
 	PRIMARY KEY(id_produto)
 );
 	
@@ -67,6 +68,16 @@ CREATE TABLE requisicoes (
 	FOREIGN KEY (id_usuario_requisicao) references usuarios(id_usuario),
 	FOREIGN KEY (id_produto_requisicao) references produtos(id_produto),
 	FOREIGN KEY (status_produto) references status_prod(id_status)
+);
+
+CREATE TABLE fornecedor_itens (
+	id_item int AUTO_INCREMENT,
+	registro int NOT NULL,
+	descricao varchar(200) NOT NULL,
+	qtde int NOT NULL,
+	valor varchar(50) NOT NULL,
+	aux int NOT NULL,
+	PRIMARY KEY (id_item)
 );
 
 INSERT INTO status_prod (desc_status) VALUES 
