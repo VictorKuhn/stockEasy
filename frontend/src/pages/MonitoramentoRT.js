@@ -161,7 +161,6 @@ const MonitoramentoRT = () => {
         itemAux.id_produto = idAux
         itemAux.qtd_produto = qtdAux
 
-        console.log(itemAux)
         await axios.put("http://localhost:5000/api/removerEstoque", itemAux)
     };
 

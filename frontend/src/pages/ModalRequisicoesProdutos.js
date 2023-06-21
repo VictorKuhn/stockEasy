@@ -8,17 +8,22 @@ import '../styles/EditarProduto.css';
 const ModalRequisicoes = (props) => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [requisicao, setRequisicao] = useState({});
 
-    const [requisicao, setRequisicao] = useState({
-        id_usuario_requisicao: 1,
-        id_produto_requisicao: props.itemProd.id_produto,
-        qtd_produto: 0,
-        status_produto: 1,
-        desc_func: ""
-    });
+    useEffect(() => {
+        setRequisicao({
+            id_usuario_requisicao: 1,
+            id_produto_requisicao: props.itemProd.id_produto,
+            qtd_produto: 0,
+            status_produto: 1,
+            desc_func: ""
+        })
+    },[props.itemProd.id_produto])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        console.log(requisicao)
 
         try {
             await axios.post('http://localhost:5000/api/cadastrarRequisicao', requisicao);
