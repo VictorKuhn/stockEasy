@@ -497,18 +497,17 @@ app.post('/api/login', (req, res) => {
 
     db.query(query, [usuario, senha], (error, results) => {
         if (error) {
-            console.log(error);
-            res.status(500).json({ success: false });
+          console.log(error);
+          res.status(500).json({ success: false });
         } else {
-            if (results.length > 0) {
-                // Login bem-sucedido
-                res.status(200).json({ success: true });
-            } else {
-                // Credenciais inválidas
-                res.status(200).json({ success: false });
-            }
+          if (results.length > 0) {
+            const { nome_usuario } = results[0]; // Recupera o campo nome_usuario do primeiro resultado
+            res.status(200).json({ success: true, nome_usuario });
+          } else {
+            res.status(200).json({ success: false });
+          }
         }
-    });
+      });      
 });
 
 ///////////////////////////////////////////////////////////////////////////

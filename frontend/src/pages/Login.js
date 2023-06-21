@@ -22,9 +22,11 @@ const Login = () => {
     try {
       const response = await axios.post('http://localhost:5000/api/login', credentials);
       const { success } = response.data;
+      console.log("Log: " + JSON.stringify(response.data));
 
       if (success) {
         // Login bem-sucedido, redirecionar para a página desejada
+        localStorage.setItem('nome_usuario', response.data.nome_usuario);
         navigate('/home');
       } else {
         // Credenciais inválidas

@@ -20,7 +20,7 @@ const ModalRequisicoes = (props) => {
         id_produto_requisicao: 0,
         qtd_produto: 0,
         status_produto: 0,
-        desc_func : ""
+        desc_func: ""
     });
 
     const getProduto = async (id) => {
@@ -33,7 +33,7 @@ const ModalRequisicoes = (props) => {
                 id_produto_requisicao: id_produto,
                 qtd_produto: 0,
                 status_produto: 1,
-                desc_func : ""
+                desc_func: ""
             })
         } catch (error) {
             console.log(error);
@@ -59,7 +59,7 @@ const ModalRequisicoes = (props) => {
                 id_produto_requisicao: 0,
                 qtd_produto: 0,
                 status_produto: 0,
-                desc_func : ""
+                desc_func: ""
             })
             // window.location.reload(true)
         } catch (error) {
@@ -82,7 +82,7 @@ const ModalRequisicoes = (props) => {
             id_produto_requisicao: 0,
             qtd_produto: 0,
             status_produto: 0,
-            desc_func : ""
+            desc_func: ""
         })
 
         toast.error('Requisição cancelada.');
@@ -108,6 +108,16 @@ const ModalRequisicoes = (props) => {
         }));
     }
 
+    useEffect(() => {
+        // Recupera o nome do usuário do localStorage
+        const nomeUsuario = localStorage.getItem('nome_usuario');
+        // Define o valor do nome do usuário no estado
+        setRequisicao((prevRequisicao) => ({
+            ...prevRequisicao,
+            nome_usuario: nomeUsuario,
+        }));
+    }, []);
+
     return (
         <>
             <div className="modalBackground">
@@ -122,6 +132,8 @@ const ModalRequisicoes = (props) => {
                                 <input
                                     disabled
                                     placeholder='Usuário'
+                                    id="input-usuario-sessao"
+                                    value={requisicao.nome_usuario}
                                 />
                             </div>
                             <div className="divModalContent">
