@@ -11,6 +11,7 @@ export default function Header() {
     if(window.confirm("Você tem certeza que deseja sair do sistema?")) {
       localStorage.removeItem('id_usuario')
       localStorage.removeItem('nome_usuario')
+      localStorage.removeItem('nivel_acesso_usuario')
       toast.success("Deslogado com sucesso!");
       setTimeout(() => {
         navigate("/");

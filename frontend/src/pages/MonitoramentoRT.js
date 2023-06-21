@@ -11,6 +11,7 @@ import ModalDescAdmin from './ModalDescAdmin';
 import { Button, Modal } from 'react-bootstrap';
 
 const MonitoramentoRT = () => {
+    const [nivelAcesso, setNivelAcesso] = useState(0);
     const [data1, setData1] = useState([]);
     const [data2, setData2] = useState([]);
     const [data3, setData3] = useState([]);
@@ -182,6 +183,11 @@ const MonitoramentoRT = () => {
         changeItem2(item)
     }
 
+    useEffect(() => {
+        const nivelAcessoUsuario = localStorage.getItem('nivel_acesso_usuario');
+        setNivelAcesso(Number(nivelAcessoUsuario));
+    }, []);
+
     return (
         <div className="Home">
             <Header />
@@ -224,10 +230,12 @@ const MonitoramentoRT = () => {
                 </div>
                 <div className='div-h1-button'>
                     <h1>Últimas Tranferências</h1>
-                    <div>
-                        <button style={{ backgroundColor: "#ff0000" }} onClick={handleClickDenied}><i class="fa-solid fa-xmark"></i></button>
-                        <button style={{ backgroundColor: "#4CAF50" }} onClick={handleClickAccept}><i class="fa-solid fa-check"></i></button>
-                    </div>
+                    {nivelAcesso === 1 && (
+                        <div>
+                            <button style={{ backgroundColor: "#ff0000" }} onClick={handleClickDenied}><i class="fa-solid fa-xmark"></i></button>
+                            <button style={{ backgroundColor: "#4CAF50" }} onClick={handleClickAccept}><i class="fa-solid fa-check"></i></button>
+                        </div>
+                    )}
                 </div>
                 <div className='div-tables'>
                     <table className="tables">
