@@ -10,10 +10,10 @@
 # Nesse banco de dados, você já terá dados fictícios para visualizar as funcionalidades do sistema.
 
 # Clone este repositório
-$ git clone https://github.com/Marcos-gjr/pac5-contabil.git
+$ git clone https://github.com/VictorKuhn/stockEasy.git
 
 # Acesse a pasta do projeto no terminal/cmd 
-$ cd pac5-contabil
+$ cd stockEasy
 
 # Acesse a pasta "backend" e instale as dependências necessárias relacionadas ao NodeJS e retorne a pasta raíz
 $ cd backend
