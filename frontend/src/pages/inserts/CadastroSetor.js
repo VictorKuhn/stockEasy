@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Header from '../componentes/Header';
-import SideBar from '../componentes/SideBar';
-import '../styles/CadastroSetor.css';
+import Header from '../../componentes/Header';
+import SideBar from '../../componentes/SideBar';
+import './CadastroSetor.css';
 
 const CadastroSetor = () => {
   const navigate = useNavigate();

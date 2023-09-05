@@ -1,4 +1,4 @@
-import '../styles/ModalDiv.css';
+import './ModalDiv.css';
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 

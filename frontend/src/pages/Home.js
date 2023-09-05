@@ -3,9 +3,9 @@ import axios from 'axios';
 import Header from '../componentes/Header.js'
 import SideBar from '../componentes/SideBar.js'
 import '../styles/Home.css'
-import '../styles/MyResponsiveFunnel.css'
+import '../styles/StockDataGraphics.css'
 import '../utils/locales'
-import { MyResponsiveFunnel } from './MyResponsiveFunnel.js';
+import { StockDataGraphics } from './StockDataGraphics.js';
 
 const Home = () => {
   const [data, setData] = useState([]);
@@ -178,10 +178,10 @@ const Home = () => {
                 </div>
                 <div className="divInsideContents">
                   <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
-                    {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <MyResponsiveFunnel data={dataChart} />}
+                    {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <StockDataGraphics data={dataChart} />}
                   </div>
                   <div className='insideDivs' onClick={() => changeChartProducts2 === 0 ? setChangeChartProducts2(1) : setChangeChartProducts2(0)}>
-                    {changeChartProducts2 === 0 ? <h1 className='forthBox'>{qtdTotalSaida}</h1> : <MyResponsiveFunnel data={dataChart2} />}
+                    {changeChartProducts2 === 0 ? <h1 className='forthBox'>{qtdTotalSaida}</h1> : <StockDataGraphics data={dataChart2} />}
                     <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import '../styles/ModalImportacaoNF.css';
+import './ModalImportacaoNF.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-toastify';
 import ModalDiv1 from './ModalDiv1';

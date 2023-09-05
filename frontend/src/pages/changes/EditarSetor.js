@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import Header from '../componentes/Header';
-import SideBar from '../componentes/SideBar';
-import '../styles/EditarUsuario.css';
+import Header from '../../componentes/Header';
+import SideBar from '../../componentes/SideBar';
+import './EditarUsuario.css';
 
 const EditarSetor = () => {
   const { id } = useParams();

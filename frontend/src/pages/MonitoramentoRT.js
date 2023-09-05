@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import '../styles/MonitoramentoRT.css';
-import Header from '../componentes/Header';
-import SideBar from '../componentes/SideBar';
+import Header from '../componentes/Header.js';
+import SideBar from '../componentes/SideBar.js';
 import moment from 'moment'
-import ModalRequisicoes from './ModalRequisicoes';
-import ModalDescAdmin from './ModalDescAdmin';
-import { Button, Modal } from 'react-bootstrap';
+import ModalRequisicoes from './modals/ModalRequisicoes.js';
+import ModalDescAdmin from './modals/ModalDescAdmin.js';
 
 const MonitoramentoRT = () => {
     const [data1, setData1] = useState([]);

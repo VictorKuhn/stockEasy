@@ -1,0 +1,46 @@
+.formulario-cadastrar{
+    margin-top: 100px;
+}
+
+.form-cadastro label{
+    display: block;
+}
+
+.form-cadastro input{
+    padding: 7px 10px;
+    width: 200px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgb(226, 226, 226);
+    outline: none;
+}
+
+.form-cadastro div{
+    padding: 1vh 0;
+}
+
+.form-cadastro button{
+    margin: 1vh 0;
+    width: 200px;
+    padding: 8px 40px;
+    border: none;
+    outline: none;
+    background-color: #674CE7;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+}
+
+.form-cadastro button:hover{
+    background-color: #a070ff;
+}
+
+.nivel_acesso_usuario_select{
+    background-color: rgb(226, 226, 226);
+    border: none;
+    width: 200px;
+    padding: 7px 10px;
+    border-radius: 5px;
+    outline: none;
+}

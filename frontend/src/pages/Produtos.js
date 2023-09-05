@@ -6,8 +6,8 @@ import '../styles/Produtos.css';
 import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import '../utils/locales';
-import ModalRelatedProd from './ModalRelatedProd';
-import ModalRequisicoesProdutos from './ModalRequisicoesProdutos';
+import ModalRelatedProd from './modals/ModalRelatedProd';
+import ModalRequisicoesProdutos from './modals/ModalRequisicoesProdutos';
 
 const Produtos = () => {
   const [data, setData] = useState([])

@@ -1,4 +1,4 @@
-import '../styles/Header.css';
+import './Header.css';
 import { useNavigate, Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
