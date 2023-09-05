@@ -36,7 +36,7 @@ const Home = () => {
     setData(response.data);
     const response2 = await axios.get("http://localhost:5000/api/getMovimentacoes");
     setData2(response2.data);
-    const response3 = await axios.get("http://localhost:5000/api/getProdutosComEstoqueEMovimentacao");
+    const response3 = await axios.get("http://localhost:5000/api/getSomaMovimentacaoProdutoZeroUltimos30Dias");
     setData3(response3.data);
     setLoadScreen(Math.floor(Math.random() * 10))
   };
@@ -50,6 +50,13 @@ const Home = () => {
     handleChart2()
     totalStorageLoader();
   }, [loadScreen])
+
+  useEffect(() => {
+    // Atualiza o valorTotalTransferencias com base na resposta da API data3
+    if (data3 && data3.total !== undefined) {
+      setValorTotalTransferencias(data3.total);
+    }
+  }, [data3]);
 
   const totalStorageLoader = () => {
     let i = 0;
@@ -83,18 +90,6 @@ const Home = () => {
       cont4 += cont3
     }
     setValorTotalEstoque(cont4)
-
-    // VALOR TOTAL EM TRANSFERENCIAS
-    for (i = 0, temp = 0; i < data3.length; i++) {
-      if (data3[i].movimentacao_produto === 0) {
-        cont = data3[i].qtd_produto_estoque
-        cont2 = data3[i].valor_produto
-        cont3 = cont * cont2
-        cont4 = 0
-        cont4 += cont3
-      }
-    }
-    setValorTotalTransferencias(cont4)
   }
 
   const handleChart2 = () => {
@@ -176,15 +171,15 @@ const Home = () => {
                   <h1 className='contentsTitle'>Produtos no estoque:</h1>
                   <h1 className='contentsTitle'>Produtos transferidos:</h1>
                 </div>
-                  <div className="divInsideContents">
-                    <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
-                      {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <MyResponsiveFunnel data={dataChart} />}
-                    </div>
-                    <div className='insideDivs' onClick={() => changeChartProducts2 === 0 ? setChangeChartProducts2(1) : setChangeChartProducts2(0)}>
-                      {changeChartProducts2 === 0 ? <h1 className='forthBox'>{qtdTotalSaida}</h1> : <MyResponsiveFunnel data={dataChart2} />}
-                      <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
-                    </div>
+                <div className="divInsideContents">
+                  <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
+                    {changeChartProducts === 0 ? <h1 className='firstBox'>{qtdTotalEstoque}</h1> : <MyResponsiveFunnel data={dataChart} />}
                   </div>
+                  <div className='insideDivs' onClick={() => changeChartProducts2 === 0 ? setChangeChartProducts2(1) : setChangeChartProducts2(0)}>
+                    {changeChartProducts2 === 0 ? <h1 className='forthBox'>{qtdTotalSaida}</h1> : <MyResponsiveFunnel data={dataChart2} />}
+                    <p className='textInfo'>{"(Nos últimos 30 dias)"}</p>
+                  </div>
+                </div>
               </div>
               <div className="contents">
                 <div className="divTitles">

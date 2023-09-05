@@ -123,6 +123,29 @@ app.get('/api/getProdutosComEstoqueEMovimentacao', (req, res) => {
     });
 });
 
+// Pegar o valor em transferencias nos ultimos 30 dias
+app.get('/api/getSomaMovimentacaoProdutoZeroUltimos30Dias', (req, res) => {
+    const query = `
+        SELECT COALESCE(SUM(m.qtd_movimentacao_produto * p.valor_produto), 0) AS total
+        FROM produtos p 
+        LEFT JOIN (
+            SELECT id_produto_movimentacao, qtd_movimentacao_produto
+            FROM movimentacao
+            WHERE movimentacao_produto = 0
+              AND data_movimentacao_produto >= DATE_SUB(NOW(), INTERVAL 2000 DAY)
+        ) AS m ON p.id_produto = m.id_produto_movimentacao
+    `;
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao calcular a soma da movimentação de produtos com movimentacao_produto igual a 0 nos últimos 30 dias:', err);
+            res.status(500).json({ error: 'Erro ao calcular a soma da movimentação de produtos com movimentacao_produto igual a 0 nos últimos 30 dias.' });
+        } else {
+            res.status(200).json(result[0]);
+        }
+    });
+});
+
 // Pegar as requisições
 app.get('/api/getRequisicoes/:id', (req, res) => {
     const id_requisicao = req.params.id;
