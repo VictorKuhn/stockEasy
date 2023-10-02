@@ -16,11 +16,11 @@ const ModalRequisicoes = (props) => {
     });
 
     const [requisicao, setRequisicao] = useState({
-        id_usuario_requisicao: 0,
+        id_usuario_requisicao: localStorage.getItem('id_usuario'),
         id_produto_requisicao: 0,
         qtd_produto: 0,
         status_produto: 0,
-        desc_func : ""
+        desc_func: ""
     });
 
     const getProduto = async (id) => {
@@ -29,11 +29,11 @@ const ModalRequisicoes = (props) => {
             const { id_produto, nome_produto, qtd_produto_estoque } = response.data;
             setProduto({ id_produto, nome_produto, qtd_produto_estoque });
             setRequisicao({
-                id_usuario_requisicao: 1,
+                id_usuario_requisicao: localStorage.getItem('id_usuario'),
                 id_produto_requisicao: id_produto,
                 qtd_produto: 0,
                 status_produto: 1,
-                desc_func : ""
+                desc_func: ""
             })
         } catch (error) {
             console.log(error);
@@ -55,11 +55,11 @@ const ModalRequisicoes = (props) => {
             });
 
             setRequisicao({
-                id_usuario_requisicao: 0,
+                id_usuario_requisicao: localStorage.getItem('id_usuario'),
                 id_produto_requisicao: 0,
                 qtd_produto: 0,
                 status_produto: 0,
-                desc_func : ""
+                desc_func: ""
             })
             // window.location.reload(true)
         } catch (error) {
@@ -78,11 +78,11 @@ const ModalRequisicoes = (props) => {
         });
 
         setRequisicao({
-            id_usuario_requisicao: 0,
+            id_usuario_requisicao: localStorage.getItem('id_usuario'),
             id_produto_requisicao: 0,
             qtd_produto: 0,
             status_produto: 0,
-            desc_func : ""
+            desc_func: ""
         })
 
         toast.error('Requisição cancelada.');
@@ -108,6 +108,18 @@ const ModalRequisicoes = (props) => {
         }));
     }
 
+    useEffect(() => {
+        // Recupera o nome do usuário do localStorage
+        const nomeUsuario = localStorage.getItem('nome_usuario');
+        const idUsuario = localStorage.getItem('id_usuario');
+        // Define o valor do nome do usuário no estado
+        setRequisicao((prevRequisicao) => ({
+            ...prevRequisicao,
+            id_usuario: idUsuario,
+            nome_usuario: nomeUsuario,
+        }));
+    }, []);
+
     return (
         <>
             <div className="modalBackground">
@@ -122,6 +134,8 @@ const ModalRequisicoes = (props) => {
                                 <input
                                     disabled
                                     placeholder='Usuário'
+                                    id="input-usuario-sessao"
+                                    value={localStorage.getItem('nome_usuario')}
                                 />
                             </div>
                             <div className="divModalContent">

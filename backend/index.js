@@ -123,6 +123,29 @@ app.get('/api/getProdutosComEstoqueEMovimentacao', (req, res) => {
     });
 });
 
+// Pegar o valor em transferencias nos ultimos 30 dias
+app.get('/api/getSomaMovimentacaoProdutoZeroUltimos30Dias', (req, res) => {
+    const query = `
+        SELECT COALESCE(SUM(m.qtd_movimentacao_produto * p.valor_produto), 0) AS total
+        FROM produtos p 
+        LEFT JOIN (
+            SELECT id_produto_movimentacao, qtd_movimentacao_produto
+            FROM movimentacao
+            WHERE movimentacao_produto = 0
+              AND data_movimentacao_produto >= DATE_SUB(NOW(), INTERVAL 2000 DAY)
+        ) AS m ON p.id_produto = m.id_produto_movimentacao
+    `;
+
+    db.query(query, (err, result) => {
+        if (err) {
+            console.error('Erro ao calcular a soma da movimentação de produtos com movimentacao_produto igual a 0 nos últimos 30 dias:', err);
+            res.status(500).json({ error: 'Erro ao calcular a soma da movimentação de produtos com movimentacao_produto igual a 0 nos últimos 30 dias.' });
+        } else {
+            res.status(200).json(result[0]);
+        }
+    });
+});
+
 // Pegar as requisições
 app.get('/api/getRequisicoes/:id', (req, res) => {
     const id_requisicao = req.params.id;
@@ -536,18 +559,17 @@ app.post('/api/login', (req, res) => {
 
     db.query(query, [usuario, senha], (error, results) => {
         if (error) {
-            console.log(error);
-            res.status(500).json({ success: false });
+          console.log(error);
+          res.status(500).json({ success: false });
         } else {
-            if (results.length > 0) {
-                // Login bem-sucedido
-                res.status(200).json({ success: true });
-            } else {
-                // Credenciais inválidas
-                res.status(200).json({ success: false });
-            }
+          if (results.length > 0) {
+            const { id_usuario, nome_usuario, nivel_acesso_usuario } = results[0]; // Recupera o campo nome_usuario do primeiro resultado
+            res.status(200).json({ success: true, id_usuario, nome_usuario, nivel_acesso_usuario });
+          } else {
+            res.status(200).json({ success: false });
+          }
         }
-    });
+      });      
 });
 
 ///////////////////////////////////////////////////////////////////////////

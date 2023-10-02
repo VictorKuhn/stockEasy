@@ -10,10 +10,10 @@
 # Nesse banco de dados, você já terá dados fictícios para visualizar as funcionalidades do sistema.
 
 # Clone este repositório
-$ git clone https://github.com/Marcos-gjr/pac5-contabil.git
+$ git clone https://github.com/VictorKuhn/stockEasy.git
 
 # Acesse a pasta do projeto no terminal/cmd 
-$ cd pac5-contabil
+$ cd stockEasy
 
 # Acesse a pasta "backend" e instale as dependências necessárias relacionadas ao NodeJS e retorne a pasta raíz
 $ cd backend
@@ -22,7 +22,7 @@ $ cd ..
 
 # Acesse a pasta "frontend" e instale as dependências necessárias  relacionadas ao ReactJS e retorne a pasta raíz
 $ cd frontend
-$ npm install react-scripts react-router-dom react-toastify axios xml-js moment @nivo @nivo/pie
+$ npm install react-scripts react-router-dom react-toastify axios xml-js moment @nivo @nivo/funnel
 $ cd ..
 
 # Tenha 2 terminais simultâneos para que seja possível rodar o servidor NodeJS e ReactJS

@@ -8,19 +8,12 @@
     width: 100%;
     z-index: 1000;
     transition-duration: 0.5s;
-    /* Centralizar verticalmente e horizontalmente com flexbox */
 }
 
 .modalStructure3 {
     width: 70%;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 14px 28px, rgba(0, 0, 0, 0.12) 0px 10px 10px;
-    /* Centralizar verticalmente e horizontalmente com tranform */
-    /* position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%); */
     border: none;
     border-radius: 20px;
     padding: 3vh 0vw;
