@@ -1,4 +1,4 @@
-import '../styles/ModalRelatedProd.css';
+import './ModalRelatedProd.css';
 import React, { useState, useEffect, useRef } from 'react';
 
 const ModalRelatedProd = (props) => {

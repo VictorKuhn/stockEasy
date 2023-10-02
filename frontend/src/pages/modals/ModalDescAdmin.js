@@ -1,10 +1,8 @@
-import '../styles/ModalDescAdmin.css';
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import './ModalDescAdmin.css';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import '../styles/EditarProduto.css';
-import { localeData } from 'moment';
+import '../changes/EditarProduto.css';
 
 const ModalDescAdmin = (props) => {
     const [reqAccepted, setReqAccepted] = useState({

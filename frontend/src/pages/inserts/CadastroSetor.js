@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import Header from '../componentes/Header';
-import SideBar from '../componentes/SideBar';
+import Header from '../../componentes/Header';
+import SideBar from '../../componentes/SideBar';
+import './CadastroSetor.css';
 
 const CadastroSetor = () => {
   const navigate = useNavigate();
@@ -22,7 +23,7 @@ const CadastroSetor = () => {
     try {
       await axios.post('http://localhost:5000/api/cadastrarSetor', setor);
       toast.success('Setor cadastrado com sucesso.');
-      navigate('/setor');
+      navigate('/setores');
     } catch (error) {
       console.log(error);
       toast.error('Erro ao cadastrar o setor.');

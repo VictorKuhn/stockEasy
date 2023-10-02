@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import '../styles/ModalDiv.css';
+import React, { useEffect } from 'react'
+import './ModalDiv.css';
 
 const ModalDiv1 = (props) => {
     const formatValue = (value, format) => {

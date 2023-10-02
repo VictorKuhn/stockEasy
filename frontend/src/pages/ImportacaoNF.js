@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import Header from '../componentes/Header';
 import SideBar from '../componentes/SideBar';
 import '../styles/ImportacaoNF.css';
 import xmljs from 'xml-js';
 import { toast } from 'react-toastify';
-import ModalImportacaoNF from './ModalImportacaoNF';
+import ModalImportacaoNF from './modals/ModalImportacaoNF';
 import ResetNF from './ResetNF';
 
 const ptBrCurrencyFormat = {

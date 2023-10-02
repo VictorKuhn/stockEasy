@@ -1,67 +1,35 @@
-import '../styles/ModalRequisicoes.css';
+import './ModalRequisicoes.css';
 import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import '../styles/EditarProduto.css';
+import '../changes/EditarProduto.css';
 
 const ModalRequisicoes = (props) => {
     const { id } = useParams();
     const navigate = useNavigate();
+    const [requisicao, setRequisicao] = useState({});
 
-    const [produto, setProduto] = useState({
-        id_produto: 0,
-        nome_produto: 'Nenhum item definido',
-        qtd_produto_estoque: 0,
-    });
-
-    const [requisicao, setRequisicao] = useState({
-        id_usuario_requisicao: localStorage.getItem('id_usuario'),
-        id_produto_requisicao: 0,
-        qtd_produto: 0,
-        status_produto: 0,
-        desc_func: ""
-    });
-
-    const getProduto = async (id) => {
-        try {
-            const response = await axios.get(`http://localhost:5000/api/getProdutoEstoque/${id}`);
-            const { id_produto, nome_produto, qtd_produto_estoque } = response.data;
-            setProduto({ id_produto, nome_produto, qtd_produto_estoque });
-            setRequisicao({
-                id_usuario_requisicao: localStorage.getItem('id_usuario'),
-                id_produto_requisicao: id_produto,
-                qtd_produto: 0,
-                status_produto: 1,
-                desc_func: ""
-            })
-        } catch (error) {
-            console.log(error);
-        }
-    };
+    useEffect(() => {
+        setRequisicao({
+            id_usuario_requisicao: localStorage.getItem('id_usuario'),
+            id_produto_requisicao: props.itemProd.id_produto,
+            qtd_produto: 0,
+            status_produto: 1,
+            desc_func: ""
+        })
+    }, [props.itemProd.id_produto])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        console.log(requisicao)
+
         try {
             await axios.post('http://localhost:5000/api/cadastrarRequisicao', requisicao);
             props.showModal()
             navigate('/monitoramentoRT');
-            props.loadData() // -> recarrega a tabela sem recarregar a tela
             toast.success("Requisição cadastrada com sucesso.");
-            setProduto({
-                id_produto: 0,
-                nome_produto: "",
-                qtd_produto_estoque: 0
-            });
-
-            setRequisicao({
-                id_usuario_requisicao: localStorage.getItem('id_usuario'),
-                id_produto_requisicao: 0,
-                qtd_produto: 0,
-                status_produto: 0,
-                desc_func: ""
-            })
-            // window.location.reload(true)
         } catch (error) {
             console.log(error);
             toast.error('Erro ao cadastrar a requisição.');
@@ -69,35 +37,23 @@ const ModalRequisicoes = (props) => {
     };
 
     const cancelReq = () => {
-        props.showModal()
-
-        setProduto({
+        props.setItemProd({
             id_produto: 0,
             nome_produto: "",
             qtd_produto_estoque: 0
-        });
+        })
 
         setRequisicao({
             id_usuario_requisicao: localStorage.getItem('id_usuario'),
-            id_produto_requisicao: 0,
+            id_produto_requisicao: props.itemProd.id_produto,
             qtd_produto: 0,
-            status_produto: 0,
+            status_produto: 1,
             desc_func: ""
-        })
+        });
 
+        props.showModal()
         toast.error('Requisição cancelada.');
     }
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-
-        setProduto((prevProduto) => ({
-            ...prevProduto,
-            [name]: value,
-        }));
-
-        getProduto(value)
-    };
 
     const handleChange2 = (e) => {
         const { name, value } = e.target;
@@ -110,8 +66,8 @@ const ModalRequisicoes = (props) => {
 
     useEffect(() => {
         // Recupera o nome do usuário do localStorage
-        const nomeUsuario = localStorage.getItem('nome_usuario');
         const idUsuario = localStorage.getItem('id_usuario');
+        const nomeUsuario = localStorage.getItem('nome_usuario');
         // Define o valor do nome do usuário no estado
         setRequisicao((prevRequisicao) => ({
             ...prevRequisicao,
@@ -134,8 +90,7 @@ const ModalRequisicoes = (props) => {
                                 <input
                                     disabled
                                     placeholder='Usuário'
-                                    id="input-usuario-sessao"
-                                    value={localStorage.getItem('nome_usuario')}
+                                    value={requisicao.nome_usuario}
                                 />
                             </div>
                             <div className="divModalContent">
@@ -144,9 +99,8 @@ const ModalRequisicoes = (props) => {
                                     type="text"
                                     id="id_produto"
                                     name="id_produto"
-                                    value={produto.id_produto}
-                                    onChange={handleChange}
-                                    required
+                                    value={props.itemProd.id_produto}
+                                    disabled
                                     placeholder='0'
                                 />
                             </div>
@@ -156,7 +110,7 @@ const ModalRequisicoes = (props) => {
                                     type="text"
                                     id="nome_produto"
                                     name="nome_produto"
-                                    value={produto.nome_produto}
+                                    value={props.itemProd.nome_produto}
                                     disabled
                                     placeholder='Nome do Produto'
                                 />
@@ -179,7 +133,7 @@ const ModalRequisicoes = (props) => {
                                     type="text"
                                     id="qtd_produto_estoque"
                                     name="qtd_produto_estoque"
-                                    value={produto.qtd_produto_estoque}
+                                    value={props.itemProd.qtd_produto_estoque}
                                     disabled
                                     placeholder='0'
                                 />
