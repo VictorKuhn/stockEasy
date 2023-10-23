@@ -426,6 +426,22 @@ app.delete('/api/excluirProduto/:id', (req, res) => {
 
 ///////////////////////////////////////////////////////////////////////////
 
+app.get('/api/usuario/:id/nivel_acesso', (req, res) => {
+    const userId = req.params.id;
+    const query = 'SELECT nivel_acesso_usuario FROM usuarios WHERE id_usuario = ?';
+    db.query(query, userId, (err, result) => {
+        if (err) {
+            res.status(500).json({ error: 'Erro interno do servidor' });
+        } else {
+            if (result.length > 0) {
+                res.json(result[0]);
+            } else {
+                res.status(404).json({ error: 'Usuário não encontrado' });
+            }
+        }
+    });
+});
+
 // Pegar todos os registros na tabela usuários
 app.get('/api/getUsuarios', (req, res) => {
     const query = 'SELECT * FROM usuarios';
@@ -443,10 +459,10 @@ app.get('/api/getUsuarios', (req, res) => {
 // Pegar os dados dos usuários juntamente com o seu nível de acesso
 app.get('/api/getUsuariosComNivel', (req, res) => {
     const query = `
-      SELECT u.*, n.nome_acesso, s.nome_setor
-      FROM usuarios AS u
-      JOIN nivel_acessos AS n ON u.nivel_acesso_usuario = n.id_nivel_acesso
-      JOIN setor AS s ON u.setor_usuario = s.id_setor
+        SELECT u.*, n.nome_acesso, s.nome_setor
+        FROM usuarios AS u
+        JOIN nivel_acessos AS n ON u.nivel_acesso_usuario = n.id_nivel_acesso
+        JOIN setor AS s ON u.setor_usuario = s.id_setor
     `;
 
     db.query(query, (err, result) => {

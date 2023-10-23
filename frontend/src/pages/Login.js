@@ -28,7 +28,6 @@ const Login = () => {
         // Login bem-sucedido, redirecionar para a página desejada
         localStorage.setItem('id_usuario', response.data.id_usuario);
         localStorage.setItem('nome_usuario', response.data.nome_usuario);
-        localStorage.setItem('nivel_acesso_usuario', response.data.nivel_acesso_usuario);
         navigate('/home');
       } else {
         // Credenciais inválidas
