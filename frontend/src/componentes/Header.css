@@ -41,15 +41,27 @@
     transform: scale(1.03);
 }
 
-.center i{
+.header-welcome{
+    color: white;
+    padding-top: 12px;
+}
+
+.header-welcome span{
+    background: linear-gradient(to right, #ff800a, #ff9d2c);
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.header-container i{
     cursor: pointer;
     color: white;
     font-size: 28px;
-    padding: 15px;
+    margin-top: -33px;
+    margin-right: 10px;
     transition: 0.7s ease;
 }
 
-.center i:hover{
+.header-container i:hover{
     transform: scale(1.07);
 }
 
