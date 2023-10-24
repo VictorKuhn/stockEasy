@@ -51,6 +51,7 @@ CREATE TABLE usuarios (
 	senha_usuario varchar(50) NOT NULL,
     setor_usuario int NOT NULL,
 	nivel_acesso_usuario int NOT NULL,
+	dark_mode int NOT NULL,
 	PRIMARY KEY (id_usuario),
 	FOREIGN KEY (nivel_acesso_usuario) references nivel_acessos(id_nivel_acesso),
     FOREIGN KEY (setor_usuario) references setor(id_setor)
@@ -112,17 +113,17 @@ INSERT INTO estoque (id_produto_estoque, qtd_produto_estoque) VALUES
 	(3, 15),
 	(4, 7);
 
-INSERT INTO usuarios (login_usuario, nome_usuario, senha_usuario, setor_usuario, nivel_acesso_usuario) VALUES 
-	("wesley@gmail.com", "Wesley Sardi", "123", 2, 1),
-	("victor@gmail.com", "Victor Kuhn", "234", 4, 1),
-	("davi@gmail.com", "Davi Prudente", "345", 7, 1),
-	("marcos@gmail.com", "Marcos Gonçalves", "456", 6, 1),
-    ("mateus@gmail.com", "Mateus Smith", "456", 8, 1),
-    ("julioc@gmail.com", "Julião Costa", "1018", 9, 1),
-    ("jailsonm@gmail.com", "Jailson Mello", "7894", 8, 1),
-    ("jeffersonp@gmail.com", "Jefferson Pessoa", "182479", 9, 1),
-    ("arthurv@gmail.com", "Arthur Velloso", "777846", 7, 1),
-    ("hugoc@gmail.com", "Hugo Calcanha", "23488", 5, 1);
+INSERT INTO usuarios (login_usuario, nome_usuario, senha_usuario, setor_usuario, nivel_acesso_usuario, dark_mode) VALUES 
+	("wesley@gmail.com", "Wesley Sardi", "123", 2, 1, 1),
+	("victor@gmail.com", "Victor Kuhn", "234", 4, 1, 1),
+	("davi@gmail.com", "Davi Prudente", "345", 7, 1, 1),
+	("marcos@gmail.com", "Marcos Gonçalves", "456", 6, 1, 1),
+    ("mateus@gmail.com", "Mateus Smith", "456", 8, 1, 1),
+    ("julioc@gmail.com", "Julião Costa", "1018", 9, 1, 1),
+    ("jailsonm@gmail.com", "Jailson Mello", "7894", 8, 1, 1),
+    ("jeffersonp@gmail.com", "Jefferson Pessoa", "182479", 9, 1, 1),
+    ("arthurv@gmail.com", "Arthur Velloso", "777846", 7, 1, 1),
+    ("hugoc@gmail.com", "Hugo Calcanha", "23488", 5, 1, 1);
 	
 INSERT INTO movimentacao (id_produto_movimentacao, movimentacao_produto, data_movimentacao_produto, qtd_movimentacao_produto) VALUES
 	(1, false, "2019-12-15 03:09:12", 9),
