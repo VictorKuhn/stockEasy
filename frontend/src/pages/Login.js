@@ -5,7 +5,7 @@ import axios from 'axios';
 import '../styles/Login.css';
 
 const Login = () => {
-  const [credentials, setCredentials] = useState({ usuario: '', senha: '' });
+  const [credentials, setCredentials] = useState({ usuario: '', senha: '', darkMode: 0 });
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
@@ -28,6 +28,7 @@ const Login = () => {
         // Login bem-sucedido, redirecionar para a página desejada
         localStorage.setItem('id_usuario', response.data.id_usuario);
         localStorage.setItem('nome_usuario', response.data.nome_usuario);
+        localStorage.setItem('dark_mode', response.data.dark_mode);
         navigate('/home');
       } else {
         // Credenciais inválidas

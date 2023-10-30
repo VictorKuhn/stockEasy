@@ -17,6 +17,8 @@ const Home = () => {
   const [valorTotalTransferencias, setValorTotalTransferencias] = useState(0);
   const [loadScreen, setLoadScreen] = useState(0)
 
+  const dark_mode = localStorage.getItem('dark_mode');
+
   // Chart dos Produtos no Estoque
   const [dataChart, setDataChart] = useState([])
   const [dataChartTemp, setDataChartTemp] = useState([]);
@@ -40,9 +42,10 @@ const Home = () => {
     setData3(response3.data);
     setLoadScreen(Math.floor(Math.random() * 10))
   };
-
+  
   useEffect(() => {
     loadData();
+    
   }, []);
 
   useEffect(() => {
@@ -156,20 +159,20 @@ const Home = () => {
   }
 
   return (
-    <div className='background'>
+    <div className='background' >
       <Header />
       <SideBar />
-      <div className="homeBackgroundContent">
+      <div className="homeBackgroundContent" style={ dark_mode == 1 ? {background: "#FFFFFF"} : {background: "#2b2b2b"}}>
         <div className='backgroundContent'>
           <div className='backgroundTitle'>
-            <h1>Visão Geral</h1>
+            <h1 style={ dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Visão Geral</h1>
           </div>
           <div className="divBackground">
             <div className="divContent">
               <div className="contents">
                 <div className="divTitles">
-                  <h1 className='contentsTitle'>Produtos no estoque:</h1>
-                  <h1 className='contentsTitle'>Produtos transferidos:</h1>
+                  <h1 className='contentsTitle' style={ dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Produtos no estoque:</h1>
+                  <h1 className='contentsTitle' style={ dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Produtos transferidos:</h1>
                 </div>
                 <div className="divInsideContents">
                   <div className='insideDivs' onClick={() => changeChartProducts === 0 ? setChangeChartProducts(1) : setChangeChartProducts(0)}>
@@ -183,8 +186,8 @@ const Home = () => {
               </div>
               <div className="contents">
                 <div className="divTitles">
-                  <h1 className='contentsTitle'>Valor patrimonial:</h1>
-                  <h1 className='contentsTitle'>Valor em transfêrencias:</h1>
+                  <h1 className='contentsTitle' style={ dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Valor patrimonial:</h1>
+                  <h1 className='contentsTitle' style={ dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Valor em transfêrencias:</h1>
                 </div>
                 <div className="divInsideContents">
                   <div className='insideDivs'>

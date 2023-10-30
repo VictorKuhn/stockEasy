@@ -45,6 +45,25 @@ app.get('/api/getProduto/:id', (req, res) => {
     });
 });
 
+app.get('/api/getDarkMode/:id', (req, res) => {
+    const id_produto = req.params.id;
+    const query = 'SELECT dark_mode FROM usuarios WHERE id_produto = ?';
+
+    db.query(query, [id_produto], (err, result) => {
+        if (err) {
+            console.error('Erro ao obter o valor do Dark Mode:', err);
+            res.status(500).json({ error: 'Erro ao obter o valor do Dark Mode.' });
+        } else {
+            if (result.length > 0) {
+                const darkMode = result[0];
+                res.status(200).json(darkMode);
+            } else {
+                res.status(404).json({ error: 'Valor do Dark Mode não encontrado.' });
+            }
+        }
+    });
+});
+
 // Pegar os dados de um produto pelo ID com o estoque junto
 app.get('/api/getProdutoEstoque/:id', (req, res) => {
     const id_produto = req.params.id;
@@ -570,17 +589,17 @@ app.post('/api/cadastrarRequisicao', (req, res) => {
 
 // Autenticação do usuário
 app.post('/api/login', (req, res) => {
-    const { usuario, senha } = req.body;
+    const { usuario, senha, darkMode } = req.body;
     const query = 'SELECT * FROM usuarios WHERE login_usuario = ? AND senha_usuario = ?';
 
-    db.query(query, [usuario, senha], (error, results) => {
+    db.query(query, [usuario, senha, darkMode], (error, results) => {
         if (error) {
           console.log(error);
           res.status(500).json({ success: false });
         } else {
           if (results.length > 0) {
-            const { id_usuario, nome_usuario, nivel_acesso_usuario } = results[0]; // Recupera o campo nome_usuario do primeiro resultado
-            res.status(200).json({ success: true, id_usuario, nome_usuario, nivel_acesso_usuario });
+            const { id_usuario, nome_usuario, nivel_acesso_usuario, dark_mode } = results[0]; // Recupera o campo nome_usuario do primeiro resultado
+            res.status(200).json({ success: true, id_usuario, nome_usuario, nivel_acesso_usuario, dark_mode });
           } else {
             res.status(200).json({ success: false });
           }
@@ -660,6 +679,27 @@ app.put('/api/editarSetor/:id', (req, res) => {
                 res.status(200).json({ message: 'Setor atualizado com sucesso.' });
             } else {
                 res.status(404).json({ error: 'Setor não encontrado.' });
+            }
+        }
+    });
+});
+
+// Editar dark_mode
+app.put('/api/editarDarkMode/:id/:darkMode', (req, res) => {
+    const id_usuario = req.params.id;
+    const dark_mode = req.params.darkMode;
+    const query = 'UPDATE usuarios SET dark_mode = ? WHERE id_usuario = ?';
+    const values = [dark_mode, id_usuario];
+
+    db.query(query, values, (err, result) => {
+        if (err) {
+            console.error('Erro ao editar o Dark Mode:', err);
+            res.status(500).json({ error: 'Erro ao editar o Dark Mode.' });
+        } else {
+            if (result.affectedRows > 0) {
+                res.status(200).json({ message: 'Dark Mode atualizado com sucesso.' });
+            } else {
+                res.status(404).json({ error: 'Dark Mode não encontrado.' });
             }
         }
     });

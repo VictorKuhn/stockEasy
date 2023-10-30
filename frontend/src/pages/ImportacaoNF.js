@@ -23,6 +23,8 @@ export default function ImportacaoNF() {
     const [reloadComponent, setReloadComponent] = useState(0)
     const inputRef = useRef(null);
 
+    const dark_mode = localStorage.getItem('dark_mode');
+
     const resetFileInput = () => {
         // resetting the input value
         inputRef.current.value = null;

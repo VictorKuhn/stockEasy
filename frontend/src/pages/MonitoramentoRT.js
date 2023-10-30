@@ -42,6 +42,8 @@ const MonitoramentoRT = () => {
         AlterarCorLinha();
     };
 
+    const dark_mode = localStorage.getItem('dark_mode');
+
     useEffect(() => {
         loadData();
         AlterarCorLinha()
@@ -187,21 +189,21 @@ const MonitoramentoRT = () => {
     }, []);
 
     return (
-        <div className="Home">
+        <div className="Home" style={dark_mode == 1 ? { background: "#FFFFFF" } : { background: "#2b2b2b" }}>
             <Header />
             <SideBar />
             <ModalRequisicoes showModal={showModal} loadData={loadData} />
             <ModalDescAdmin showModal2={showModal2} loadData={loadData} item={item} />
             {/* Sidebar = 70px */}
-            <div className="background-div">
+            <div className="background-div" >
                 <div className='div-h1-button'>
-                    <h1>Requisições de Transferência</h1>
+                    <h1 style={dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Requisições de Transferência</h1>
                     <button className="req-add-button" style={{ backgroundColor: "#f7cf1d" }} type='submit' onClick={showModal}><i class="fa-solid fa-plus"></i></button>
                 </div>
                 <div className='div-tables'>
                     <table className="tables">
                         <thead>
-                            <tr>
+                            <tr >
                                 <th style={{ textAlign: "center" }}>No.</th>
                                 <th style={{ textAlign: "center" }}>Código</th>
                                 <th style={{ textAlign: "center" }}>Usuário:</th>
@@ -211,58 +213,58 @@ const MonitoramentoRT = () => {
                                 <th style={{ textAlign: "center" }}>Desc. Func:</th>
                             </tr>
                         </thead>
-                        <tbody className="table-even">
-                            {data1.map((movi1, index) => (
-                                <tr key={movi1.id_requisicao} onClick={() => changeItem(movi1)} className="selectedListItem">
-                                    <th scope="row">{index + 1}</th>
-                                    <td>{movi1.id_requisicao}</td>
-                                    <td>{movi1.nome_usuario}</td>
-                                    <td>{movi1.nome_produto}</td>
-                                    <td>{movi1.qtd_produto}</td>
-                                    <td>{movi1.desc_status}</td>
-                                    <td>{movi1.desc_func}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
-                <div className='div-h1-button'>
-                    <h1>Últimas Tranferências</h1>
-                    {nivelAcesso === 1 && (
-                        <div>
-                            <button style={{ backgroundColor: "#ff0000" }} onClick={handleClickDenied}><i class="fa-solid fa-xmark"></i></button>
-                            <button style={{ backgroundColor: "#4CAF50" }} onClick={handleClickAccept}><i class="fa-solid fa-check"></i></button>
-                        </div>
-                    )}
-                </div>
-                <div className='div-tables'>
-                    <table className="tables">
-                        <thead>
-                            <tr>
-                                <th style={{ textAlign: "center" }}>No.</th>
-                                <th style={{ textAlign: "center" }}>Código</th>
-                                <th style={{ textAlign: "center" }}>Produto:</th>
-                                <th style={{ textAlign: "center" }}>Qtde. Movimentada:</th>
-                                <th style={{ textAlign: "center" }}>Data:</th>
-                                <th style={{ textAlign: "center" }}>Movimento:</th>
+                        <tbody className={dark_mode == 1 ? "table-even" : ""} style={dark_mode == 1 ? { background: "#FFFFFF" } : {background: "#2b2b2b"}}>
+                        {data1.map((movi1, index) => (
+                            <tr key={movi1.id_requisicao} onClick={() => changeItem(movi1)} className="selectedListItem">
+                                <th scope="row" style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{index + 1}</th>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi1.id_requisicao}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi1.nome_usuario}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi1.nome_produto}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi1.qtd_produto}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi1.desc_status}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi1.desc_func}</td>
                             </tr>
-                        </thead>
-                        <tbody id="corpoTabelaProdutos">
-                            {data2.map((movi2, index) => (
-                                <tr key={movi2.id_movimentacao} id="linhaAlterar">
-                                    <th scope="row">{index + 1}</th>
-                                    <td>{movi2.id_movimentacao}</td>
-                                    <td>{movi2.nome_produto}</td>
-                                    <td>{movi2.qtd_movimentacao_produto}</td>
-                                    <td>{formatarData(movi2.data_movimentacao_produto)}</td>
-                                    <td>{movi2.movimento}</td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                </div>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
+            <div className='div-h1-button'>
+                <h1 style={dark_mode == 1 ? {color: "#2b2b2b"} : {color: "#FFFFFF"}}>Últimas Tranferências</h1>
+                {nivelAcesso === 1 && (
+                    <div>
+                        <button style={{ backgroundColor: "#ff0000" }} onClick={handleClickDenied}><i class="fa-solid fa-xmark"></i></button>
+                        <button style={{ backgroundColor: "#4CAF50" }} onClick={handleClickAccept}><i class="fa-solid fa-check"></i></button>
+                    </div>
+                )}
+            </div>
+            <div className='div-tables'>
+                <table className="tables">
+                    <thead>
+                        <tr>
+                            <th style={{ textAlign: "center" }}>No.</th>
+                            <th style={{ textAlign: "center" }}>Código</th>
+                            <th style={{ textAlign: "center" }}>Produto:</th>
+                            <th style={{ textAlign: "center" }}>Qtde. Movimentada:</th>
+                            <th style={{ textAlign: "center" }}>Data:</th>
+                            <th style={{ textAlign: "center" }}>Movimento:</th>
+                        </tr>
+                    </thead>
+                    <tbody id="corpoTabelaProdutos">
+                        {data2.map((movi2, index) => (
+                            <tr key={movi2.id_movimentacao} id="linhaAlterar" style={dark_mode == 1 ? { background: "#FFFFFF" } : {background: "#2b2b2b"}}>
+                                <th scope="row" style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{index + 1}</th>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi2.id_movimentacao}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi2.nome_produto}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi2.qtd_movimentacao_produto}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{formatarData(movi2.data_movimentacao_produto)}</td>
+                                <td style={dark_mode == 1 ? {color: "#2b2b2b", textAlign: "center"} : {color: "#FFFFFF", textAlign: "center"}}>{movi2.movimento}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
         </div>
+        </div >
     );
 };
 

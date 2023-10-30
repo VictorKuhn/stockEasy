@@ -16,28 +16,33 @@ import MonitoramentoRT from './pages/MonitoramentoRT.js';
 import Setor from './pages/Setor.js';
 import EditarSetor from './pages/changes/EditarSetor.js';
 import CadastroSetor from './pages/inserts/CadastroSetor.js';
+import React from 'react';
 
 function App() {
+  const dark_mode = localStorage.getItem('dark_mode');
+
   return (
     <BrowserRouter>
+    {/* style={dark_mode == 1 ? { background: "#FFFFFF" } : { background: "#2b2b2b" }} */}
       <div className="App">
         <ToastContainer position="top-center" />
-        <Routes>
-          <Route exact path="/" element={<Login />}></Route>
-          <Route path="/home" element={<Home />}></Route>
-          <Route path="/produtos" element={<Produtos />}></Route>
-          <Route path="/editarProduto/:id" element={<EditarProduto />}></Route>
-          <Route path="/editarUsuario/:id" element={<EditarUsuario />}></Route>
-          <Route path="/editarSetor/:id" element={<EditarSetor />}></Route>
-          <Route path="/cadastrarProduto" element={<CadastroProduto />}></Route>
-          <Route path="/cadastrarUsuario" element={<CadastroUsuario />}></Route>
-          <Route path="/cadastrarSetor" element={<CadastroSetor />}></Route>
-          <Route path="/importacaoNF" element={<ImportacaoNF />}></Route>
-          <Route path="/usuarios" element={<Usuarios />}></Route>
-          <Route path="/requisicoesRecusadas" element={<RequisicoesRecusadas />}></Route>
-          <Route path="/monitoramentoRT" element={<MonitoramentoRT />}></Route>
-          <Route path="/setor" element={<Setor />}></Route>
-        </Routes>
+          <Routes>
+            <Route exact path="/" element={<Login />}></Route>
+            <Route path="/home" element={<Home />}></Route>
+            <Route path="/produtos" element={<Produtos />}></Route>
+            <Route path="/editarProduto/:id" element={<EditarProduto />}></Route>
+            <Route path="/editarUsuario/:id" element={<EditarUsuario />}></Route>
+            <Route path="/editarSetor/:id" element={<EditarSetor />}></Route>
+            <Route path="/cadastrarProduto" element={<CadastroProduto />}></Route>
+            <Route path="/cadastrarUsuario" element={<CadastroUsuario />}></Route>
+            <Route path="/cadastrarSetor" element={<CadastroSetor />}></Route>
+            <Route path="/importacaoNF" element={<ImportacaoNF />}></Route>
+            <Route path="/usuarios" element={<Usuarios />}></Route>
+            <Route path="/requisicoesRecusadas" element={<RequisicoesRecusadas />}></Route>
+            <Route path="/monitoramentoRT" element={<MonitoramentoRT />}></Route>
+            <Route path="/setor" element={<Setor />}></Route>
+          </Routes>
+
       </div>
     </BrowserRouter>
   );
